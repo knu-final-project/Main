@@ -15,8 +15,8 @@
   localhost:8000/predict
 
 <h2> 우리가 할 것 </h2>
- - 로그인 페이지 
- - DB연동(cloud)
- - 모델 여러개 render_template 이용하여 변수 전달
- - html template > 각 page마다
- - 동언의 id 맞춘 입력값
+ - 로그인 페이지 <br>
+ - DB연동(cloud) <br>
+ - 모델 여러개 render_template 이용하여 변수 전달 <br>
+ - html template > 각 page마다 <br>
+ - 동언의 id 맞춘 입력값 <br>
