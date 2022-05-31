@@ -13,8 +13,9 @@
 
   <h2>Pages </h2>
   
+  localhost:8000/ (mainpage 아직 미구현)<br>
   localhost:8000/survey<br>
-  localhost:8000/predict
+  localhost:8000/predict<br>
 
 <h2> 우리가 할 것 </h2>
  - 로그인 페이지 <br>
