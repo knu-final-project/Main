@@ -9,7 +9,8 @@
   - pip install -r requirements.txt
   - python main.py
 
-  <h2>pages : </h2>
+  <h2>Pages </h2>
   
   localhost:8000/survey<br>
   localhost:8000/predict
+
