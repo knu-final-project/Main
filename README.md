@@ -10,5 +10,5 @@
   - python main.py
 </h1>
   
-  localhost:8000/survey
+  localhost:8000/survey<br>
   localhost:8000:/predict
