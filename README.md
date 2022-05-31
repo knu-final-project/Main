@@ -8,3 +8,7 @@
   
   - pip install -r requirements.txt
   - python main.py
+
+  
+  localhost:8000/survey
+  localhost:8000:/predict
