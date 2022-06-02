@@ -32,6 +32,6 @@ if __name__ == "__main__":
     parser.add_argument("--port", default=5000, type=int, help="port number")
     args = parser.parse_args()
 
-    model = torch.hub.load('./yolov5', 'custom', path='yolov5s.pt', source='local') # force_reload = recache latest code
+    model = torch.hub.load(r'C:/final_repository/flask/Main/yolov5', 'custom', path=r'C:/final_repository/flask/Main/yolov5s.pt', source='local')
     model.eval()
     app.run(host="0.0.0.0", port=args.port)  # debug=True causes Restarting with stat
