@@ -4,6 +4,8 @@ from flask_cors import CORS, cross_origin
 import argparse
 import io
 from PIL import Image
+import json
+
 
 import torch
 HOME_URL = "/"
@@ -115,43 +117,44 @@ def hello_world():
         mydict=request.form
         #mydict에서 문항 다 입력하고 거기서 
 
-        LQ_3EQL = int(mydict['LQ_3EQL'])
-        N_MUFA = int(mydict['N_MUFA'])
-        TOTAL_SLP_WD = int(mydict['TOTAL_SLP_WD'])
-        HE_BMI = int(mydict['HE_BMI'])
-        N_PHOS = int(mydict['N_PHOS'])
-        BD1_11 = int(mydict['BD1_11'])
-        HE_WT = int(mydict['HE_WT'])
-        BP1 = int(mydict['BP1'])
-        N_FAT = int(mydict['N_FAT'])
-        BH1 = int(mydict['BH1'])
-        AGE = int(mydict['AGE'])
-        N_CAROT = int(mydict['N_CAROT'])
-        BS13 = int(mydict['BS13'])
-        N_INTK = int(mydict['N_INTK'])
-        N_EN = int(mydict['N_EN'])
-        LQ_5EQL = int(mydict['LQ_5EQL'])
-        BE3_85 = int(mydict['BE3_85'])
-        N_WATER = int(mydict['N_WATER'])
-        HE_HT = int(mydict['HE_HT'])
-        N_CHOL = int(mydict['N_CHOL'])
-        N_NA = int(mydict['N_NA'])
-        N_PROT = int(mydict['N_PROT'])
+        LQ_3EQL = float(mydict['LQ_3EQL'])
+        N_MUFA = float(mydict['N_MUFA'])
+        TOTAL_SLP_WD = float(mydict['TOTAL_SLP_WD'])
+        HE_BMI = float(mydict['HE_BMI'])
+        N_PHOS = float(mydict['N_PHOS'])
+        BD1_11 = float(mydict['BD1_11'])
+        HE_WT = float(mydict['HE_WT'])
+        BP1 = float(mydict['BP1'])
+        N_FAT = float(mydict['N_FAT'])
+        BH1 = float(mydict['BH1'])
+        AGE = float(mydict['AGE'])
+        N_CAROT = float(mydict['N_CAROT'])
+        BS13 = float(mydict['BS13'])
+        N_INTK = float(mydict['N_INTK'])
+        N_EN = float(mydict['N_EN'])
+        LQ_5EQL = float(mydict['LQ_5EQL'])
+        BE3_85 = float(mydict['BE3_85'])
+        N_WATER = float(mydict['N_WATER'])
+        HE_HT = float(mydict['HE_HT'])
+        N_CHOL = float(mydict['N_CHOL'])
+        N_NA = float(mydict['N_NA'])
+        N_PROT = float(mydict['N_PROT'])
         SEX = int(mydict['SEX'])
-        BP7 = int(mydict['BP7'])
-        LQ_2EQL = int(mydict['LQ_2EQL'])
-        HE_DBP = int(mydict['HE_DBP'])
-        LQ_1EQL = int(mydict['LQ_1EQL'])
-        BE3_81 = int(mydict['BE3_81'])
-        N_SFA = int(mydict['N_SFA'])
-        HE_RPLS = int(mydict['HE_RPLS'])
-        N_SUGAR = int(mydict['N_SUGAR'])
-        SM_PRESNT = int(mydict['SM_PRESNT'])
-        L_BR_FQ = int(mydict['L_BR_FQ'])
-        HE_FH = int(mydict['HE_FH'])
-        LQ_4EQL = int(mydict['LQ_4EQL'])
-        MH_STRESS = int(mydict['MH_STRESS'])
-        LQ4_00 = int(mydict['LQ4_00'])
+        BP7 = float(mydict['BP7'])
+        LQ_2EQL = float(mydict['LQ_2EQL'])
+        HE_DBP = float(mydict['HE_DBP'])
+        LQ_1EQL = float(mydict['LQ_1EQL'])
+        BE3_81 = float(mydict['BE3_81'])
+        N_SFA = float(mydict['N_SFA'])
+        HE_RPLS = float(mydict['HE_RPLS'])
+        N_SUGAR = float(mydict['N_SUGAR'])
+        SM_PRESNT = float(mydict['SM_PRESNT'])
+        L_BR_FQ = float(mydict['L_BR_FQ'])
+        HE_FH = float(mydict['HE_FH'])
+        LQ_4EQL = float(mydict['LQ_4EQL'])
+        MH_STRESS = float(mydict['MH_STRESS'])
+        LQ4_00 = float(mydict['LQ4_00'])
+
 
         
         DI2_DG_LIST = [SEX, HE_FH, HE_BMI,BH1,AGE,HE_HT,BD1_11,BP1,LQ_4EQL]
@@ -201,24 +204,24 @@ def hello_world():
         infprob19 = clf19.predict_proba([DC3_DG_LIST])[0][1]
         infprob20 = clf20.predict_proba([DK8_DG_LIST])[0][1]
                
-        return render_template('result.html',infprob1=(round(infprob1*10**11,2)), inf2 = (round(infprob2*10,2)), inf3 = (round(infprob3*10,2)),
-                               inf4 = (round(infprob4*10,2)),
-inf5 = (round(infprob5*10,2)),
-inf6 = (round(infprob6*10,2)),
-inf7 = (round(infprob7*10,2)),
-inf8 = (round(infprob8*10,2)),
-inf9 = (round(infprob9*10,2)),
-inf10 = (round(infprob10*10,2)),
-inf11 = (round(infprob11*10,2)),
-inf12 = (round(infprob12*10,2)),
-inf13 = (round(infprob13*10,2)),
-inf14 = (round(infprob14*10,2)),
-inf15 = (round(infprob15*10,2)),
-inf16 = (round(infprob16*10,2)),
-inf17 = (round(infprob17*10,2)),
-inf18 = (round(infprob18*10,2)),
-inf19 = (round(infprob19*10,2)),
-inf20 = (round(infprob20*10,2))
+        return render_template('result.html',inf1=(infprob1*100), inf2 = (round(infprob2*100,2)), inf3 = (round(infprob3*100,2)),
+                               inf4 = (round(infprob4*100,2)),
+inf5 = (round(infprob5*100,2)),
+inf6 = (round(infprob6*100,2)),
+inf7 = (round(infprob7*100,2)),
+inf8 = (round(infprob8*100,2)),
+inf9 = (round(infprob9*100,2)),
+inf10 = (round(infprob10*100,2)),
+inf11 = (round(infprob11*100,2)),
+inf12 = (round(infprob12*100,2)),
+inf13 = (round(infprob13*100,2)),
+inf14 = (round(infprob14*100,2)),
+inf15 = (round(infprob15*100,2)),
+inf16 = (round(infprob16*100,2)),
+inf17 = (round(infprob17*100,2)),
+inf18 = (round(infprob18*100,2)),
+inf19 = (round(infprob19*100,2)),
+inf20 = (round(infprob20*100,2))
 )
    
     return render_template('index.html')
@@ -235,6 +238,7 @@ def predict():
         img_bytes = file.read()
         img = Image.open(io.BytesIO(img_bytes))
         results = model(img, size=640)
+        data = results.pandas().xyxy[0].to_json(orient="records")
 
         # for debugging
         # data = results.pandas().xyxy[0].to_json(orient="records")
@@ -244,6 +248,9 @@ def predict():
         for img in results.imgs:
             img_base64 = Image.fromarray(img)
             img_base64.save("static/image0.jpg", format="JPEG")
+        with open('static/sample.json', 'w') as outfile:
+            json.dump(data, outfile)
+
         return redirect("static/image0.jpg")
 
     return render_template("detect.html")
@@ -251,6 +258,7 @@ def predict():
 if __name__ == '__main__'  :
     parser = argparse.ArgumentParser(description="Flask app exposing yolov5 models")
     parser.add_argument("--port", default=5000, type=int, help="port number")
+    parser.add_argument('--save-txt', action='store_true', help='save results to *.txt')
     args = parser.parse_args()
 
 #    model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True, autoshape=True)  # force_reload = recache latest code
