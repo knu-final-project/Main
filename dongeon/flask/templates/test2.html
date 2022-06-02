@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="/js/jquery-3.6.0.js"></script>
+<style>
+table, th, td{
+	border : 1px solid black;
+	text-align : center;
+}
+.btn{
+	font-size : 1.2em;
+}
+</style>
+<meta charset="UTF-8">
+<title>회원관리</title>
+</head>
+<body>
+<table>
+	<tr>
+		<th>테스트0</th>
+		<th>테스트1</th>
+		<th>테스트2</th>
+		<th>테스트9</th>
+	</tr>
+		{% for emp in empList%}
+		<tr>
+			<td>
+				<a href="javascript:fn_detail(
+				'{{emp.empno}}','{{emp.name}}','{{emp.department}}','{{emp.phone}}'
+				)">{{emp.empno}}</a>
+			</td>
+			<td>{{emp.name}}</td>
+			<td>{{emp.department}}</td>
+			<td>{{emp.phone}}</td>
+		</tr>
+		{% endfor %}
+</table><br/>
+<table>
+	<tr>
+		<th>사번</th>
+		<td>
+			<input type="text" id="empno">
+		</td>
+	</tr>
+	<tr>
+		<th>이름</th>
+		<td>
+			<input type="text" id="name">
+		</td>
+	</tr>
+	<tr>
+		<th>부서</th>
+		<td>
+			<input type="text" id="department">
+		</td>
+	</tr>
+	<tr>
+		<th>전화번호</th>
+		<td>
+			<input type="text" id="phone">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input onclick="fun_add()" id="add" class="btn" type="button" value="추가">
+			<input onclick="fun_mod()"id="mod" class="btn" type="button" value="수정">
+			<input onclick="fun_del()"id="del" class="btn" type="button" value="삭제">
+		</td>
+	</tr>
+</table>
+<script>
+	function fun_add(){
+		const empno = document.getElementById("empno").value
+		const name = document.getElementById("name").value
+		const department = document.getElementById("department").value
+		const phone = document.getElementById("phone").value
+		var param = {
+			'empno' : empno,
+			'name' : name,
+			'department' : department,
+			'phone' : phone
+		}
+		
+		$.ajax({
+			type : 'POST',
+			url : '/ins.ajax',
+			data : JSON.stringify(param),
+			dataType : 'JSON',
+			contentType : "application/json",
+			success : function(data){
+				location.reload()
+			},
+			error : function(request, status, error){
+				
+			}
+		})
+		
+	}
+	function fun_mod(){
+		const empno = document.getElementById("empno").value
+		const name = document.getElementById("name").value
+		const department = document.getElementById("department").value
+		const phone = document.getElementById("phone").value
+		var param = {
+			'empno' : empno,
+			'name' : name,
+			'department' : department,
+			'phone' : phone
+		}
+		
+		$.ajax({
+			type : 'POST',
+			url : '/mod.ajax',
+			data : JSON.stringify(param),
+			dataType : 'JSON',
+			contentType : "application/json",
+			success : function(data){
+				location.reload()
+			},
+			error : function(request, status, error){
+				
+			}
+		})
+	}
+	function fun_del(){
+		const empno = document.getElementById("empno").value
+		const name = document.getElementById("name").value
+		const department = document.getElementById("department").value
+		const phone = document.getElementById("phone").value
+		var param = {
+			'empno' : empno,
+			'name' : name,
+			'department' : department,
+			'phone' : phone
+		}
+		
+		$.ajax({
+			type : 'POST',
+			url : '/del.ajax',
+			data : JSON.stringify(param),
+			dataType : 'JSON',
+			contentType : "application/json",
+			success : function(data){
+				location.reload()
+			},
+			error : function(request, status, error){
+				
+			}
+		})
+	}
+	function fn_detail(empno, name, department, phone){
+		var obj_empno = document.getElementById("empno");
+		var obj_name = document.getElementById("name");
+		var obj_department = document.getElementById("department");
+		var obj_phone = document.getElementById("phone");
+		
+		obj_empno.value=empno;
+		obj_name.value=name;
+		obj_department.value=department;
+		obj_phone.value=phone;
+	}
+</script>
+</body>
+</html>
