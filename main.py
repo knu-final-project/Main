@@ -1,27 +1,99 @@
-from tracemalloc import start
 from flask import Flask,render_template,request,redirect
 import pickle
 from flask_cors import CORS, cross_origin
 import argparse
 import io
 from PIL import Image
+
 import torch
-
-from py_modules import prediction_var
-
-
-
+HOME_URL = "/"
 SURVEY_URL = "/survey"
 DETECTION_URL = "/predict"
 
-# from keras import models
-file=open('data\DI2_DG.pkl','rb')
-clf=pickle.load(file)
+model_list = []
 
+# from keras import models
+file=open('data\models\DI2_DG.pkl','rb')
+clf1=pickle.load(file)
+file.close()
+
+file = open('data\models\DI3_DG.pkl','rb')
+clf2 = pickle.load(file)
+file.close()
+
+file = open('data\models\DI4_DG.pkl','rb')
+clf3 = pickle.load(file)
+file.close()
+
+file = open('data\models\DI5_DG.pkl','rb')
+clf4 = pickle.load(file)
+file.close()
+
+file = open('data\models\DM2_DG.pkl','rb')
+clf5 = pickle.load(file)
+file.close()
+
+file = open('data\models\DM3_DG.pkl','rb')
+clf6 = pickle.load(file)
+file.close()
+
+file = open('data\models\DM4_DG.pkl','rb')
+clf7 = pickle.load(file)
+file.close()
+
+file = open('data\models\DJ2_DG.pkl','rb')
+clf8 = pickle.load(file)
+file.close()
+
+file = open('data\models\DJ4_DG.pkl','rb')
+clf9 = pickle.load(file)
+file.close()
+
+file = open('data\models\DJ6_DG.pkl','rb')
+clf10 = pickle.load(file)
+file.close()
+
+file = open('data\models\DJ8_DG.pkl','rb')
+clf11 = pickle.load(file)
+file.close()
+
+file = open('data\models\DI6_DG.pkl','rb')
+clf12 = pickle.load(file)
+file.close()
+
+file = open('data\models\DF2_DG.pkl','rb')
+clf13 = pickle.load(file)
+file.close()
+
+file = open('data\models\DL1_DG.pkl','rb')
+clf14 = pickle.load(file)
+file.close()
+
+file = open('data\models\DE1_DG.pkl','rb')
+clf15 = pickle.load(file)
+file.close()
+
+file = open('data\models\DE2_DG.pkl','rb')
+clf16 = pickle.load(file)
+file.close()
+
+file = open('data\models\DH4_DG.pkl','rb')
+clf17 = pickle.load(file)
+file.close()
+
+file = open('data\models\DC1_DG.pkl','rb')
+clf18 = pickle.load(file)
+file.close()
+
+file = open('data\models\DC3_DG.pkl','rb')
+clf19 = pickle.load(file)
+file.close()
+
+file = open('data\models\DK8_DG.pkl','rb')
+clf20 = pickle.load(file)
 file.close()
 
 app=Flask(__name__)
-start_program = prediction_var.hello_world
 
 cors = CORS(app)
 
@@ -33,13 +105,16 @@ def after_request(response):
   response.headers.add('Access-Control-Allow-Credentials', 'true')
   return response
 
+@app.route(HOME_URL)
+def home():
+    return '머선일이조'
 
 @app.route(SURVEY_URL,methods=['GET','POST'])
-
 def hello_world():
     if request.method == 'POST':
         mydict=request.form
         #mydict에서 문항 다 입력하고 거기서 
+
         LQ_3EQL = int(mydict['LQ_3EQL'])
         N_MUFA = int(mydict['N_MUFA'])
         TOTAL_SLP_WD = int(mydict['TOTAL_SLP_WD'])
@@ -69,7 +144,6 @@ def hello_world():
         LQ_1EQL = int(mydict['LQ_1EQL'])
         BE3_81 = int(mydict['BE3_81'])
         N_SFA = int(mydict['N_SFA'])
-        ID = int(mydict['ID'])
         HE_RPLS = int(mydict['HE_RPLS'])
         N_SUGAR = int(mydict['N_SUGAR'])
         SM_PRESNT = int(mydict['SM_PRESNT'])
@@ -79,8 +153,10 @@ def hello_world():
         MH_STRESS = int(mydict['MH_STRESS'])
         LQ4_00 = int(mydict['LQ4_00'])
 
+        
         DI2_DG_LIST = [SEX, HE_FH, HE_BMI,BH1,AGE,HE_HT,BD1_11,BP1,LQ_4EQL]
         DI3_DG_LIST = [LQ_3EQL,LQ_1EQL,LQ_2EQL,HE_RPLS,LQ_4EQL,AGE,LQ4_00,N_PHOS,N_PROT]
+        DI4_DG_LIST = [HE_RPLS,HE_WT,HE_DBP,LQ_3EQL,SEX,HE_BMI,AGE,HE_HT,HE_FH,BE3_81]
         DI4_DG_LIST = [HE_RPLS,HE_WT,HE_DBP,HE_DBP,LQ_3EQL,SEX,HE_BMI,AGE,HE_HT,HE_FH]
         DI5_DG_LIST = [SEX,AGE,HE_DBP,HE_DBP,HE_HT,HE_WT,BS13,HE_RPLS,BE3_81]
         DM2_DG_LIST = [SEX,HE_HT,LQ_4EQL,LQ_1EQL,LQ_3EQL,HE_BMI,BD1_11,LQ4_00,N_EN,LQ_5EQL]
@@ -103,9 +179,47 @@ def hello_world():
  
         #input_feature=[100,1,45,1,1,0]
         
-        infprob=clf.predict_proba([DI2_DG_LIST])[0][1]
         
-        return render_template('result.html',inf=(round(infprob*10**11,2)), inf2='2', inf3 = '3', inf4 = '4')
+        infprob1 = clf1.predict_proba([DI2_DG_LIST])[0][1]
+        infprob2 = clf2.predict_proba([DI3_DG_LIST])[0][1]
+        infprob3 = clf3.predict_proba([DI4_DG_LIST])[0][1] 
+        infprob4=clf4.predict_proba([DI5_DG_LIST])[0][1]
+        infprob5 = clf5.predict_proba([DM2_DG_LIST])[0][1]
+        infprob6 = clf6.predict_proba([DM3_DG_LIST])[0][1] 
+        infprob7 = clf7.predict_proba([DM4_DG_LIST])[0][1]
+        infprob8 = clf8.predict_proba([DJ2_DG_LIST])[0][1]
+        infprob9 = clf9.predict_proba([DJ4_DG_LIST])[0][1] 
+        infprob10 = clf10.predict_proba([DJ6_DG_LIST])[0][1]
+        infprob11 = clf11.predict_proba([DJ8_DG_LIST])[0][1]
+        infprob12 = clf12.predict_proba([DI6_DG_LIST])[0][1] 
+        infprob13 = clf13.predict_proba([DF2_DG_LIST])[0][1]
+        infprob14 = clf14.predict_proba([DL1_DG_LIST])[0][1]
+        infprob15 = clf15.predict_proba([DE1_DG_LIST])[0][1] 
+        infprob16 = clf16.predict_proba([DE2_DG_LIST])[0][1]
+        infprob17 = clf17.predict_proba([DH4_DG_LIST])[0][1]
+        infprob18 = clf18.predict_proba([DC1_DG_LIST])[0][1] 
+        infprob19 = clf19.predict_proba([DC3_DG_LIST])[0][1]
+        infprob20 = clf20.predict_proba([DK8_DG_LIST])[0][1]
+               
+        return render_template('result.html',infprob1=(round(infprob1*10**11,2)), inf2 = (round(infprob2*10,2)), inf3 = (round(infprob3*10,2)),
+                               inf4 = (round(infprob4*10,2)),
+inf5 = (round(infprob5*10,2)),
+inf6 = (round(infprob6*10,2)),
+inf7 = (round(infprob7*10,2)),
+inf8 = (round(infprob8*10,2)),
+inf9 = (round(infprob9*10,2)),
+inf10 = (round(infprob10*10,2)),
+inf11 = (round(infprob11*10,2)),
+inf12 = (round(infprob12*10,2)),
+inf13 = (round(infprob13*10,2)),
+inf14 = (round(infprob14*10,2)),
+inf15 = (round(infprob15*10,2)),
+inf16 = (round(infprob16*10,2)),
+inf17 = (round(infprob17*10,2)),
+inf18 = (round(infprob18*10,2)),
+inf19 = (round(infprob19*10,2)),
+inf20 = (round(infprob20*10,2))
+)
    
     return render_template('index.html')
 
@@ -139,7 +253,10 @@ if __name__ == '__main__'  :
     parser.add_argument("--port", default=5000, type=int, help="port number")
     args = parser.parse_args()
 
-    model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True, autoshape=True)  # force_reload = recache latest code
+#    model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True, autoshape=True)  # force_reload = recache latest code
+    model = torch.hub.load(r'C:/final_repository/flask/Main/yolov5', 'custom', path=r'C:/final_repository/flask/Main/yolov5s.pt', source='local')
+
+#    model = torch.hub.load(r'yolov5', 'yolov5s', path=r'yolov5s.pt', source='local')
+
     model.eval()
     app.run(debug=True) 
-
