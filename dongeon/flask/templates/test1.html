@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td{
+	border : 1px solid black;
+}
+</style>
+<meta charset="UTF-8">
+<title>Food_Table</title>
+</head>
+<body>
+<table>
+	<tr>
+		<th>Class</th>
+		<th>음식이름</th>
+		<th>서빙사이즈</th>
+		<th>칼로리(kJ)</th>
+		<th>칼로리(kcal)</th>
+		
+		<th>탄수화물(g)</th>
+		<th>설탕(g)</th>
+		<th>단백질(g)</th>
+		<th>지방(g)</th>
+		<th>포화지방(g)</th>
+
+		<th>다중불포화지방(g)</th>
+		<th>불포화지방(g)</th>
+		<th>콜레스테롤(mg)</th>
+		<th>식이섬유(g)</th>
+		<th>나트륨(mg)</th>
+
+		<th>칼륨(mg)</th>
+	</tr>
+		{% for food in food_list%}
+		<tr>
+			<td>{{food.class_num}}</td>
+			<td>{{food.food_name}}</td>
+			<td>{{food.serving_size}}</td>
+			<td>{{food.calorie_kJ}}</td>
+			<td>{{food.calorie_kcal}}</td>
+			
+			<td>{{food.carbohydrate_g}}</td>
+			<td>{{food.sugar_g}}</td>
+			<td>{{food.protein_g}}</td>
+			<td>{{food.fat_g}}</td>
+			<td>{{food.saturated_fat_g}}</td>
+			
+			<td>{{food.polyunsaturated_fat_g}}</td>
+			<td>{{food.unsaturated_fat_g}}</td>
+			<td>{{food.cholesterol_mg}}</td>
+			<td>{{food.dietary_fiber_g}}</td>
+			<td>{{food.salt_mg}}</td>
+
+			<td>{{food.potassium_mg}}</td>
+		</tr>
+		{% endfor %}
+</table>
+</body>
+</html>
