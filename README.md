@@ -18,9 +18,9 @@
   localhost:8000/predict<br>
 
 <h2> 우리가 할 것 </h2>
- - 로그인 페이지 <br>
- - DB연동(cloud) <br>
- - 모델 여러개 render_template 이용하여 변수 전달 <br>
- - html template > 각 page마다 <br>
+ - ~~로그인 페이지~~ <br>
+ - ~~DB 연동(SQLAlchemy)~~ <br>
+ - ~~모델 여러개 render_template 이용하여 변수 전달~~ <br>
+ - **html template > 각 page마다** ➡ DESIGN적 요소 ! <br>
  - 동언의 id 맞춘 입력값 <br>
  __ 구동 확인을 위해 코드 모듈화 및 정리는 차후에 할게요 ^^__
