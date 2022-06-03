@@ -1,19 +1,20 @@
-from flask import Flask,render_template,request,redirect
+from flask import Flask,render_template,request,redirect,session,url_for
 import pickle
+from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
 import argparse
 import io
 from PIL import Image
 import json
+from instagram import getfollowedby, getname
+from datetime import timedelta
+
 
 
 import torch
 HOME_URL = "/"
 SURVEY_URL = "/survey"
 DETECTION_URL = "/predict"
-
-model_list = []
-
 # from keras import models
 file=open('data\models\DI2_DG.pkl','rb')
 clf1=pickle.load(file)
@@ -96,8 +97,20 @@ clf20 = pickle.load(file)
 file.close()
 
 app=Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=1) # 로그인 지속시간을 정합니다. 현재 1분
 
+db = SQLAlchemy(app)
 cors = CORS(app)
+
+class User(db.Model):
+    """ Create user table"""
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    password = db.Column(db.String(80))
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
 
 @app.after_request
 def after_request(response):
@@ -107,10 +120,56 @@ def after_request(response):
   response.headers.add('Access-Control-Allow-Credentials', 'true')
   return response
 
-@app.route(HOME_URL)
-def home():
-    return '머선일이조'
 
+@app.route('/',methods=['GET','POST'])
+def home():
+    """ Session control"""
+    if not session.get('logged_in'):
+        return render_template('home.html')
+    else:
+        if request.method == 'POST':
+            username = getname(request.form['username'])
+            return render_template('home.html', data=getfollowedby(username))
+        return render_template('home.html')
+    
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """Login Form"""
+    if request.method == 'GET':
+        return render_template('login.html')
+    else:
+        name = request.form['username']
+        passw = request.form['password']
+        try:
+            data = User.query.filter_by(username=name, password=passw).first()
+            if data is not None:
+                session['logged_in'] = True
+                return redirect(url_for('home'))
+            else:
+                return 'Dont Login'
+        except:
+            return "Dont Login"
+ 
+ 
+@app.route('/register/', methods=['GET', 'POST'])
+def register():
+    """Register Form"""
+    if request.method == 'POST':
+        new_user = User(username=request.form['username'], password=request.form['password'])
+        db.session.add(new_user)
+        db.session.commit()
+        return render_template('login.html')
+    return render_template('register.html')
+     
+ 
+@app.route("/logout")
+def logout():
+    """Logout Form"""
+    session['logged_in'] = False
+    return redirect(url_for('home'))
+ 
+ 
 @app.route(SURVEY_URL,methods=['GET','POST'])
 def hello_world():
     if request.method == 'POST':
@@ -260,11 +319,14 @@ if __name__ == '__main__'  :
     parser.add_argument("--port", default=5000, type=int, help="port number")
     parser.add_argument('--save-txt', action='store_true', help='save results to *.txt')
     args = parser.parse_args()
-
 #    model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True, autoshape=True)  # force_reload = recache latest code
     model = torch.hub.load(r'C:/final_repository/flask/Main/yolov5', 'custom', path=r'C:/final_repository/flask/Main/yolov5s.pt', source='local')
 
 #    model = torch.hub.load(r'yolov5', 'yolov5s', path=r'yolov5s.pt', source='local')
 
     model.eval()
+    db.create_all()
+    app.secret_key = "123"
+    # secret_key는 서버상에 동작하는 어플리케이션 구분하기 위해 사용하고 복잡하게 만들어야 합니다.
+    
     app.run(debug=True) 
