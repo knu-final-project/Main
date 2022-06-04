@@ -97,8 +97,8 @@ file = open('data\models\DK8_DG.pkl','rb')
 clf20 = pickle.load(file)
 file.close()
 
-app=Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app = Flask(__name__, static_url_path='/static')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=SESSION_LIFETIME) # 로그인 지속시간을 정합니다. 현재 1분
 
 db = SQLAlchemy(app)
@@ -108,19 +108,14 @@ class User(db.Model):
     """ Create user table"""
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
+    name = db.Column(db.String(80))
     password = db.Column(db.String(80))
-    def __init__(self, username, password):
+    def __init__(self, username, name, password):
         self.username = username
+        self.name = name
         self.password = password
 
-class Food(db.Model):
-    """ Create user table"""
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    password = db.Column(db.String(80))
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+
 
 
 @app.after_request
@@ -143,7 +138,7 @@ def home():
             return render_template('home.html', data=getfollowedby(username))
         return render_template('home.html')
 
-
+# login_css form 위치 login/ register 별로 바꾸면 좋을듯
 
     
 
@@ -151,7 +146,7 @@ def home():
 def login():
     """Login Form"""
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('login_css.html')
     else:
         name = request.form['username']
         passw = request.form['password']
@@ -161,20 +156,21 @@ def login():
                 session['logged_in'] = True
                 return redirect(url_for('home'))
             else:
-                return 'Dont Login'
+                return '로그인 실패'
         except:
-            return "Dont Login"
+            return "회원정보 없움"
  
  
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
     """Register Form"""
     if request.method == 'POST':
-        new_user = User(username=request.form['username'], password=request.form['password'])
+        new_user = User(name=request.form['register_text'], username=request.form['register_number'], password=request.form['register_password'])
         db.session.add(new_user)
         db.session.commit()
-        return render_template('login.html')
-    return render_template('register.html')
+        return render_template('login_css.html')
+    return render_template('login_css.html')
+# render_tem
      
  
 @app.route("/logout")

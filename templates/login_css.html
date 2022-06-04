@@ -1,15 +1,12 @@
-{% extends "base.html" %}
-{% block content %}
-{% if session['logged_in'] %}
-<p>You're logged in already!</p>
-{% else %}
+
 <html>
     <head>
         <title>로그인 / 회원가입 </title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login_style.css') }}">
+  
     </head>
     <body>
-        <from action = '/join_process' met
+        <from action = '/login' met
         <div class="wrap">
             <div class="form-wrap">
                 <div class="button-wrap">
@@ -26,12 +23,14 @@
                         들어가기
                     </button>
                 </form>
-                <form id="register" action="" class="input-group">
-                    <input type="text" class="input-field" placeholder="이름을 입력해주세요" required>
-                    <input type="number" class="input-field" placeholder="전화번호를 입력해주세요" required>
-                    <input type="password" class="input-field" placeholder="비밀번호 4자리 입력해주세요" required>
-                    <input type="checkbox" class="checkbox"><span>이용약관</span>
-                    <button class="submit">등록하기</button>
+                <form id="register" action="/register" class="input-group" method = "POST">
+                    <input type="register_text" name = "register_text" class="input-field" placeholder="이름을 입력해주세요" required>
+                    <input type="register_number" name = "register_number" class="input-field" placeholder="전화번호를 입력해주세요" required>
+                    <input type="register_password" name = "register_password" class="input-field" placeholder="비밀번호 4자리 입력해주세요" required>
+                    <input type="register_checkbox" name = "register_checkbox" class="checkbox"><span>이용약관</span>
+                    <button class="submit">
+                        등록하기
+                    </button>
                 </form>
             </div>
         </div>
@@ -46,7 +45,7 @@
                 y.style.left = "450px";
                 z.style.left = "0";
             }
-
+  
             function register(){
                 x.style.left = "-400px";
                 y.style.left = "50px";
@@ -54,4 +53,4 @@
             }
         </script>
     </body>
-</html>
+  </html>
