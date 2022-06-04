@@ -1,0 +1,48 @@
+<html>
+    <form action="doJoin" method="POST" class="joinForm" onsubmit="DoJoinForm__submit(this); return false;">
+
+    <head>
+        <meta name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+        <title>생생건강통 로그인</title>
+        <link rel="stylesheet" href="로그인창.css">
+    </head>
+    <body>
+        <header><h2>생생건강통 로그인</h2></header>
+
+            <div class="input-box">
+                <input id="username" type="text" name="username" placeholder="아이디">
+                <label for="username">전화번호</label>
+            </div>
+
+            <div class="input-box">
+                <input id="password" type="password" name="password" placeholder="비밀번호">
+                <label for="password">비밀번호(4자리)</label>
+            </div>
+           
+            
+                <button class="w-btn-neon1" type="submit" id = "btnSubmit1">
+                    들어가기
+                </button>
+
+                <div class="find-btn">
+                    <button type="button" class="w-btn-outline w-btn-indigo-outline" onclick="location.href='../회원가입1/회원가입페이지1.html'">회원가입</button>
+                    <button type="button" class="w-btn-outline w-btn-indigo-outline" onclick="location.href='/findIdPw'">비밀번호 찾기</button>
+                </div>
+
+
+                <style>
+                    #btnSubmit1{
+                        width:50px;
+                        margin:auto;
+                        display:block;
+                    }
+               
+                </style>
+            
+            </body>
+            </div>
+
+        </form>
+            
+
+</html>
