@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,session,url_for
+from flask import Flask,render_template,request,redirect,session,url_for,Blueprint
 import pickle
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
@@ -8,13 +8,14 @@ from PIL import Image
 import json
 from instagram import getfollowedby, getname
 from datetime import timedelta
-
-
-
 import torch
+
+
 HOME_URL = "/"
 SURVEY_URL = "/survey"
 DETECTION_URL = "/predict"
+SESSION_LIFETIME = 10
+
 # from keras import models
 file=open('data\models\DI2_DG.pkl','rb')
 clf1=pickle.load(file)
@@ -98,7 +99,7 @@ file.close()
 
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=1) # 로그인 지속시간을 정합니다. 현재 1분
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=SESSION_LIFETIME) # 로그인 지속시간을 정합니다. 현재 1분
 
 db = SQLAlchemy(app)
 cors = CORS(app)
@@ -111,6 +112,16 @@ class User(db.Model):
     def __init__(self, username, password):
         self.username = username
         self.password = password
+
+class Food(db.Model):
+    """ Create user table"""
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    password = db.Column(db.String(80))
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
 
 @app.after_request
 def after_request(response):
@@ -131,6 +142,9 @@ def home():
             username = getname(request.form['username'])
             return render_template('home.html', data=getfollowedby(username))
         return render_template('home.html')
+
+
+
     
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -313,15 +327,16 @@ def predict():
         return redirect("static/image0.jpg")
 
     return render_template("detect.html")
-    
+
+
+
 if __name__ == '__main__'  :
     parser = argparse.ArgumentParser(description="Flask app exposing yolov5 models")
     parser.add_argument("--port", default=5000, type=int, help="port number")
     parser.add_argument('--save-txt', action='store_true', help='save results to *.txt')
     args = parser.parse_args()
 #    model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True, autoshape=True)  # force_reload = recache latest code
-    model = torch.hub.load(r'C:/final_repository/flask/Main/yolov5', 'custom', path=r'C:/final_repository/flask/Main/yolov5s.pt', source='local')
-
+    model = torch.hub.load('./yolov5', 'custom', path='yolov5s.pt', source='local') 
 #    model = torch.hub.load(r'yolov5', 'yolov5s', path=r'yolov5s.pt', source='local')
 
     model.eval()
