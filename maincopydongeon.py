@@ -286,24 +286,24 @@ def hello_world():
         infprob20 = clf20.predict_proba([DK8_DG_LIST])[0][1]
                
         return render_template('result.html',inf1=(infprob1*100), inf2 = (round(infprob2*100,2)), inf3 = (round(infprob3*100,2)),
-                               inf4 = (round(infprob4*100,2)),
-inf5 = (round(infprob5*100,2)),
-inf6 = (round(infprob6*100,2)),
-inf7 = (round(infprob7*100,2)),
-inf8 = (round(infprob8*100,2)),
-inf9 = (round(infprob9*100,2)),
-inf10 = (round(infprob10*100,2)),
-inf11 = (round(infprob11*100,2)),
-inf12 = (round(infprob12*100,2)),
-inf13 = (round(infprob13*100,2)),
-inf14 = (round(infprob14*100,2)),
-inf15 = (round(infprob15*100,2)),
-inf16 = (round(infprob16*100,2)),
-inf17 = (round(infprob17*100,2)),
-inf18 = (round(infprob18*100,2)),
-inf19 = (round(infprob19*100,2)),
-inf20 = (round(infprob20*100,2))
-)
+                                inf4 = (round(infprob4*100,2)),
+                                inf5 = (round(infprob5*100,2)),
+                                inf6 = (round(infprob6*100,2)),
+                                inf7 = (round(infprob7*100,2)),
+                                inf8 = (round(infprob8*100,2)),
+                                inf9 = (round(infprob9*100,2)),
+                                inf10 = (round(infprob10*100,2)),
+                                inf11 = (round(infprob11*100,2)),
+                                inf12 = (round(infprob12*100,2)),
+                                inf13 = (round(infprob13*100,2)),
+                                inf14 = (round(infprob14*100,2)),
+                                inf15 = (round(infprob15*100,2)),
+                                inf16 = (round(infprob16*100,2)),
+                                inf17 = (round(infprob17*100,2)),
+                                inf18 = (round(infprob18*100,2)),
+                                inf19 = (round(infprob19*100,2)),
+                                inf20 = (round(infprob20*100,2))
+                                )
    
     return render_template('index.html')
 
@@ -477,7 +477,7 @@ def predict():
                                 if c in machine129:
                                     annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(0, True))
                                 else:
-                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(1, True))
+                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(8, True))
 
                 # Stream results
                 im0 = annotator.result()
