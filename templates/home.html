@@ -3,9 +3,13 @@
 {% if session['logged_in'] %}
    
 	{% if data %}
-	<h3>{{data}}</h3>
+
 	{% else %}
-	<h1>{{session['name']}}</h1>
+	<form action="" method="GET">
+	  {{render_id}}
+	</form>
+	<h1>어 그래</h1>
+
 	<a href="/logout">Logout</a> 
 	<a href="/register">Register</a>
 	<a href="/predict">predict</a> 
@@ -13,7 +17,7 @@
 <br> <br>
 	<form action="" method="POST">
 	  <input type="username" name="username" placeholder="Instagram Username">
-	  <input type="submit" value="Finds">
+	  <input type="submit" value="Finds"><br>
 	</form>
 	{% endif %}
 
