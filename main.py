@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,session,url_for,Blueprint,send_file
+from flask import Flask,render_template,request,redirect,session,url_for,Blueprint,send_file,escape,jsonify
 import pickle
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
@@ -9,7 +9,7 @@ import json
 from instagram import getfollowedby, getname
 from datetime import timedelta
 import torch
-from machine129 import translabel
+from machine129 import translabel, meals
 
 import numpy as np
 import matplotlib
@@ -26,6 +26,7 @@ from utils.torch_utils import select_device, time_sync
 from utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadStreams
 from pathlib import Path
 from models.common import DetectMultiBackend
+import io
 
 
 
@@ -124,6 +125,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 cors = CORS(app)
 
+
+
+
 class User(db.Model):
     """ Create user table"""
     id = db.Column(db.Integer, primary_key=True)
@@ -171,6 +175,7 @@ def login():
             data = User.query.filter_by(username=name, password=passw).first()
             if data is not None:
                 session['logged_in'] = True
+                session['name'] = name
                 return redirect(url_for('home'))
             else:
                 return '로그인 실패'
@@ -581,6 +586,11 @@ def predict():
         #     img_base64.save("static/image0.jpg", format="JPEG")
         # with open('static/sample.json', 'w') as outfile:
         #     json.dump(data, outfile)
+
+        db_meals = meals.meals()
+        txt_label_path = "static\detect\exp\labels\image1.txt"
+        current_user = session.get('name')
+        db_meals.label_to_meals(path = txt_label_path, id=str(current_user))
 
         return redirect("static/detect/exp/image1.jpg")
 
