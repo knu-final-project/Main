@@ -29,8 +29,8 @@ class meals():
         except:
             print('select_query Error!')
 
-    def label_to_meals(self, path="D:\Final_Project\Git_repositories\Main\static\detect\exp\labels", id=""):
-        id = 'testemail@gmail.com'
+    def label_to_meals(self, path="D:\Final_Project\Git_repositories\Main\static\detect\exp\labels\image1.txt", id=""):
+        
         # file_path = 'D:\Final_Project\Git_repositories\Main\static\detect\exp\labels'
         with open(path, 'r') as f:
             data = f.readlines()
@@ -45,13 +45,14 @@ class meals():
         # Select "요기" FROM "조기"
         cur = self.conn.cursor()
         try:
-            cur.execute("Select COLUMN_NAME From INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Food' and data_type = 'double precision' order by ordinal_position;")
+            # cur.execute("Select COLUMN_NAME From INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Food' and data_type = 'double precision' order by ordinal_position;") # postgresql
+            cur.execute("Select COLUMN_NAME From INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Food' and data_type = 'float' order by ordinal_position;") # mysql
             fcolumns = cur.fetchall()
         except:
             print('M129 Query Make Error')
 
         ## "요기"
-        label_list = list(set(label_list)) # list > set > list 를 통해 중복값을 제거 해줌.
+        label_list = list(set(label_num_list)) # list > set > list 를 통해 중복값을 제거 해줌.
         columns_query = ''
         for i in fcolumns:
             columns_query += 'sum(' + i[0] + '), '
@@ -63,7 +64,7 @@ class meals():
             where_query += 'class_num = ' + str(i) + " or "
         where_query = where_query.rstrip(' or ')
 
-        query = 'SELECT ' + columns_query + ' FROM food WHERE ' + where_query
+        query = 'SELECT ' + columns_query + ' FROM Food WHERE ' + where_query
 
         # 쿼리 실행
         cur=self.conn.cursor()
