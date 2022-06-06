@@ -1,3 +1,4 @@
+{% if session['logged_in'] %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -50,3 +51,12 @@
     </script>
   </body>
 </html>
+{% else %}
+<p>Not login!</p>
+
+<a href="/login">Login</a> 
+<a href="/register">Register</a>
+<a href="/predict">predict</a> 
+<a href="/survey">Survey</a>
+
+{% endif %}

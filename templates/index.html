@@ -1,4 +1,6 @@
+{% if session['logged_in'] %}
 <!doctype html>
+
 <html lang="en">
   <head>
 
@@ -9,7 +11,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title></title>
+    <title>질병 예측 설문조사 </title>
+
+
   </head>
 
   <body><div>
@@ -23,6 +27,7 @@
         <a class="nav-item nav-link disabled" href="#">Disabled</a>
       </nav>
       </div>
+      
       <div class="container">
           <h2 style="color: rgb(24, 163, 255);" class=" text-center mt-3"> Prediction model of disease occurrence probability using health information data</h2>
           <section>
@@ -415,3 +420,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
+{% else %}
+<p>로그인 해주세요!</p>
+
+<a href="/login">Login</a> 
+<a href="/register">Register</a>
+<a href="/predict">predict</a> 
+<a href="/survey">Survey</a>
+
+{% endif %}

@@ -5,8 +5,12 @@
 	{% if data %}
 	<h3>{{data}}</h3>
 	{% else %}
-
-	<a href="/logout">Logout</a> <br> <br>
+	<h1>{{session['name']}}</h1>
+	<a href="/logout">Logout</a> 
+	<a href="/register">Register</a>
+	<a href="/predict">predict</a> 
+	<a href="/survey">Survey</a>
+<br> <br>
 	<form action="" method="POST">
 	  <input type="username" name="username" placeholder="Instagram Username">
 	  <input type="submit" value="Finds">
@@ -18,6 +22,8 @@
 
 <a href="/login">Login</a> 
 <a href="/register">Register</a>
+<a href="/predict">predict</a> 
+<a href="/survey">Survey</a>
 
 {% endif %}
 {% endblock %}

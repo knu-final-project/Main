@@ -103,6 +103,7 @@ app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=SESSION_LIFETIME) #
 
 db = SQLAlchemy(app)
 cors = CORS(app)
+render_params = {}
 
 class User(db.Model):
     """ Create user table"""
@@ -252,46 +253,29 @@ def hello_world():
         #input_feature=[100,1,45,1,1,0]
         
         
-        infprob1 = clf1.predict_proba([DI2_DG_LIST])[0][1]
-        infprob2 = clf2.predict_proba([DI3_DG_LIST])[0][1]
-        infprob3 = clf3.predict_proba([DI4_DG_LIST])[0][1] 
-        infprob4=clf4.predict_proba([DI5_DG_LIST])[0][1]
-        infprob5 = clf5.predict_proba([DM2_DG_LIST])[0][1]
-        infprob6 = clf6.predict_proba([DM3_DG_LIST])[0][1] 
-        infprob7 = clf7.predict_proba([DM4_DG_LIST])[0][1]
-        infprob8 = clf8.predict_proba([DJ2_DG_LIST])[0][1]
-        infprob9 = clf9.predict_proba([DJ4_DG_LIST])[0][1] 
-        infprob10 = clf10.predict_proba([DJ6_DG_LIST])[0][1]
-        infprob11 = clf11.predict_proba([DJ8_DG_LIST])[0][1]
-        infprob12 = clf12.predict_proba([DI6_DG_LIST])[0][1] 
-        infprob13 = clf13.predict_proba([DF2_DG_LIST])[0][1]
-        infprob14 = clf14.predict_proba([DL1_DG_LIST])[0][1]
-        infprob15 = clf15.predict_proba([DE1_DG_LIST])[0][1] 
-        infprob16 = clf16.predict_proba([DE2_DG_LIST])[0][1]
-        infprob17 = clf17.predict_proba([DH4_DG_LIST])[0][1]
-        infprob18 = clf18.predict_proba([DC1_DG_LIST])[0][1] 
-        infprob19 = clf19.predict_proba([DC3_DG_LIST])[0][1]
-        infprob20 = clf20.predict_proba([DK8_DG_LIST])[0][1]
+
+		render_params['이상지질혈증'] = clf1.predict_proba([DI2_DG_LIST])[0][1]
+        render_params['뇌졸증'] = clf2.predict_proba([DI3_DG_LIST])[0][1]
+        render_params['협심증'] = clf3.predict_proba([DI4_DG_LIST])[0][1] 
+        render_params['심근경색증'] = clf4.predict_proba([DI5_DG_LIST])[0][1]
+        render_params['골관절염'] = clf5.predict_proba([DM2_DG_LIST])[0][1]
+        render_params['류마티스관절염'] = clf6.predict_proba([DM3_DG_LIST])[0][1] 
+        render_params['골다공증'] = clf7.predict_proba([DM4_DG_LIST])[0][1]
+        render_params['폐결핵'] = clf8.predict_proba([DJ2_DG_LIST])[0][1]
+        render_params['천식'] = clf9.predict_proba([DJ4_DG_LIST])[0][1] 
+        render_params['부비동염'] = clf10.predict_proba([DJ6_DG_LIST])[0][1]
+        render_params['알레르기비염'] = clf11.predict_proba([DJ8_DG_LIST])[0][1]
+        render_params['협심증'] = clf12.predict_proba([DI6_DG_LIST])[0][1] 
+        render_params['우울증'] = clf13.predict_proba([DF2_DG_LIST])[0][1]
+        render_params['아토피피부염'] = clf14.predict_proba([DL1_DG_LIST])[0][1]
+        render_params['당뇨병'] = clf15.predict_proba([DE1_DG_LIST])[0][1] 
+        render_params['갑상선질환'] = clf16.predict_proba([DE2_DG_LIST])[0][1]
+        render_params['중이염'] = clf17.predict_proba([DH4_DG_LIST])[0][1]
+        render_params['위암'] = clf18.predict_proba([DC1_DG_LIST])[0][1] 
+        render_params['대장암'] = clf19.predict_proba([DC3_DG_LIST])[0][1]
+        render_params['B형간염'] = clf20.predict_proba([DK8_DG_LIST])[0][1]
                
-        return render_template('result.html',inf1=(infprob1*100), inf2 = (round(infprob2*100,2)), inf3 = (round(infprob3*100,2)),
-                               inf4 = (round(infprob4*100,2)),
-inf5 = (round(infprob5*100,2)),
-inf6 = (round(infprob6*100,2)),
-inf7 = (round(infprob7*100,2)),
-inf8 = (round(infprob8*100,2)),
-inf9 = (round(infprob9*100,2)),
-inf10 = (round(infprob10*100,2)),
-inf11 = (round(infprob11*100,2)),
-inf12 = (round(infprob12*100,2)),
-inf13 = (round(infprob13*100,2)),
-inf14 = (round(infprob14*100,2)),
-inf15 = (round(infprob15*100,2)),
-inf16 = (round(infprob16*100,2)),
-inf17 = (round(infprob17*100,2)),
-inf18 = (round(infprob18*100,2)),
-inf19 = (round(infprob19*100,2)),
-inf20 = (round(infprob20*100,2))
-)
+        return render_template('result.html',**render_params)
    
     return render_template('index.html')
 

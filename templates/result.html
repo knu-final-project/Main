@@ -8,9 +8,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
     <title>Prediction model of disease occurrence probability using health information data
     </title>
+
   </head>
 
   <body><div>
@@ -27,6 +28,7 @@
       <div class="container">
           <h2 style="color: rgb(24, 163, 255);" class=" text-center mt-3">Prediction model of disease occurrence probability using health information data
           </h2>
+          <canvas id="myChart" width="400" height="400"></canvas>
      <h3 class="mt-5"> 이상지질혈증 확률 : {{inf1}}</h3>
      <h3 class="mt-3"> 뇌졸증 확률 : {{inf2}}</h3>
      <h3 class="mt-2"> 협심증 확률 : {{inf3}}</h3>
@@ -48,8 +50,78 @@
      <h3 class="mt-2"> 대장암 확률 : {{inf19}}</h3>
      <h3 class="mt-1"> B형 간염 확률 : {{inf20}}</h3>
 
-    <!-- Optional JavaScript -->
+
+     <script>
+    disease_labels = ['이상지질혈증','뇌졸증','협심증','심근경색증',
+    '골관절염','류마티스 관절염','골다공증','폐결핵','천식','부비동염',
+    '알레르기비염','협심증','우울증','아토피 피부염','당뇨병','갑상선 질환',
+    '중이염','위암','대장암','B형 간염']
+    
+    
+    //Disease data - 20개 //
+    
+    
+    var value_1 = parseInt({{inf1}});
+    value_1 = parseInt(value_1)
+    var value_2 = parseInt({{inf2}});
+    value_2 = parseInt(value_2)
+    var value_3 = parseInt({{inf3}});
+    value_3 = parseInt(value_3)
+    var value_4 = parseInt({{inf4}});
+    value_4 = parseInt(value_4)
+    var value_5 = parseInt({{inf5}});
+    value_5 = parseInt(value_5)
+    var value_6 = parseInt({{inf6}});
+    value_6 = parseInt(value_6)
+    var value_7 = parseInt({{inf7}});
+    value_7 = parseInt(value_7)
+    var value_8 = parseInt({{inf8}});
+    value_8 = parseInt(value_8)
+    var value_9 = parseInt({{inf9}});
+    value_9 = parseInt(value_9)
+    var value_10 = parseInt({{inf10}});
+    value_10 = parseInt(value_10)
+    var value_11 = parseInt({{inf11}});
+    value_11 = parseInt(value_11)
+    var value_12 = parseInt({{inf12}});
+    value_12 = parseInt(value_12)
+    var value_13 = parseInt({{inf13}});
+    value_13 = parseInt(value_13)
+    var value_14 = parseInt({{inf14}});
+    value_14 = parseInt(value_14)
+    var value_15 = parseInt({{inf15}});
+    value_15 = parseInt(value_15)
+    var value_16 = parseInt({{inf16}});
+    value_16 = parseInt(value_16)
+    var value_17 = parseInt({{inf17}});
+    value_17 = parseInt(value_17)
+    var value_18 = parseInt({{inf18}});
+    value_18 = parseInt(value_18)
+    var value_19 = parseInt({{inf19}});
+    value_19 = parseInt(value_19)
+    var value_20 = parseInt({{inf20}});
+    value_20 = parseInt(value_20)
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    Chart.defaults.scale.ticks.beginAtZero = true;
+    const myChart = new Chart(ctx, {
+      type: 'polarArea',
+      data:{
+        labels:disease_labels,
+        datasets:[
+        {
+          label: 'Points',
+          backgroundColor:['#f1c40f','#e67e22','#16a085','#2980b9'],
+          data: [value_1,value_2,value_3,value_4,value_5,value_6,value_7,value_8,value_9,value_10,
+          value_11,value_12,value_13,value_14,value_15,value_16,value_17,value_18,value_19,value_20]
+        }
+        ]
+      }
+    });
+     </script>
+      
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
