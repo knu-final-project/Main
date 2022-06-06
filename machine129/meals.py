@@ -29,8 +29,7 @@ class meals():
         except:
             print('select_query Error!')
 
-    def label_to_meals(self, path="D:\Final_Project\Git_repositories\Main\static\detect\exp\labels\image1.txt", id=""):
-        
+    def label_to_meals(self, path="static\detect\exp\labels\image1.txt", id=""):
         # file_path = 'D:\Final_Project\Git_repositories\Main\static\detect\exp\labels'
         with open(path, 'r') as f:
             data = f.readlines()
@@ -91,5 +90,8 @@ class meals():
             self.conn.commit()
         except:
             print('insertquery Error!')
+        
+    def db_close(self):
+        self.conn.close()
 
 
