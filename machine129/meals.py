@@ -131,7 +131,7 @@ class meals():
                 {cnt+1}\
                 ")
             self.conn.commit()
-        except KeyError:
+        except pymysql.ProgrammingError:
             cnt = 0
             cur.execute(f"INSERT INTO dis_results VALUES (\
                 {dis_results_dic['DI2_DG']},\
