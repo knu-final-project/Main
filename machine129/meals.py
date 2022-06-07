@@ -17,7 +17,7 @@ label_to_meals(self, path, id="") : 저희가 객체탐지를 하기 위해 넣�
 
 class meals():
     def __init__(self):
-        self.conn = pymysql.connect(user='root', passwd='1234', host='34.64.136.121', db='mydb129', charset='utf8')
+        self.conn = pymysql.connect(user='root', passwd='1234', host='34.64.195.167', db='mydb129', charset='utf8')
 
     def select_query(self, query):
         cur = self.conn.cursor(pymysql.cursors.DictCursor)
