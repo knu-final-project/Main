@@ -105,7 +105,7 @@ class meals():
         
         cur = self.conn.cursor()
         try:
-            cnt = result['cnt'][0]
+            cnt = 0 # test : result['cnt'][0] error
             cur.execute(f"INSERT INTO dis_results VALUES (\
                 {dis_results_dic['DI2_DG']},\
                 {dis_results_dic['DI3_DG']},\
