@@ -105,7 +105,7 @@ class meals():
         
         cur = self.conn.cursor()
         try:
-            cnt = 0 # test : result['cnt'][0] error
+            cnt = result['cnt'][0]
             cur.execute(f"INSERT INTO dis_results VALUES (\
                 {dis_results_dic['DI2_DG']},\
                 {dis_results_dic['DI3_DG']},\
@@ -129,9 +129,9 @@ class meals():
                 {dis_results_dic['DK8_DG']},\
                 {id},\
                 {cnt+1}\
-                ")
+                );")
             self.conn.commit()
-        except pymysql.ProgrammingError:
+        except KeyError:
             cnt = 0
             cur.execute(f"INSERT INTO dis_results VALUES (\
                 {dis_results_dic['DI2_DG']},\
@@ -156,7 +156,7 @@ class meals():
                 {dis_results_dic['DK8_DG']},\
                 {id},\
                 {cnt+1}\
-                ")
+                );")
             self.conn.commit()
     
     def dis_food(self, id, conf=0.5, recent = 1):
