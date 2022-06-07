@@ -433,7 +433,8 @@ def predict():
 
         db_disfood = meals.meals()
         current_user = session.get('name')
-        machine129=db_disfood.dis_food(id = current_user, conf=0.5) # machine129 I want to change box colors
+        machine129=db_disfood.dis_food(id = current_user, conf=50) # machine129 I want to change box colors
+        db_disfood.db_close()
 
         source = str(source)
         save_img = not nosave and not source.endswith('.txt')  # save inference images
