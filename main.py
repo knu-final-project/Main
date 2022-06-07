@@ -313,7 +313,7 @@ def hello_world():
         infprob1 = clf1.predict_proba([DI2_DG_LIST])[0][1]
         infprob2 = clf2.predict_proba([DI3_DG_LIST])[0][1]
         infprob3 = clf3.predict_proba([DI4_DG_LIST])[0][1] 
-        infprob4=clf4.predict_proba([DI5_DG_LIST])[0][1]
+        infprob4 = clf4.predict_proba([DI5_DG_LIST])[0][1]
         infprob5 = clf5.predict_proba([DM2_DG_LIST])[0][1]
         infprob6 = clf6.predict_proba([DM3_DG_LIST])[0][1] 
         infprob7 = clf7.predict_proba([DM4_DG_LIST])[0][1]
@@ -330,7 +330,34 @@ def hello_world():
         infprob18 = clf18.predict_proba([DC1_DG_LIST])[0][1] 
         infprob19 = clf19.predict_proba([DC3_DG_LIST])[0][1]
         infprob20 = clf20.predict_proba([DK8_DG_LIST])[0][1]
-        
+
+        # results list
+        dis_results = {'DI2_DG':(round(infprob1*100,2)),
+        'DI3_DG':(round(infprob2*100,2)),
+        'DI4_DG':(round(infprob3*100,2)),
+        'DI5_DG':(round(infprob4*100,2)),
+        'DM2_DG':(round(infprob5*100,2)),
+        'DM3_DG':(round(infprob6*100,2)),
+        'DM4_DG':(round(infprob7*100,2)),
+        'DJ2_DG':(round(infprob8*100,2)),
+        'DJ4_DG':(round(infprob9*100,2)),
+        'DJ6_DG':(round(infprob10*100,2)),
+        'DJ8_DG':(round(infprob11*100,2)),
+        'DI6_DG':(round(infprob12*100,2)),
+        'DF2_DG':(round(infprob13*100,2)),
+        'DL1_DG':(round(infprob14*100,2)),
+        'DE1_DG':(round(infprob15*100,2)),
+        'DE2_DG':(round(infprob16*100,2)),
+        'DH4_DG':(round(infprob17*100,2)),
+        'DC1_DG':(round(infprob18*100,2)),
+        'DC3_DG':(round(infprob19*100,2)),
+        'DK8_DG':(round(infprob20*100,2))
+        }
+        current_user = session.get('name')
+        result_db = meals.meals()
+        result_db.dis_results_input(dis_results_dic = dis_results, id = str(current_user))
+        result_db.db_close()
+
         return render_template('result.html',inf1=(infprob1*100), inf2 = (round(infprob2*100,2)), inf3 = (round(infprob3*100,2)),
                                inf4 = (round(infprob4*100,2)),
 inf5 = (round(infprob5*100,2)),
@@ -403,8 +430,10 @@ def predict():
         hide_conf=False  # hide confidences
         half=False  # use FP16 half-precision inference
         dnn=False  # use OpenCV DNN for ONNX inference
-        machine129=[] # machine129 I want to change box colors
 
+        db_disfood = meals.meals()
+        current_user = session.get('name')
+        machine129=db_disfood.dis_food(id = current_user, conf=0.5) # machine129 I want to change box colors
 
         source = str(source)
         save_img = not nosave and not source.endswith('.txt')  # save inference images
@@ -523,7 +552,7 @@ def predict():
                                 if c in machine129:
                                     annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(0, True))
                                 else:
-                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(1, True))
+                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(8, True))
 
                 # Stream results
                 im0 = annotator.result()
@@ -591,6 +620,7 @@ def predict():
         txt_label_path = "static\detect\exp\labels\image1.txt"
         current_user = session.get('name')
         db_meals.label_to_meals(path = txt_label_path, id=str(current_user))
+        db_meals.db_close()
 
         return redirect("static/detect/exp/image1.jpg")
 

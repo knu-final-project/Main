@@ -94,4 +94,130 @@ class meals():
     def db_close(self):
         self.conn.close()
 
+    def dis_results_input(self, dis_results_dic, id):
+        cur = self.conn.cursor(pymysql.cursors.DictCursor)
+        try:
+            cur.execute(f'SELECT cnt FROM dis_results WHERE user_id = {id} ORDER BY cnt DESC;')
+            dic_result = cur.fetchall()
+            result = pd.DataFrame(dic_result)
+        except:
+            print('select_query Error!')
+        
+        cur = self.conn.cursor()
+        try:
+            cnt = result['cnt'][0]
+            cur.execute(f"INSERT INTO dis_results VALUES (\
+                {dis_results_dic['DI2_DG']},\
+                {dis_results_dic['DI3_DG']},\
+                {dis_results_dic['DI4_DG']},\
+                {dis_results_dic['DI5_DG']},\
+                {dis_results_dic['DM2_DG']},\
+                {dis_results_dic['DM3_DG']},\
+                {dis_results_dic['DM4_DG']},\
+                {dis_results_dic['DJ2_DG']},\
+                {dis_results_dic['DJ4_DG']},\
+                {dis_results_dic['DJ6_DG']},\
+                {dis_results_dic['DJ8_DG']},\
+                {dis_results_dic['DI6_DG']},\
+                {dis_results_dic['DF2_DG']},\
+                {dis_results_dic['DL1_DG']},\
+                {dis_results_dic['DE1_DG']},\
+                {dis_results_dic['DE2_DG']},\
+                {dis_results_dic['DH4_DG']},\
+                {dis_results_dic['DC1_DG']},\
+                {dis_results_dic['DC3_DG']},\
+                {dis_results_dic['DK8_DG']},\
+                {id},\
+                {cnt+1}\
+                ")
+            self.conn.commit()
+        except KeyError:
+            cnt = 0
+            cur.execute(f"INSERT INTO dis_results VALUES (\
+                {dis_results_dic['DI2_DG']},\
+                {dis_results_dic['DI3_DG']},\
+                {dis_results_dic['DI4_DG']},\
+                {dis_results_dic['DI5_DG']},\
+                {dis_results_dic['DM2_DG']},\
+                {dis_results_dic['DM3_DG']},\
+                {dis_results_dic['DM4_DG']},\
+                {dis_results_dic['DJ2_DG']},\
+                {dis_results_dic['DJ4_DG']},\
+                {dis_results_dic['DJ6_DG']},\
+                {dis_results_dic['DJ8_DG']},\
+                {dis_results_dic['DI6_DG']},\
+                {dis_results_dic['DF2_DG']},\
+                {dis_results_dic['DL1_DG']},\
+                {dis_results_dic['DE1_DG']},\
+                {dis_results_dic['DE2_DG']},\
+                {dis_results_dic['DH4_DG']},\
+                {dis_results_dic['DC1_DG']},\
+                {dis_results_dic['DC3_DG']},\
+                {dis_results_dic['DK8_DG']},\
+                {id},\
+                {cnt+1}\
+                ")
+            self.conn.commit()
+    
+    def dis_food(self, id, conf=0.5, recent = 1):
+        # id에 맞는 최근 질병탐지 기록 가져오기 (result_row)
+        # recent = 최근 기준 첫번째 1 / 두번째 2 ...
+        cur = self.conn.cursor(pymysql.cursors.DictCursor)
+        try:
+            cur.execute(f'SELECT * FROM dis_results WHERE user_id = {id} ORDER BY cnt DESC;')
+            dic_result = cur.fetchall()
+            result = pd.DataFrame(dic_result)
+        except:
+            print('select_query Error!')
+            return []
+        
+        if len(result) != 0:
+            try:
+                result_row = result.loc[recent-1]
+            except KeyError:
+                return []
+            
+        # 질병기록 중 conf 보다 넘는 확률의 질병들 추출 (columns_name)
+        columns_name = []
+        cur = self.conn.cursor()
+        cur.execute("Select COLUMN_NAME From INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'dis_results' and data_type = 'float' order by ordinal_position;")
+        fcolumns = cur.fetchall()
+        
+        for i in fcolumns:
+            if result_row[i[0]] > conf:
+                columns_name.append(i[0])
+        
+        # 질병 기록 기준으로 Bad food 를 찾기.
+        select_query = 'SELECT * FROM disease'
+        if len(columns_name) != 0:
+            select_query += ' WHERE '
+            for column in columns_name:
+                select_query += f'disease_code = "{column}" or '
+            select_query = select_query.rstrip(' or ')
+
+        cur = self.conn.cursor(pymysql.cursors.DictCursor)
+        cur.execute(select_query)
+        dis_table = cur.fetchall()
+        dis_df = pd.DataFrame(dis_table)
+        bad_food = dis_df['bad_food']
+        bad_food_list = []
+        for food_name in bad_food:
+            food_name2 = food_name.replace('/r','')
+            food_name_li = food_name2.split('_')
+            bad_food_list += food_name_li
+        
+        bad_food_list = list(set(bad_food_list))
+
+        bad_food_list_int = []
+        for bad_food_str in bad_food_list:
+            bad_food_list_int.append(int(bad_food_str))
+        
+        return bad_food_list_int
+
+
+
+        
+
+        
+
 
