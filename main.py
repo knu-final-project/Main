@@ -132,13 +132,16 @@ class User(db.Model):
     """ Create user table"""
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
+    #date = db.Column(db.Date)
+    #sex = db.Column(db.Boolean)
     name = db.Column(db.String(80))
     password = db.Column(db.String(80))
-    def __init__(self, username, name, password):
+    def __init__(self, username, name, password, sex, date):
         self.username = username
         self.name = name
         self.password = password
-
+#        self.date = date
+#        self.sex = sex
 
 
 
@@ -358,7 +361,7 @@ def hello_world():
         result_db.dis_results_input(dis_results_dic = dis_results, id = str(current_user))
         result_db.db_close()
 
-        return render_template('result.html',inf1=(infprob1*100), inf2 = (round(infprob2*100,2)), inf3 = (round(infprob3*100,2)),
+        return render_template('disease_result.html',inf1=(round(infprob1*100,2)), inf2 = (round(infprob2*100,2)), inf3 = (round(infprob3*100,2)),
                                inf4 = (round(infprob4*100,2)),
 inf5 = (round(infprob5*100,2)),
 inf6 = (round(infprob6*100,2)),

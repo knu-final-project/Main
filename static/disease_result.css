@@ -1,0 +1,400 @@
+ .u-section-1 {
+  background-image: none;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 509px;
+}
+
+.u-section-1 .u-layout-wrap-1 {
+  margin: 59px auto 0 0;
+}
+
+.u-section-1 .u-layout-cell-1 {
+  min-height: 450px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 30px;
+}
+
+.u-section-1 .u-text-1 {
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.u-section-1 .u-text-2 {
+  font-weight: 700;
+  font-size: 3rem;
+  margin: 20px 0 0;
+}
+
+.u-section-1 .u-line-1 {
+  width: 100px;
+  height: 3px;
+  margin: 30px auto 0 0;
+}
+
+.u-section-1 .u-layout-cell-2 {
+  min-height: 450px;
+}
+
+.u-section-1 .u-container-layout-2 {
+  padding: 16px 12px;
+}
+
+.u-section-1 .u-text-3 {
+  font-family: "Maven Pro";
+  margin: 11px 0 0;
+}
+
+.u-section-1 .u-text-4 {
+  line-height: 2;
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin: 19px 19px 0;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 430px;
+  }
+
+  .u-section-1 .u-layout-wrap-1 {
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 371px;
+  }
+
+  .u-section-1 .u-layout-cell-2 {
+    min-height: 371px;
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding-top: 90px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 159px;
+  }
+
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 100px;
+  }
+
+  .u-section-1 .u-text-2 {
+    font-size: 2.25rem;
+  }
+
+  .u-section-1 .u-layout-cell-2 {
+    min-height: 100px;
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding-top: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 259px;
+  }
+
+  .u-section-1 .u-container-layout-1 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .u-section-1 .u-text-2 {
+    font-size: 3rem;
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-2 {
+    font-size: 2.25rem;
+  }
+} .u-section-2 {
+  background-image: none;
+}
+
+.u-section-2 .u-sheet-1 {
+  min-height: 504px;
+}
+
+.u-section-2 .u-text-1 {
+  width: 647px;
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin: 60px auto 0;
+}
+
+.u-section-2 .u-text-2 {
+  width: 894px;
+  margin: 20px auto 0;
+}
+
+.u-section-2 .u-table-1 {
+  margin: 30px auto 60px 0;
+}
+
+.u-block-bc9a-49 {
+  border-style: dotted;
+}
+
+.u-block-bc9a-48 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-entity-1 {
+  min-height: 100px;
+}
+
+.u-section-2 .u-table-header-1 {
+  background-image: none;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.u-section-2 .u-table-cell-1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.u-section-2 .u-table-cell-2 {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.u-section-2 .u-table-cell-3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.u-section-2 .u-table-cell-4 {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.u-section-2 .u-table-body-1 {
+  background-image: none;
+}
+
+.u-section-2 .u-table-cell-5 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-6 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-7 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-8 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-9 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-10 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-11 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-12 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-13 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-14 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-15 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-16 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-17 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-18 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-19 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-20 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-21 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-22 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-23 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-24 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-25 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-26 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-27 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-28 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-29 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-30 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-31 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-32 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-33 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-34 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-35 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-36 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-37 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-38 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-39 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-40 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-41 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-42 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-43 {
+  border-style: dotted;
+}
+
+.u-section-2 .u-table-cell-44 {
+  border-style: dotted;
+}
+
+.u-block-bc9a-35 {
+  background-image: none;
+}
+
+@media (max-width: 1199px) {
+  .u-section-2 .u-text-2 {
+    font-style: normal;
+  }
+
+  .u-section-2 .u-table-1 {
+    margin-right: initial;
+    margin-left: initial;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-2 .u-text-2 {
+    width: 720px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-2 .u-text-1 {
+    width: 540px;
+  }
+
+  .u-section-2 .u-text-2 {
+    width: 540px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-2 .u-text-1 {
+    width: 340px;
+    font-size: 1.5rem;
+  }
+
+  .u-section-2 .u-text-2 {
+    width: 340px;
+  }
+}

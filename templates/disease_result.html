@@ -1,65 +1,290 @@
-<html>
-    <head>
-        <title> 질병 예측 결과 </title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/result_style.css') }}">
-    </head>
-	<body>
-		<ul>
-		  <li>
-			<h2>Resultat 01</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-			<a href="#">Læs mere om resultat</a>
-		  </li>
-		  <li>
-			<h2>Resultat 02</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-			<a href="#">Læs mere om resultat</a>
-		  </li>
-		  <li>
-			<h2>Resultat 03</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-			<a href="#">Læs mere om resultat</a>
-		  </li>
-		  <li>
-			<h2>Resultat 04</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-			<a href="#">Læs mere om resultat</a>
-		  </li>
-		  <li>
-			<h2>Resultat 05</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-			<a href="#">Læs mere om resultat</a>
-		  </li>
-		  <li>
-			<h2>Resultat 06</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-			<a href="#">Læs mere om resultat</a>
-		  </li>
-		  <li>
-			<h2>Resultat 07</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-			<a href="#">Læs mere om resultat</a>
-		  </li>
-		  <li>
-			<h2>Resultat 08</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-			<a href="#">Læs mere om resultat</a>
-		  </li>
-		  <li>
-			<h2>Resultat 09</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-			<a href="#">Læs mere om resultat</a>
-		  </li>
-		  <li>
-			<h2>Resultat 10</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-			<a href="#">Læs mere om resultat</a>
-		  </li>
-		  <li>
-			<h2>Resultat 11</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-			<a href="#">Læs mere om resultat</a>
-		  </li>
-		</ul>
-	</body>
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Specific goals for therapy will be determined by you and your therapist">
+    <meta name="description" content="">
+    <title>detect_result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='nicepage.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='disease_result.css') }}" media="screen">
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='nicepage.js') }}" defer=""></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    
+
+    <meta name="generator" content="Nicepage 4.12.5, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Maven+Pro:400,500,600,700,800,900">
+    
+    
+    
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"logo": "images/31.png",
+		"sameAs": [
+				"https://knufinal.slack.com",
+				"https://silver-dragon-340.notion.site/Final-Project-Machine129-58e041584ae44baa852d7d0378c736d8",
+				"https://github.com/knu-final-project"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="detect_result">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-b10a"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
+          <img src="{{ url_for('static', filename='images/20220607_225725.png') }}" class="u-logo-image u-logo-image-1">
+        </a>
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" data-responsive-from="MD">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
+            <a class="u-button-style u-custom-active-border-color u-custom-active-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="/introduce" style="padding: 10px 0px;">소개말</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_22f3" data-page-id="883203286" style="padding: 10px 0px;">질병예측</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_f3e4" data-page-id="883203286" style="padding: 10px 0px;">식단평가</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_a2e3" data-page-id="883203286" style="padding: 10px 0px;">Developer</a>
+</li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/introduce">소개말</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_22f3" data-page-id="883203286">질병예측</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_f3e4" data-page-id="883203286">식단평가</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_a2e3" data-page-id="883203286">Developer</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+        <a class="u-login u-login-1" href="www.google.com" title="login">Login</a>
+      </div></header>
+    <section class="u-clearfix u-custom-color-7 u-section-1" id="carousel_fd9e">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-1">
+                  <canvas id="myChart" width="400" height="400"></canvas>
+                  <div class="u-border-6 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2">
+                  <h5 class="u-custom-font u-text u-text-palette-2-base u-text-3">chart 2<br>
+                  </h5>
+                  <p class="u-text u-text-palette-5-dark-2 u-text-4">Vitae tortor condimentum lacinia quis vel eros donec ac odio. Ac tortor dignissim convallis aenean et tortor at risus viverra.&nbsp;<br>Nec feugiat in fermentum posuere urna nec tincidunt praesent. Venenatis lectus magna fringilla urna porttitor rhoncus. Nam aliquam sem et tortor consequat id porta nibh. Urna et pharetra pharetra massa massa.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-center u-clearfix u-custom-color-7 u-section-2" id="carousel_93f9">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <h2 class="u-custom-font u-font-playfair-display u-text u-text-palette-5-dark-2 u-text-1">질병 예측 결과</h2>
+        <p class="u-align-center u-text u-text-palette-5-dark-2 u-text-2">
+          <span style="font-weight: 700;">해당 예측 결과는 실제 해당 질병을 가진 유병자의 행동 및 생활 패턴에 대한 데이터에 의거하는 결과이니&nbsp;<br>정확한 질병 유무 여부는 해당 질병에 대한 전문가와의 상담을 권합니다.
+          </span>
+          <br>&nbsp;<br>
+          <span style="font-style: italic;">본 데이터는 참고용으로만 사용하시길 바랍니다.&nbsp;감사합니다.</span>
+        </p>
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+          <table class="u-table-entity u-table-entity-1">
+            <colgroup>
+              <col width="25%">
+              <col width="25%">
+              <col width="25%">
+              <col width="25%">
+            </colgroup>
+            <thead class="u-palette-5-dark-2 u-table-header u-table-header-1">
+              <tr style="height: 46px;">
+                <th class="u-align-center u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-1 u-table-cell u-table-valign-middle u-table-cell-1">질병</th>
+                <th class="u-align-center u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-1 u-table-cell u-table-cell-2">확률</th>
+                <th class="u-align-center u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-1 u-table-cell u-table-cell-3">질병</th>
+                <th class="u-align-center u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-1 u-table-cell u-table-cell-4">확률</th>
+              </tr>
+            </thead>
+            <tbody class="u-palette-5-dark-3 u-table-body u-table-body-1">
+              <tr style="height: 69px;">
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-5">이상지질혈증</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-6">{{inf1}}</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7"> 알레르기 비염</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-8"> {{inf11}}</td>
+              </tr>
+              <tr style="height: 69px;">
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-9">뇌졸증</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-10">{{inf2}}</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-11">협심증</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-12"> {{inf12}}</td>
+              </tr>
+              <tr style="height: 78px;">
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-13">협심증</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-14"> {{inf3}}</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-15"> 우울증</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-16"> {{inf13}}</td>
+              </tr>
+              <tr style="height: 70px;">
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-17">심근경색증</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18"> {{inf4}}</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19"> 아토피 피부염</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> {{inf14}}</td>
+              </tr>
+              <tr style="height: 70px;">
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-21">골관절염</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-22">{{inf5}}</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-23">당뇨병</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-24"> {{inf15}}</td>
+              </tr>
+              <tr style="height: 70px;">
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-25">류마티스 관절염</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-26">{{inf6}}</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-27">갑상선 질환</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-28"> {{inf16}}</td>
+              </tr>
+              <tr style="height: 70px;">
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-29">골다공증</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-30">{{inf7}}</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-31">중이염</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-32"> {{inf17}}</td>
+              </tr>
+              <tr style="height: 70px;">
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-33">폐결핵</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-34">{{inf8}}</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-35">위암</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-36"> {{inf18}}</td>
+              </tr>
+              <tr style="height: 70px;">
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-37">천식</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-38">{{inf9}}</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-39">대장암</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-40"> {{inf19}}</td>
+              </tr>
+              <tr style="height: 70px;">
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-41">부비동염</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-42"> {{inf10}}</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-43"> B형 간염</td>
+                <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-44"> {{inf20}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    
+    <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-white" id="sec-58d4"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="280" data-image-height="280">
+          <img src="{{ url_for('static', filename='images/TEAM-LOGO.png') }}" class="u-logo-image u-logo-image-1">
+        </a>
+        <p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1"> 경북대학교 산학협력단 K-Digital Training 1기<br>
+          <span style="font-size: 30px; font-weight: normal;">Team '머선일이조'</span>
+        </p>
+        <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">
+          <a class="u-social-url" title="facebook" target="_blank" href="https://knufinal.slack.com"><span class="u-file-icon u-icon u-social-facebook u-social-icon u-icon-1"><img src="{{ url_for('static', filename='images/5968974.png') }}" alt=""></span>
+          </a>
+          <a class="u-social-url" title="twitter" target="_blank" href="https://silver-dragon-340.notion.site/Final-Project-Machine129-58e041584ae44baa852d7d0378c736d8"><span class="u-file-icon u-icon u-social-icon u-social-twitter u-icon-2"><img src="{{ url_for('static', filename='images/notion.png') }}" alt=""></span>
+          </a>
+          <a class="u-social-url" title="instagram" target="_blank" href="https://github.com/knu-final-project"><span class="u-file-icon u-icon u-social-icon u-social-instagram u-icon-3"><img src="{{ url_for('static', filename='images/733609.png') }}" alt=""></span>
+          </a>
+        </div>
+      </div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+        <span>Website Templates</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="" target="_blank">
+        <span>Website Builder Software</span>
+      </a>. 
+    </section>
+    <script>
+      disease_labels = ['이상지질혈증','뇌졸증','협심증','심근경색증',
+      '골관절염','류마티스 관절염','골다공증','폐결핵','천식','부비동염',
+      '알레르기비염','협심증','우울증','아토피 피부염','당뇨병','갑상선 질환',
+      '중이염','위암','대장암','B형 간염']
+      
+      
+      //Disease data - 20개 //
+      
+      
+      var value_1 = parseInt({{inf1}});
+      value_1 = parseInt(value_1)
+      var value_2 = parseInt({{inf2}});
+      value_2 = parseInt(value_2)
+      var value_3 = parseInt({{inf3}});
+      value_3 = parseInt(value_3)
+      var value_4 = parseInt({{inf4}});
+      value_4 = parseInt(value_4)
+      var value_5 = parseInt({{inf5}});
+      value_5 = parseInt(value_5)
+      var value_6 = parseInt({{inf6}});
+      value_6 = parseInt(value_6)
+      var value_7 = parseInt({{inf7}});
+      value_7 = parseInt(value_7)
+      var value_8 = parseInt({{inf8}});
+      value_8 = parseInt(value_8)
+      var value_9 = parseInt({{inf9}});
+      value_9 = parseInt(value_9)
+      var value_10 = parseInt({{inf10}});
+      value_10 = parseInt(value_10)
+      var value_11 = parseInt({{inf11}});
+      value_11 = parseInt(value_11)
+      var value_12 = parseInt({{inf12}});
+      value_12 = parseInt(value_12)
+      var value_13 = parseInt({{inf13}});
+      value_13 = parseInt(value_13)
+      var value_14 = parseInt({{inf14}});
+      value_14 = parseInt(value_14)
+      var value_15 = parseInt({{inf15}});
+      value_15 = parseInt(value_15)
+      var value_16 = parseInt({{inf16}});
+      value_16 = parseInt(value_16)
+      var value_17 = parseInt({{inf17}});
+      value_17 = parseInt(value_17)
+      var value_18 = parseInt({{inf18}});
+      value_18 = parseInt(value_18)
+      var value_19 = parseInt({{inf19}});
+      value_19 = parseInt(value_19)
+      var value_20 = parseInt({{inf20}});
+      value_20 = parseInt(value_20)
+  
+      const ctx = document.getElementById('myChart').getContext('2d');
+      Chart.defaults.scale.ticks.beginAtZero = true;
+      const myChart = new Chart(ctx, {
+        type: 'polarArea',
+        data:{
+          labels:disease_labels,
+          datasets:[
+          {
+            label: 'Points',
+            backgroundColor:['#f1c40f','#e67e22','#16a085','#2980b9'],
+            data: [value_1,value_2,value_3,value_4,value_5,value_6,value_7,value_8,value_9,value_10,
+            value_11,value_12,value_13,value_14,value_15,value_16,value_17,value_18,value_19,value_20]
+          }
+          ]
+        }
+      });
+       </script>
+  </body>
 </html>
