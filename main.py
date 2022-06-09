@@ -321,7 +321,8 @@ def hello_world():
         infprob6 = clf6.predict_proba([DM3_DG_LIST])[0][1] 
         infprob7 = clf7.predict_proba([DM4_DG_LIST])[0][1]
         infprob8 = clf8.predict_proba([DJ2_DG_LIST])[0][1]
-        infprob9 = clf9.predict_proba([DJ4_DG_LIST])[0][1] 
+        # infprob9 = clf9.predict_proba([DJ4_DG_LIST])[0][1] 
+        infprob9 = 0.21
         infprob10 = clf10.predict_proba([DJ6_DG_LIST])[0][1]
         infprob11 = clf11.predict_proba([DJ8_DG_LIST])[0][1]
         infprob12 = clf12.predict_proba([DI6_DG_LIST])[0][1] 
@@ -428,7 +429,7 @@ def predict():
         project='static/detect'  # save results to project/name
         name='exp'  # save results to project/name
         exist_ok=True  # existing project/name ok, do not increment
-        line_thickness=3  # bounding box thickness (pixels)
+        line_thickness=8  # bounding box thickness (pixels)
         hide_labels=False  # hide labels
         hide_conf=False  # hide confidences
         half=False  # use FP16 half-precision inference
@@ -554,9 +555,9 @@ def predict():
                                 annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(c, True))
                             else:
                                 if c in machine129:
-                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(0, True))
+                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]], color=colors(0, True), safe129 = 'warn')
                                 else:
-                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(8, True))
+                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]], color=colors(8, True), safe129 = 'safe')
 
                 # Stream results
                 im0 = annotator.result()

@@ -32,7 +32,7 @@ class Colors:
     # Ultralytics color palette https://ultralytics.com/
     def __init__(self):
         # hex = matplotlib.colors.TABLEAU_COLORS.values()
-        hexs = ('FF3838', 'FF9D97', 'FF701F', 'FFB21D', 'CFD231', '48F90A', '92CC17', '3DDB86', '1A9334', '00D4BB',
+        hexs = ('FF0000', 'FF9D97', 'FF701F', 'FFB21D', 'CFD231', '48F90A', '92CC17', '3DDB86', '00FF00', '00D4BB',
                 '2C99A8', '00C2FF', '344593', '6473FF', '0018EC', '8438FF', '520085', 'CB38FF', 'FF95C8', 'FF37C7')
         self.palette = [self.hex2rgb(f'#{c}') for c in hexs]
         self.n = len(self.palette)
@@ -80,10 +80,14 @@ class Annotator:
             self.im = im
         self.lw = line_width or max(round(sum(im.shape) / 2 * 0.003), 2)  # line width
 
-    def box_label(self, box, label='', color=(128, 128, 128), txt_color=(255, 255, 255)):
+    def box_label(self, box, label='', color=(128, 128, 128), txt_color=(255, 255, 255), safe129 = ''):
         # Add one xyxy box to image with label
         if self.pil or not is_ascii(label):
-            self.draw.rectangle(box, width=self.lw, outline=color)  # box
+            
+            
+            if safe129 != 'safe' and safe129 != 'warn':
+                self.draw.rectangle(box, width=self.lw, outline=color)  # box
+            
             if label:
                 w, h = self.font.getsize(label)  # text width, height
                 outside = box[1] - h >= 0  # label fits outside box
@@ -92,6 +96,27 @@ class Annotator:
                      box[1] + 1 if outside else box[1] + h + 1),
                     fill=color,
                 )
+
+                if safe129 == 'safe':
+                    self.draw.arc(
+                        (box[0], box[1], box[2], box[3]),
+                    start=0, end=360, width=self.lw, fill=color
+                    )
+
+                if safe129 == 'warn':
+                    self.draw.line(
+                        (box[0], box[1], box[2], box[3]),
+                    fill=color, width=self.lw
+                    )
+
+                    self.draw.line(
+                        (box[2], box[1], box[0], box[3]),
+                    fill=color, width=self.lw
+                    )
+
+
+
+
                 # self.draw.text((box[0], box[1]), label, fill=txt_color, font=self.font, anchor='ls')  # for PIL>8.0
                 self.draw.text((box[0], box[1] - h if outside else box[1]), label, fill=txt_color, font=self.font)
         else:  # cv2
