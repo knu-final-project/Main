@@ -36,83 +36,83 @@ DETECTION_URL = "/predict"
 SESSION_LIFETIME = 10
 
 # from keras import models
-file=open('data\models\DI2_DG.pkl','rb')
-clf1=pickle.load(file)
+file = open('data/models/DI2_DG.pkl','rb')
+clf1 = pickle.load(file)
 file.close()
 
-file = open('data\models\DI3_DG.pkl','rb')
+file = open('data/models/DI3_DG.pkl','rb')
 clf2 = pickle.load(file)
 file.close()
 
-file = open('data\models\DI4_DG.pkl','rb')
+file = open('data/models/DI4_DG.pkl','rb')
 clf3 = pickle.load(file)
 file.close()
 
-file = open('data\models\DI5_DG.pkl','rb')
+file = open('data/models/DI5_DG.pkl','rb')
 clf4 = pickle.load(file)
 file.close()
 
-file = open('data\models\DM2_DG.pkl','rb')
+file = open('data/models/DM2_DG.pkl','rb')
 clf5 = pickle.load(file)
 file.close()
 
-file = open('data\models\DM3_DG.pkl','rb')
+file = open('data/models/DM3_DG.pkl','rb')
 clf6 = pickle.load(file)
 file.close()
 
-file = open('data\models\DM4_DG.pkl','rb')
+file = open('data/models/DM4_DG.pkl','rb')
 clf7 = pickle.load(file)
 file.close()
 
-file = open('data\models\DJ2_DG.pkl','rb')
+file = open('data/models/DJ2_DG.pkl','rb')
 clf8 = pickle.load(file)
 file.close()
 
-file = open('data\models\DJ4_DG.pkl','rb')
+file = open('data/models/DJ4_DG.pkl','rb')
 clf9 = pickle.load(file)
 file.close()
 
-file = open('data\models\DJ6_DG.pkl','rb')
+file = open('data/models/DJ6_DG.pkl','rb')
 clf10 = pickle.load(file)
 file.close()
 
-file = open('data\models\DJ8_DG.pkl','rb')
+file = open('data/models/DJ8_DG.pkl','rb')
 clf11 = pickle.load(file)
 file.close()
 
-file = open('data\models\DI6_DG.pkl','rb')
+file = open('data/models/DI6_DG.pkl','rb')
 clf12 = pickle.load(file)
 file.close()
 
-file = open('data\models\DF2_DG.pkl','rb')
+file = open('data/models/DF2_DG.pkl','rb')
 clf13 = pickle.load(file)
 file.close()
 
-file = open('data\models\DL1_DG.pkl','rb')
+file = open('data/models/DL1_DG.pkl','rb')
 clf14 = pickle.load(file)
 file.close()
 
-file = open('data\models\DE1_DG.pkl','rb')
+file = open('data/models/DE1_DG.pkl','rb')
 clf15 = pickle.load(file)
 file.close()
 
-file = open('data\models\DE2_DG.pkl','rb')
+file = open('data/models/DE2_DG.pkl','rb')
 clf16 = pickle.load(file)
 file.close()
 
-file = open('data\models\DH4_DG.pkl','rb')
+file = open('data/models/DH4_DG.pkl','rb')
 clf17 = pickle.load(file)
 file.close()
 
-file = open('data\models\DC1_DG.pkl','rb')
+file = open('data/models/DC1_DG.pkl','rb')
 clf18 = pickle.load(file)
 file.close()
 
-file = open('data\models\DC3_DG.pkl','rb')
+file = open('data/models/DC3_DG.pkl','rb')
 clf19 = pickle.load(file)
 file.close()
 
-file = open('data\models\DK8_DG.pkl','rb')
+file = open('data/models/DK8_DG.pkl','rb')
 clf20 = pickle.load(file)
 file.close()
 
@@ -621,7 +621,7 @@ def predict():
         #     json.dump(data, outfile)
 
         db_meals = meals.meals()
-        txt_label_path = "static\detect\exp\labels\image1.txt"
+        txt_label_path = "static/detect/exp/labels/image1.txt"
         current_user = session.get('name')
         db_meals.label_to_meals(path = txt_label_path, id=str(current_user))
         db_meals.db_close()
@@ -648,4 +648,4 @@ if __name__ == '__main__'  :
     app.secret_key = "123"
     # secret_key는 서버상에 동작하는 어플리케이션 구분하기 위해 사용하고 복잡하게 만들어야 합니다.
     
-    app.run(debug=True) 
+    app.run(host='0.0.0.0', debug=True) 
