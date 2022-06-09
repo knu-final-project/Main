@@ -547,7 +547,8 @@ def predict():
                             'gimbab':'김밥', 'bulgogi':'불고기', 'aehobagbokk-eum':'애호박볶음',
                             'musaengchae':'무생채', 'jabchae':'잡채', 'mugug':'무국', 
                             'godeung-eogu-i':'고등어구이', 'ssalbab':'쌀밥', 'gyelanhulai':'계란후라이',
-                            'gyelanmal-i':'계란말이'}
+                            'gyelanmal-i':'계란말이', 'jeyukbokk-eum':'제육볶음', 'siraegiguk':'시래기국', 
+                            'ddangkongjorim':'땅콩조림'}
 
                             label_acc = label.split(' ')
 
