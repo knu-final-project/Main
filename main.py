@@ -530,6 +530,7 @@ def predict():
                             f.write('')
 
                     # Write results
+                    detected_foods = []
                     for *xyxy, conf, cls in reversed(det):
                         if save_txt:  # Write to file
                             xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
@@ -554,11 +555,21 @@ def predict():
 
                             if len(machine129) == 0:
                                 annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(c, True))
+                                detected_foods.append(label_acc[0])
                             else:
                                 if c in machine129:
                                     annotator.box_label(xyxy, machine129_dic[label_acc[0]], color=colors(0, True), safe129 = 'warn')
+                                    detected_foods.append(machine129_dic[label_acc[0]])
                                 else:
                                     annotator.box_label(xyxy, machine129_dic[label_acc[0]], color=colors(8, True), safe129 = 'safe')
+                                    detected_foods.append(machine129_dic[label_acc[0]])
+                
+                detected_foods_set = list(set(detected_foods))
+                detected_foods_str = ""
+                for detected_food_name in detected_foods_set:
+                    detected_foods_str += detected_food_name + ', '
+                detected_foods_str = detected_foods_str.rstrip(', ')
+                session['detected_foods'] = detected_foods_str
 
                 # Stream results
                 im0 = annotator.result()
