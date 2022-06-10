@@ -566,10 +566,21 @@ def predict():
                 
                 detected_foods_set = list(set(detected_foods))
                 detected_foods_str = ""
+                detected_foods_nut = ""
+                db = meals.meals()
                 for detected_food_name in detected_foods_set:
                     detected_foods_str += detected_food_name + ', '
+                    df = db.select_query(f'SELECT * FROM Food WHERE food_name = {detected_food_name};')
+                    calorie = df.head(1)['calorie_kcal'][0]
+                    carbo = df.head(1)['carbohydrate_g'][0]
+                    protein = df.head(1)['protein_g'][0]
+                    fat = df.head(1)['fat_g'][0]
+                    detected_foods_nut += detected_food_name + f' 칼로리:{calorie} 탄수화물:{carbo} 단백질:{protein} 지방:{fat}, '
+
                 detected_foods_str = detected_foods_str.rstrip(', ')
+                detected_foods_nut = detected_foods_nut.rstrip(', ')
                 session['detected_foods'] = detected_foods_str
+                session['detected_foods_nut'] = detected_foods_nut
 
                 # Stream results
                 im0 = annotator.result()
