@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -163,7 +164,11 @@
                     <div class="u-layout-row">
                       <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-4">
                         <div class="u-container-layout u-valign-middle u-container-layout-4">
+                          {% if session['logged_in'] %}
+                          <a href="/home" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-9 u-hover-custom-color-3 u-radius-50 u-text-active-white u-text-hover-white u-btn-1">
+                          {% else %}
                           <a href="/login/" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-9 u-hover-custom-color-3 u-radius-50 u-text-active-white u-text-hover-white u-btn-1">
+                          {% endif %}
                             <span style="font-size: 1.25rem;">회원이시라면?</span>
                             <br>
                             <span style="font-size: 2.1875rem;">입장하기</span>

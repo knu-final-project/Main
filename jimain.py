@@ -34,7 +34,7 @@ import io
 HOME_URL = "/home"
 SURVEY_URL = "/survey"
 DETECTION_URL = "/predict"
-SESSION_LIFETIME = 10
+SESSION_LIFETIME = 1
 
 # from keras import models
 file = open('data/models/DI2_DG.pkl','rb')
@@ -162,7 +162,14 @@ def after_request(response):
 ##HOME, LOGIN, LOGOUT START POINT ##
 @app.route('/',methods=['GET','POST'])
 def home():
-    return render_template('door.html')
+    if session.get('logged_in') :
+        home_login = True
+    else : 
+        home_login = False
+    
+    return render_template('door.html', switch = home_login)
+
+
 
 @app.route(HOME_URL,methods=['GET','POST'])
 def main():
@@ -666,15 +673,20 @@ def mypage():
     # 5. meals table의 [date_time
     df = db.select_query(f"SELECT * FROM meals WHERE user_id = '{current_user}' ORDER BY date_time DESC;")
     meals_date = df.head(1)['date_time'][0]
-
+    db.db_close()
+    db2.db_close()
     # 1. 최근식단의 [탄, 단, 지] 값 // youngyangso
     # 2. 50이 넘는 [질병명, 질병확률] // over_50
     # 3. 피해야 할 [음식명] // bad_food
     # 4. 90이 넘는 [질병명] // over_90
     # 5. meals table의 [date_time] // meals_date
-    return render_template('mypage.html', data = over_50)
+    return render_template('mypage1.html', data = over_50, data2 = youngyangso, data3 = bad_food,
+                           data4 = over_90, data5 = meals_date, data6 = current_user)
     #return render_template('mypage.html', data = df_dict)
-
+    
+@app.route('/hello',methods=['GET','POST'])
+def example():
+    return render_template('mypage1.html')
 
 
 if __name__ == '__main__'  :
