@@ -37,7 +37,7 @@
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-b10a"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
+        <a href="/home" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
           <img src="{{ url_for('static', filename='images/20220607_225725.png') }}" class="u-logo-image u-logo-image-1">
         </a>
         <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" data-responsive-from="MD">
@@ -52,7 +52,8 @@
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="/" style="padding: 10px 0px;">소개말</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_22f3" data-page-id="883203286" style="padding: 10px 0px;">질병예측</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_f3e4" data-page-id="883203286" style="padding: 10px 0px;">식단평가</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_a2e3" data-page-id="883203286" style="padding: 10px 0px;">Developer</a></li></ul>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_a2e3" data-page-id="883203286" style="padding: 10px 0px;">Developer</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="/mypage" style="padding: 10px 0px;">내 정보</a></li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -62,13 +63,20 @@
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_22f3" data-page-id="883203286">질병예측</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_f3e4" data-page-id="883203286">식단평가</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_a2e3" data-page-id="883203286">Developer</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/mypage">내 정보</a>
 </li></ul>
               </div>
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-        <a class="u-login u-login-1" href="Login.html" data-page-id="27095522" title="login">Login</a>
+
+        {% if session['logged_in'] %}
+        <a class="u-login u-login-1" href="/logout" data-page-id="27095522" title="logout">로그아웃</a>
+        {% else %}
+        <a class="u-login u-login-1" href="/login" data-page-id="27095522" title="login">로그인</a>
+        {% endif %}
+
       </div></header>
     <section class="u-clearfix u-image u-section-1" id="carousel_22f3" data-image-width="1980" data-image-height="1114">
       <div class="u-clearfix u-expanded-width-sm u-expanded-width-xs u-layout-wrap u-layout-wrap-1">
@@ -233,15 +241,12 @@
         </div>
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
       <p class="u-text">
-        <span>created with</span>
+        <span></span>
       </p>
       <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
+        <span></span>
+      </a>
     </section>
   </body>
 </html>

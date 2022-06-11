@@ -34,7 +34,7 @@ import io
 HOME_URL = "/home"
 SURVEY_URL = "/survey"
 DETECTION_URL = "/predict"
-SESSION_LIFETIME = 1
+SESSION_LIFETIME = 20
 
 # from keras import models
 file = open('data/models/DI2_DG.pkl','rb')
@@ -645,7 +645,7 @@ def predict():
 
         return redirect("static/detect/exp/image1.jpg")
 
-    return render_template("detect_open.html")
+    return render_template("detect.html")
 
 
 @app.route('/mypage',methods=['GET','POST'])
