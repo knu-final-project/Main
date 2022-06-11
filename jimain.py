@@ -563,7 +563,7 @@ def predict():
                 db = meals.meals()
                 for detected_food_name in detected_foods_set:
                     detected_foods_str += detected_food_name + ', '
-                    df = db.select_query(f'SELECT * FROM Food WHERE food_name = {detected_food_name};')
+                    df = db.select_query(f"SELECT * FROM Food WHERE food_name = '{detected_food_name}';")
                     calorie = df.head(1)['calorie_kcal'][0]
                     carbo = df.head(1)['carbohydrate_g'][0]
                     protein = df.head(1)['protein_g'][0]
