@@ -1,3 +1,4 @@
+from calendar import day_abbr
 from flask import Flask,render_template,request,redirect,session,url_for,Blueprint,send_file,escape,jsonify
 import pickle
 from flask_sqlalchemy import SQLAlchemy
@@ -9,7 +10,7 @@ import json
 from instagram import getfollowedby, getname
 from datetime import timedelta
 import torch
-from machine129 import translabel, meals
+from machine129 import translabel, meals, mypagefunction
 
 import numpy as np
 import matplotlib
@@ -648,46 +649,30 @@ def mypage():
     #현재 사용자 ID, 넘겨줘야 할 변수 1
     
     db = meals.meals()
-    df = db.select_query(f'SELECT * FROM dis_results WHERE user_id = {current_user};')
-    db.db_close()
-    # 로드 베이스 #
+    db2 = mypagefunction.db_class()
     
-    df = df.sort_values('cnt', ascending=False)
-    df = df.reset_index(drop=False, inplace=False).head(1)
-    df_result = df.iloc[:,1:21]
-    #오름차순 후 1row, 20개 질병 column추출 #
-    df_result = df_result.transpose()
-    df_dict = df_result.to_dict()
-    df_dict = df_dict[0]
-    
-    red_list =[]
-    orange_list =[]
-    green_list =[]
-    
-    for i in df_dict:
-      a = df_dict[i]
-    if a > 90:
-        red_list.append(i)
-    elif a > 50:
-        orange_list.append(i)
-    else:
-        green_list.append(i)
+    # 1. 최근식단의 [탄, 단, 지] 값
+    youngyangso = db.meals_to_3nutrient(id=current_user, recent = 1)
 
-    
+    # 2. 50이 넘는 [질병명, 질병확률]
+    over_50 = db2.over_disease(id=current_user, conf=50, percent=True)
 
+    # 3. 피해야 할 [음식명]
+    bad_food = db.dis_food(id=current_user, conf=0.5, recent = 1, str=True)
 
+    # 4. 90 이 넘는 [질병명]
+    over_90 = db2.over_disease(id=current_user, conf=90, percent=False)
 
+    # 5. meals table의 [date_time
+    df = db.select_query(f"SELECT * FROM meals WHERE user_id = '{current_user}' ORDER BY date_time DESC;")
+    meals_date = df.head(1)['date_time'][0]
 
-    
-
-        
-
-    
-    
-    
-
-
-    return render_template('mypage.html', data = orange_list[0])
+    # 1. 최근식단의 [탄, 단, 지] 값 // youngyangso
+    # 2. 50이 넘는 [질병명, 질병확률] // over_50
+    # 3. 피해야 할 [음식명] // bad_food
+    # 4. 90이 넘는 [질병명] // over_90
+    # 5. meals table의 [date_time] // meals_date
+    return render_template('mypage.html', data = over_50)
     #return render_template('mypage.html', data = df_dict)
 
 
