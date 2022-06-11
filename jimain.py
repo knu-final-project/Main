@@ -539,7 +539,7 @@ def predict():
 
                             if len(machine129) == 0:
                                 annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(c, True))
-                                detected_foods.append(label_acc[0])
+                                detected_foods.append(machine129_dic[label_acc[0]])
                             else:
                                 if c in machine129:
                                     annotator.box_label(xyxy, machine129_dic[label_acc[0]], color=colors(0, True), safe129 = 'warn')
@@ -552,15 +552,13 @@ def predict():
                 detected_foods_str = ""
                 detected_foods_nut = ""
                 db = meals.meals()
-                for detected_food_class in detected_foods_set:
-                    df = db.select_query(f'SELECT * FROM Food WHERE class_num = {detected_food_class};')
-                    print(f'SELECT * FROM Food WHERE class_num = {detected_food_class};')
+                for detected_food_name in detected_foods_set:
+                    df = db.select_query(f"SELECT * FROM Food WHERE food_name = '{detected_food_name}';")
 
                     calorie = df.head(1)['calorie_kcal'][0]
                     carbo = df.head(1)['carbohydrate_g'][0]
                     protein = df.head(1)['protein_g'][0]
                     fat = df.head(1)['fat_g'][0]
-                    detected_food_name = df.head(1)['food_name'][0]
 
                     detected_foods_str += detected_food_name + ', '
                     detected_foods_nut += detected_food_name + f' 칼로리:{calorie} 탄수화물:{carbo} 단백질:{protein} 지방:{fat}, '
