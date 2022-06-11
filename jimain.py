@@ -368,6 +368,7 @@ inf20 = (round(infprob20*100,2))
    
     return render_template('index.html')
 
+
 @app.route(DETECTION_URL, methods=["GET","POST"])
 def predict():
     if request.method == "POST":
@@ -539,7 +540,7 @@ def predict():
 
                             if len(machine129) == 0:
                                 annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(c, True))
-                                detected_foods.append(machine129_dic[label_acc[0]])
+                                detected_foods.append(label_acc[0])
                             else:
                                 if c in machine129:
                                     annotator.box_label(xyxy, machine129_dic[label_acc[0]], color=colors(0, True), safe129 = 'warn')
@@ -553,14 +554,12 @@ def predict():
                 detected_foods_nut = ""
                 db = meals.meals()
                 for detected_food_name in detected_foods_set:
-                    df = db.select_query(f"SELECT * FROM Food WHERE food_name = '{detected_food_name}';")
-
+                    detected_foods_str += detected_food_name + ', '
+                    df = db.select_query(f'SELECT * FROM Food WHERE food_name = {detected_food_name};')
                     calorie = df.head(1)['calorie_kcal'][0]
                     carbo = df.head(1)['carbohydrate_g'][0]
                     protein = df.head(1)['protein_g'][0]
                     fat = df.head(1)['fat_g'][0]
-
-                    detected_foods_str += detected_food_name + ', '
                     detected_foods_nut += detected_food_name + f' 칼로리:{calorie} 탄수화물:{carbo} 단백질:{protein} 지방:{fat}, '
 
                 detected_foods_str = detected_foods_str.rstrip(', ')
@@ -638,7 +637,58 @@ def predict():
 
         return redirect("static/detect/exp/image1.jpg")
 
-    return render_template("detect.html")
+    return render_template("detect_open.html")
+
+
+@app.route('/mypage',methods=['GET','POST'])
+def mypage():
+    # 로그인 유무 여부는 html에서 처리
+    
+    current_user = session.get('name')
+    #현재 사용자 ID, 넘겨줘야 할 변수 1
+    
+    db = meals.meals()
+    df = db.select_query(f'SELECT * FROM dis_results WHERE user_id = {current_user};')
+    db.db_close()
+    # 로드 베이스 #
+    
+    df = df.sort_values('cnt', ascending=False)
+    df = df.reset_index(drop=False, inplace=False).head(1)
+    df_result = df.iloc[:,1:21]
+    #오름차순 후 1row, 20개 질병 column추출 #
+    df_result = df_result.transpose()
+    df_dict = df_result.to_dict()
+    df_dict = df_dict[0]
+    
+    red_list =[]
+    orange_list =[]
+    green_list =[]
+    
+    for i in df_dict:
+      a = df_dict[i]
+    if a > 90:
+        red_list.append(i)
+    elif a > 50:
+        orange_list.append(i)
+    else:
+        green_list.append(i)
+
+    
+
+
+
+
+    
+
+        
+
+    
+    
+    
+
+
+    return render_template('mypage.html', data = orange_list[0])
+    #return render_template('mypage.html', data = df_dict)
 
 
 
