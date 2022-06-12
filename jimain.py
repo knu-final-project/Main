@@ -428,7 +428,7 @@ def hello_world():
         }, index=np.arange(1))
         
     result, data = model_data.model(survey_data)
-    ag = pd.read_csv('data2/data_ag.csv', index_col=0)
+    ag = pd.read_csv('hyerim/data/data_ag.csv', index_col=0)
     current_user = session.get('name')
     result_db = meals.meals()
     #result_db.dis_results_input(dis_results_dic = result.to_dict(), id = str(current_user))
