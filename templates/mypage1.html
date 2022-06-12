@@ -10,6 +10,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='mypage.css') }}" media="screen">
     <script class="u-script" type="text/javascript" src = "{{ url_for('static', filename='jquery.js') }}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='nicepage.js') }}" defer=""></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+
     <meta name="generator" content="Nicepage 4.12.5, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700">
@@ -107,13 +112,15 @@
               <div class="u-size-30">
                 <div class="u-layout-row">
                   <div class="u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-4">
+                    
                     <div class="u-container-layout u-valign-middle u-container-layout-4">
-                      <h3 class="u-text u-text-default u-text-7">50 넘는 질병 가로 막대 그래프</h3>
+                      <canvas id="bar-chart-horizontal" width="400" height="400"></canvas>
                     </div>
                   </div>
                   <div class="u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-5">
                     <div class="u-container-layout u-valign-middle u-container-layout-5">
-                      <h3 class="u-text u-text-default u-text-8">탄, 단, 지 비율 도넛 그래프</h3>
+                      <canvas id="doughnut-chart" width="400" height="400"></canvas>
+
                     </div>
                   </div>
                 </div>
@@ -155,5 +162,47 @@
 
       </a>. 
     </section>
+    <script type="text/javascript">
+      new Chart(document.getElementById("bar-chart-horizontal"), {
+        type: 'horizontalBar',
+        data: {
+          labels: {{labels | tojson | safe}},
+          datasets: [
+            {
+              label: "유병 확률 (%)",
+              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+              data: {{data | tojson | safe}}
+            }
+          ]
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: '경계해야 할 당신의 질병'
+          }
+        }
+    });
+
+    new Chart(document.getElementById("doughnut-chart"), {
+      type: 'doughnut',
+      data: {
+        labels: {{nutrient_labels | tojson | safe}},
+        datasets: [
+          {
+            label: "Population (millions)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+            data: {{nutrient_data | tojson | safe }}
+          }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: '당신의 최근 식단 3대 영양소 비율'
+        }
+      }
+  });
+  </script>
   </body>
 </html>
