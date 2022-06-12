@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="A Healthier, Happier You">
+    <meta name="description" content="">
+    <title>질병예측</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='nicepage.css')}}" media="screen">
+<link rel="stylesheet" href="{{url_for('static',filename='질병예측.css')}}" media="screen">
+    <script class="u-script" type="text/javascript" src="{{url_for('static',filename='jquery.js')}}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{url_for('static',filename='nicepage.js')}}" defer=""></script>
+    <meta name="generator" content="Nicepage 4.12.14, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i">
+
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "생생건강통",
+		"logo": "images/20220607_225725.png",
+		"sameAs": [
+				"https://knufinal.slack.com",
+				"https://silver-dragon-340.notion.site/Final-Project-Machine129-58e041584ae44baa852d7d0378c736d8",
+				"https://github.com/knu-final-project"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="질병예측">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+</head>
+<body>
+    <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-b10a"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
+          <img src="{{url_for('static',filename='images/20220607_225725.png')}}" class="u-logo-image u-logo-image-1">
+        </a>
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" data-responsive-from="MD">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
+            <a class="u-button-style u-custom-active-border-color u-custom-active-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="소개말.html" style="padding: 10px 0px;">소개말</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_22f3" data-page-id="883203286" style="padding: 10px 0px;">질병예측</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_f3e4" data-page-id="883203286" style="padding: 10px 0px;">식단평가</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_a2e3" data-page-id="883203286" style="padding: 10px 0px;">Developer</a>
+</li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="소개말.html">소개말</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_22f3" data-page-id="883203286">질병예측</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_f3e4" data-page-id="883203286">식단평가</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_a2e3" data-page-id="883203286">Developer</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+        <a class="u-login u-login-1" href="Login.html" data-page-id="27095522" title="login">Login</a>
+      </div></header>
+    <section class="u-clearfix u-image u-section-1" id="sec-14a1" data-image-width="1980" data-image-height="1114">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-image u-layout-cell u-left-cell u-size-33 u-image-1">
+                <div class="u-container-layout u-container-layout-1"></div>
+              </div>
+              <div class="u-align-center-sm u-align-center-xs u-align-right-lg u-align-right-md u-align-right-xl u-container-style u-layout-cell u-right-cell u-size-27 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2">
+                  <h4 class="u-text u-text-body-alt-color u-text-1">질병 유병자들과의</h4>
+                  <h1 class="u-custom-font u-font-source-sans-pro u-text u-text-body-alt-color u-title u-text-2">생활패턴&nbsp;유사도분석</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-clearfix u-section-2" id="sec-0b26">
+      <div class="u-clearfix u-sheet u-sheet-1"></div>
+    </section>
+    
+    <section class="u-align-center u-clearfix u-section-3" id="carousel_f933">
+      <div class="u-align-left u-clearfix u-sheet u-sheet-1">
+        <div class="u-align-center u-container-style u-group u-group-1">
+          <div class="u-container-layout">
+            
+            <form action="http://127.0.0.1:9999/survey" method="POST">
+            <p class="u-text u-text-1"> 1. 귀하의 성별에 응​답해 주세요
+                <br>
+                <form action="http://127.0.0.1:9999/survey" method="POST" class="u-clearfix u-form-spacing-24 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+                    <div class="u-form-group u-form-radiobutton u-form-group-1">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="SEX" placeholder="SEX" value="1">
+                          <label class="u-label u-label-1" for="radiobutton">남성</label>
+                          <br>
+                          <input type="radio" name="SEX" placeholder="SEX" value="0">
+                        <label class="u-label u-label-2" for="radiobutton">여성</label>
+            </p>
+
+            <p> 
+                <div class="u-form-group">
+                <label for="name-501f" class="u-label u-label-3">2. 귀하의 연령에 응답해 주세요</label>
+                <input type="text" placeholder="연령을 입력해주세요" id="name-501f" name="AGE" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                </div>
+            </p>
+
+            <p> 
+                <div class="u-form-group u-form-group-3">
+                    <label for="text-9c5c" class="u-label u-label-4">3. 귀하의 신장은 몇 cm 입니까?</label>
+                    <input type="text" id="text-9c5c" name="HE_HT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" placeholder="신장을 입력해주세요" required="required">
+                  </div>
+            </p>
+
+            <p> 
+                <div class="u-form-group u-form-group-4">
+                    <label for="text-56ae" class="u-label u-label-5">4. 귀하의 체중은 몇 kg 입니까?</label>
+                    <input type="text" placeholder="체중을 입력해주세요" id="text-56ae" name="HE_WT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                  </div>    
+            </p> 
+
+            <h4> 귀하가 해당하는 곳에 응답해 주세요 </h4>
+            
+            <p class="u-text u-text-default u-text-3">5. EuroQoL : 운동능력
+              <div class="u-form-group u-form-radiobutton u-form-group-6">
+                <div class="u-form-radio-button-wrapper">
+                  <input type="radio" name="LQ_1EQL" value="1">
+                  <label class="u-label u-label-6" for="radiobutton">나는 걷는데 지장이 없다</label>
+                  <br>
+                  <input type="radio" name="LQ_1EQL" value="2">
+                  <label class="u-label u-label-7" for="radiobutton">나는 걷는데 다소 지장이 있다</label>
+                  <br>
+                  <input type="radio" name="LQ_1EQL" value="3">
+                  <label class="u-label u-label-8" for="radiobutton">나는 종일 누워 있어야 한다</label>
+                  <br>
+                </div>
+              </div>
+
+
+            </p>
+
+             <p class="u-text u-text-4">6. ​EuroQoL : 자기관리
+                <div class="u-expanded-width u-form u-form-3">
+              
+                    <div class="u-form-group u-form-radiobutton u-form-group-8">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="LQ_2EQL" value="1">
+                        <label class="u-label u-label-9" for="radiobutton">나는 목욕을 하거나 옷을 입는데 지장이 없다</label>
+                        <br>
+                        <input type="radio" name="LQ_2EQL" value="2">
+                        <label class="u-label u-label-10" for="radiobutton">나는 혼자 목욕을 하거나 옷을 입는데 다소 지장이 있다</label>
+                        <br>
+                        <input type="radio" name="LQ_2EQL" value="3">
+                        <label class="u-label u-label-11" for="radiobutton">나는 혼자 목욜을 하거나 옷을 입을 수가 없다</label>
+                        <br>
+                      </div>
+                    </div>
+                </div>
+            </p>
+            
+            <p class="u-text u-text-5">7. EuroQoL : 일상활동
+                <div class="u-form-group u-form-radiobutton u-form-group-10">
+                    <div class="u-form-radio-button-wrapper">
+                      <input type="radio" name="LQ_3EQL" value="1">
+                      <label class="u-label u-label-12" for="radiobutton">나는 일상활동을 하는데 지장 없음</label>
+                      <br>
+                      <input type="radio" name="LQ_3EQL" value="2">
+                      <label class="u-label u-label-13" for="radiobutton">나는 일상활동을 하는데 다소 지장 있음</label>
+                      <br>
+                      <input type="radio" name="LQ_3EQL" value="3">
+                      <label class="u-label u-label-14" for="radiobutton">나는 일상활동을 할 수 없음</label>
+                      <br>
+                    </div>
+                  </div>
+            </p>
+            
+            <p class="u-text u-text-6">8. EuroQoL : 통증/불편
+                <div class="u-form-group u-form-radiobutton u-form-group-12">
+                    <div class="u-form-radio-button-wrapper">
+                      <input type="radio" name="LQ_4EQL" value="1">
+                      <label class="u-label u-label-15" for="radiobutton">나는 통증/불편감이 없음</label>
+                      <br>
+                      <input type="radio" name="LQ_4EQL" value="2">
+                      <label class="u-label u-label-16" for="radiobutton">나는 다소 통증/불편감이 있음</label>
+                      <br>
+                      <input type="radio" name="LQ_4EQL" value="3">
+                      <label class="u-label u-label-17" for="radiobutton">나는 매우 심한 통증/불편감 있음</label>
+                      <br>
+                    </div>
+                  </div>
+            </p>
+            
+            <p class="u-text u-text-7">9. EuroQoL : 불안/우울
+                <div class="u-expanded-width u-form u-form-6">
+              
+                    <div class="u-form-group u-form-radiobutton u-form-group-14">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="LQ_5EQL" value="1">
+                        <label class="u-label u-label-18" for="radiobutton">나는 불안하거나 우울하지 않음</label>
+                        <br>
+                        <input type="radio" name="LQ_5EQL" value="2">
+                        <label class="u-label u-label-19" for="radiobutton">나는 다소 불안하거나 우울함</label>
+                        <br>
+                        <input type="radio" name="LQ_5EQL" value="3">
+                        <label class="u-label u-label-20" for="radiobutton">나는 매우 심하게 불안하거나 우울함</label>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+            </p>
+            
+            <p> 
+                <label for="name-796f" class="u-label u-label-21"> 10. 귀하의 주말 하루 평균 수면시간은 몇 시간입니까?</label>
+                <br> 
+                <input type="text" placeholder="주말 하루 평균 수면시간을 입력해주세요" id="name-796f" name="TOTAL_SLP_WD" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+            </p>
+            
+            <h4>* 최소 10분 이상 계속 숨이 약간 차거나 심장이 약간 빠르게 뛰는 중강도 신체 활동을 포함하고 있습니까?</h4>
+            <p class="u-align-center u-text u-text-9">11. ​본인의 일
+                <div class="u-form u-form-8">
+
+                    <div class="u-form-group u-form-radiobutton u-form-group-18">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="BE3_81" value="1">
+                        <label class="u-label u-label-22" for="radiobutton">예</label>
+                        <br>
+                        <input type="radio" name="BE3_81" value="2">
+                        <label class="u-label u-label-23" for="radiobutton">아니오</label>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+            </p>
+
+            <p class="u-align-center u-text u-text-10"> 12. 본인의 여가
+                <div class="u-form u-form-9">
+
+                    <div class="u-form-group u-form-radiobutton u-form-group-20">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="BE3_85" value="1">
+                        <label class="u-label u-label-24" for="radiobutton">예</label>
+                        <br>
+                        <input type="radio" name="BE3_85" value="2">
+                        <label class="u-label u-label-25" for="radiobutton">아니오</label>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+            </p>
+            
+            <p class="u-align-left u-text u-text-11"> 13. 평소 일상생활 중에 스트레스를 어느 정도 느끼고 있습니까?
+                <div class="u-form u-form-10">
+
+                    <div class="u-form-group u-form-radiobutton u-form-group-22">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="BP1" value="1">
+                        <label class="u-label u-label-26" for="radiobutton">대단히 많이 느낀다</label>
+                        <br>
+                        <input type="radio" name="BP1" value="2">
+                        <label class="u-label u-label-27" for="radiobutton">많이 느끼는 편이다</label>
+                        <br>
+                        <input type="radio" name="BP1" value="3">
+                        <label class="u-label u-label-28" for="radiobutton">조금 느끼는 편이다</label>
+                        <br>
+                        <input type="radio" name="BP1" value="4">
+                        <label class="u-label u-label-29" for="radiobutton">거의 느끼지 않는다</label>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+            </p>
+            
+            <p class="u-align-center u-text u-text-12"> 14. 귀하의 흡연 여부에 해당하는 곳에 응답해 주세요
+                <div class="u-form u-form-11">
+                    <div class="u-form-group u-form-radiobutton u-form-group-24">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="SM_PRESNT" value="0">
+                        <label class="u-label u-label-30" for="radiobutton">과거 흡연, 비흡연</label>
+                        <br>
+                        <input type="radio" name="SM_PRESNT" value="1">
+                        <label class="u-label u-label-31" for="radiobutton">현재흡연</label>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+            </p>
+            
+            <p class="u-align-center u-text u-text-13"> 15. 최근 1년 동안 아침식사를 1주일에 몇 회 하셨습니까?
+                <div class="u-form u-form-12">
+                    <div class="u-form-group u-form-radiobutton u-form-group-26">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="L_BR_FQ" value="1">
+                        <label class="u-label u-label-32" for="radiobutton">주5~7회</label>
+                        <br>
+                        <input type="radio" name="L_BR_FQ" value="2">
+                        <label class="u-label u-label-33" for="radiobutton">주3~4회</label>
+                        <br>
+                        <input type="radio" name="L_BR_FQ" value="3">
+                        <label class="u-label u-label-34" for="radiobutton">주1~2회</label>
+                        <br>
+                        <input type="radio" name="L_BR_FQ" value="4">
+                        <label class="u-label u-label-35" for="radiobutton">거의 안한다(주0회)</label>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+            </p>
+            
+            <p class="u-align-center u-text u-text-14"> 16. 최근 2년 동안 건강을 위해 건강검진을 받은 적이 있습니까?
+                <div class="u-form u-form-13">
+                    <div class="u-form-group u-form-radiobutton u-form-group-28">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="BH1" value="1">
+                        <label class="u-label u-label-36" for="radiobutton">예</label>
+                        <br>
+                        <input type="radio" name="BH1" value="2">
+                        <label class="u-label u-label-37" for="radiobutton">아니오</label>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+            </p>
+            
+            <p class="u-align-center u-text u-text-15"> 17. ​​귀 가족 중에서 의사로부터 다음의 질병을 진단받으신 적이 있으십니까?
+                <div class="u-form u-form-14">
+                    <div class="u-form-group u-form-radiobutton u-form-group-30">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="HE_FH" value="0">
+                        <label class="u-label u-label-38" for="radiobutton">아니오</label>
+                        <br>
+                        <input type="radio" name="HE_FH" value="1">
+                        <label class="u-label u-label-39" for="radiobutton">예</label>
+            </p>
+
+            <p>
+                <label for="name-796f" class="u-label u-label-40"> 18.  최종 이완기 혈압(2,3차 평균)
+                <br>
+                <input type="text" placeholder="이완기 혈압을 입력해주세요" id="name-796f" name="HE_DBP" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-5" required="required">
+            </p>
+            
+            <p class="u-align-center u-text u-text-16">19. 현재 건강상의 문제나 신체 혹은 정신적 장애로 일상생활 및 사회활동에 제한을 받고 계십니까?
+                <div class="u-form u-form-16">
+              
+                    <div class="u-form-group u-form-radiobutton u-form-group-34">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="LQ4_00" value="1">
+                        <label class="u-label u-label-41" for="radiobutton">예</label>
+                        <br>
+                        <input type="radio" name="LQ4_00" value="2">
+                        <label class="u-label u-label-42" for="radiobutton">아니오</label>
+                        <br>
+                      </div>
+                    </div>
+                </div>
+            </p>
+            
+            <p class="u-align-center u-text u-text-17">20. ​최근 1년 동안 정신적인 문제 때문에 방문, 전화, 인터넷 등을 통해 상담을 받아 본 적이 있습니까?
+                <div class="u-form u-form-17">
+                    <div class="u-form-group u-form-radiobutton u-form-group-36">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="BP7" value="1">
+                        <label class="u-label u-label-43" for="radiobutton">예</label>
+                        <br>
+                        <input type="radio" name="BP7" value="2">
+                        <label class="u-label u-label-44" for="radiobutton">아니오</label>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+            </p>
+            
+            <p class="u-text u-text-18">21. ​최근 스트레스를 얼마나 느끼고 있습니까?
+                <div class="u-form u-form-18">
+                    <div class="u-form-group u-form-radiobutton u-form-group-38">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="MH_STRESS" value="0">
+                        <label class="u-label u-label-45" for="radiobutton">스트레스 적게 느낌</label>
+                        <br>
+                        <input type="radio" name="MH_STRESS" value="1">
+                        <label class="u-label u-label-46" for="radiobutton">스트레스 많이 느낌</label>
+                        <br>
+                      </div>
+                    </div>
+                </div>
+
+            </p>
+            
+            <p class="u-text u-text-19">22. 맥박의 규칙성이 어떻게 됩니까?
+                <div class="u-form u-form-19">
+                    <div class="u-form-group u-form-radiobutton u-form-group-40">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="HE_RPLS" value="1">
+                        <label class="u-label u-label-47" for="radiobutton">규칙적</label>
+                        <br>
+                        <input type="radio" name="HE_RPLS" value="2">
+                        <label class="u-label u-label-48" for="radiobutton">불규칙적</label>
+                        <br>
+                      </div>
+                    </div>
+                </div>
+            </p>
+            
+            <p class="u-align-center u-text u-text-20">23. 공공장소의 실내<span style="font-size: 0.9375rem;">(흡연지정구역 제외)</span>에서 다른 사람이 피우는 담배연기를 맡은 적이 있습니까? <span style="font-size: 0.9375rem;">(최근 7일 동안)</span>
+              <div class="u-form u-form-20">
+                <div class="u-form-group u-form-radiobutton u-form-group-42">
+                  <div class="u-form-radio-button-wrapper">
+                    <input type="radio" name="BS13" value="1">
+                    <label class="u-label u-label-49" for="radiobutton">예</label>
+                    <br>
+                    <input type="radio" name="BS13" value="2">
+                    <label class="u-label u-label-50" for="radiobutton">아니오</label>
+                    <br>
+                  </div>
+                </div>
+              </div>
+            </p>
+            
+            <p class="u-text u-text-default u-text-22"> 24. 술을 얼마나 자주 마십니까?
+              <div class="u-expanded-width u-form u-form-21">
+                <div class="u-form-group u-form-radiobutton u-form-group-44">
+                  <div class="u-form-radio-button-wrapper">
+                    <input type="radio" name="BD1_11" value="1">
+                    <label class="u-label u-label-51" for="radiobutton">최근 1년간 전혀 마시지 않았다</label>
+                    <br>
+                    <input type="radio" name="BD1_11" value="2">
+                    <label class="u-label u-label-52" for="radiobutton">월1회미만</label>
+                    <br>
+                    <input type="radio" name="BD1_11" value="3">
+                    <label class="u-label u-label-53" for="radiobutton">월1회정도</label>
+                    <br>
+                    <input type="radio" name="BD1_11" value="4">
+                    <label class="u-label u-label-54" for="radiobutton">월2-4회</label>
+                    <br>
+                    <input type="radio" name="BD1_11" value="5">
+                    <label class="u-label u-label-55" for="radiobutton">주2-3회정도</label>
+                    <br>
+                    <input type="radio" name="BD1_11" value="6">
+                    <label class="u-label u-label-56" for="radiobutton">주4회이상</label>
+                    <br>
+                  </div>
+                </div>
+              </div>
+            </p>
+
+            <br>
+            <h4>식품섭취조사</h4>
+            
+            <p> 
+              <div class="u-form-group">
+                <label for="name-796f" class="u-label u-label-57">25. 1일 식품섭취량(g)을 입력해주세요</label>
+                <input type="text" placeholder="1일 식품섭취량(g)" id="name-796f" name="N_INTK" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-6" required="required">
+              </div>
+            </p>
+
+            <p>
+              <div class="u-form-group u-form-group-47">
+                <label for="text-413b" class="u-label u-label-58">26. 1일 에너지 섭취량(kcal)을 입력해주세요</label>
+                <input type="text" placeholder="1일 에너지 섭취량(kcal)" id="text-413b" name="N_EN" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-7">
+              </div>
+            </p>
+
+            <p>
+              <div class="u-form-group u-form-group-48">
+                <label for="text-3f9d" class="u-label u-label-59">27. 1일 수분 섭취량(g)을 입력해주세요</label>
+                <input type="text" placeholder="1일 수분 섭취량(g)" id="text-3f9d" name="N_WATER" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-8">
+              </div>
+            </p>
+
+            <p>
+              <div class="u-form-group u-form-group-49">
+                <label for="text-09a4" class="u-label u-label-60">28. 1일 단백질 섭취량(g)을 입력해주세요</label>
+                <input type="text" placeholder="1일 단백질 섭취량(g)" id="text-09a4" name="N_PROT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-9">
+              </div>
+            </p>
+
+            <p>
+              <div class="u-form-group u-form-group-50">
+                <label for="text-ee6b" class="u-label u-label-61">29. 1일 지방 섭취량(g)을 입력해주세요</label>
+                <input type="text" id="text-ee6b" name="N_FAT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-10" placeholder="1일 지방 섭취량(g)">
+              </div>
+            </p>
+
+            <p>
+              <div class="u-form-group u-form-group-51">
+                <label for="text-c936" class="u-label u-label-62">30. 1일 포화지방산 섭취량(g)을 입력해주세요</label>
+                <input type="text" id="text-c936" name="N_SFA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-11" placeholder="1일 포화지방산 섭취량(g)">
+              </div>
+            </p>
+            
+            <p>
+              <div class="u-form-group u-form-group-52">
+                <label for="text-31ae" class="u-label u-label-63">31. 1일 단일불포화지방산 섭취량(g)을 입력해주세요</label>
+                <input type="text" placeholder="1일 단일불포화지방산 섭취량(g)" id="text-31ae" name="N_MUFA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-12">
+              </div>
+            </p>
+            
+            <p>
+              <div class="u-form-group u-form-group-53">
+                <label for="text-1359" class="u-label u-label-64">32. 1일 콜레스테롤 섭취량(mg)을 입력해주세요</label>
+                <input type="text" placeholder="1일 콜레스테롤 섭취량(mg)" id="text-1359" name="N_CHOL" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-13">
+              </div>
+            </p>
+            
+            <p>
+              <div class="u-form-group u-form-group-54">
+                <label for="text-364c" class="u-label u-label-65">33. 1일 당 섭취량(g)을 입력해주세요</label>
+                <input type="text" placeholder="1일 당 섭취량(g)" id="text-364c" name="N_SUGAR" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-14">
+              </div>
+            </p>
+            
+            <p>
+                <div class="u-form-group u-form-group-55">
+                    <label for="text-5fe0" class="u-label u-label-66">34. 1일 인 섭취량(mg)을 입력해주세요</label>
+                    <input type="text" placeholder="1일 인 섭취량(mg)" id="text-5fe0" name="N_PHOS" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-15">
+                </div>
+            </p>
+            
+            <p>
+                <div class="u-form-group u-form-group-56">
+                    <label for="text-3eb1" class="u-label u-label-67">35. 1일 나트륨 섭취량(mg)을 입력해주세요</label>
+                    <input type="text" placeholder="1일 나트륨 섭취량(mg)" id="text-3eb1" name="N_NA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-16">
+                </div>
+            </p>
+            
+            <p>
+                <div class="u-form-group u-form-group-57">
+                    <label for="text-1a7e" class="u-label u-label-68">36. 1일 베타카로틴 섭취량(μg)을 입력해주세요</label>
+                    <input type="text" placeholder="1일 베타카로틴 섭취량(μg)" id="text-1a7e" name="N_CAROT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-17">
+                </div>
+            </p>
+
+            <p><input type="submit" value="결과보기" class="u-align-center u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-block-43f1-523"></p>
+        
+          </form>
+    </div>
+      </section>
+      
+        <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-white" id="sec-58d4"><div class="u-clearfix u-sheet u-sheet-1">
+          <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="280" data-image-height="280">
+            <img src="{{url_for('static',filename='images/TEAM-LOGO.png')}}" class="u-logo-image u-logo-image-1">
+          </a>
+          <p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">
+            <span style="font-size: 0.9375rem;">
+              <span style="font-size: 1.0625rem;">경북대학교 산학협력단 K-Digital Training 1기</span>
+            </span>
+            <br>
+            <span style="font-size: 30px; font-weight: normal;">Team '머선일이조'</span>
+          </p>
+          <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">
+            <a class="u-social-url" title="facebook" target="_blank" href="https://knufinal.slack.com"><span class="u-file-icon u-icon u-social-facebook u-social-icon u-icon-1"><img src="{{url_for('static',filename='images/5968974.png')}}" alt=""></span>
+            </a>
+            <a class="u-social-url" title="twitter" target="_blank" href="https://silver-dragon-340.notion.site/Final-Project-Machine129-58e041584ae44baa852d7d0378c736d8"><span class="u-file-icon u-icon u-social-icon u-social-twitter u-icon-2"><img src="{{url_for('static',filename='images/notion.png')}}" alt=""></span>
+            </a>
+            <a class="u-social-url" title="instagram" target="_blank" href="https://github.com/knu-final-project"><span class="u-file-icon u-icon u-social-icon u-social-instagram u-icon-3"><img src="{{url_for('static',filename='images/733609.png')}}" alt=""></span>
+            </a>
+          </div>
+        </div></footer>
+
+      <section class="u-backlink u-clearfix u-grey-80">
+          <a class="u-link" href="https://nicepage.com/web-design" target="_blank">
+            <span>Responsive Web Design</span>
+          </a>
+          <p class="u-text">
+            <span>created with</span>
+          </p>
+          <a class="u-link" href="https://nicepage.com/website-builder" target="_blank">
+            <span>Best Website Builder</span>
+          </a>. 
+        </section>
+    
+</body>
+</html>

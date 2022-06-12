@@ -1,11 +1,10 @@
 ## 경로 변경 및 출력
 import os
-os.chdir('C:\웹페이지\생활패턴유사도\data')
+os.chdir('C:\Main\hyerim\data')
 print(os.getcwd())
 
 ## 데이터 불러오기
 import pandas as pd
-data = pd.read_csv('test.csv', index_col=0)
 dis = pd.read_csv('data_dis.csv',index_col=0)
 #print(data)
 
@@ -17,6 +16,7 @@ with open('dis_var.pkl', 'rb') as f:
 ### 질병이름 사전
 with open('dis_name.pkl', 'rb') as f:
     dis_name = pickle.load(f)
+
 
 #print('질병에 따른 각 변수에 대한 사전')
 #print(dis_var)
@@ -33,8 +33,11 @@ result
 
 ## 생활패턴 유사도
 def model(test):
-    test['HE_BMI'] = round(test['HE_WT'].astype('int') / (test.loc[:,'HE_HT'].astype('int') * 2)*100,1)
-    test['TOTAL_SLP_WD'] = round(test['TOTAL_SLP_WD']/60, 0) 
+    print(test)
+    test['HE_BMI'] = 0
+    test['HE_BMI'] = round((test['HE_WT'] / (test['HE_HT'] * 2))*100,1)
+    test['TOTAL_SLP_WD'] = test['TOTAL_SLP_WD']*60
+
     if 'ID' in test.columns:
         result.loc[0,'ID'] = test.values[0][0]
         print(f"{test.values[0][0]}님과 각 질병 유병자들과의 생활패턴 유사도 결과입니다.\n")
