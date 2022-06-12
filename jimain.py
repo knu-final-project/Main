@@ -12,7 +12,7 @@ from instagram import getfollowedby, getname
 from datetime import timedelta
 import torch
 from machine129 import translabel, meals, mypagefunction
-import model_data
+from hyerim import model_data
 
 import pandas as pd
 import numpy as np
