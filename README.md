@@ -1,4 +1,4 @@
-# <div align="center">객체탐지, 질병예측 모델을 포함한 Web-app 형태 플랫폼</div>
+# <div align="center">질병예측 및 음식탐지를 활용한 '고령화 케어 플랫폼'</div>
 
 <div align="center">
 <p>
@@ -6,12 +6,16 @@
 </p>
 
 ## <div align="center">Command</div>
+<details open>
+<summary>설치 방법</summary>
 ```bash
 git clone https://github.com/knu-final-project/Main.git
 cd Main 
 pip install -r requirements.txt
 python main.py
 ```  
+</details>
+
 ## <div align="center">Pages</div>
 
 <center>root page</center><br>
