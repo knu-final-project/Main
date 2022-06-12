@@ -680,13 +680,44 @@ def mypage():
     # 3. 피해야 할 [음식명] // bad_food
     # 4. 90이 넘는 [질병명] // over_90
     # 5. meals table의 [date_time] // meals_date
-    return render_template('mypage1.html', data = over_50, data2 = youngyangso, data3 = bad_food,
-                           data4 = over_90, data5 = meals_date, data6 = current_user)
+    
+    
+    #질병 확률 labels, value START #
+    
+    disease_labels = []
+    disease_data = []
+    for disease_name, disease_percent in over_50 :
+      disease_labels.append(disease_name)
+      disease_data.append(disease_percent)
+    
+    #질병 확률 labels, value END #
+    
+    # 3대 영양소 in Donut chart, 총 칼로리 kcal 따로 빼기. #
+    nutrient_labels = []
+    nutrient_data = []
+    kcal_labels = []
+    kcal_values = []
+    
+    for index, (key, elem) in enumerate(youngyangso.items()) :
+        if index == 0 :
+            nutirent_kcal = {key, elem}
+        else :
+            nutrient_labels.append(key)
+            nutrient_data.append(elem)
+    
+    kcal_values.append(list(youngyangso.values())[0])
+    kcal_labels.append(list(youngyangso.keys())[0])
+
+    
+
+    return render_template('mypage1.html', labels = disease_labels, data = disease_data, data3 = bad_food,
+                           data4 = over_90, data5 = meals_date, data6 = current_user, nutrient_data = nutrient_data, nutrient_labels = nutrient_labels,
+                           kcal_values = kcal_values, kcal_labels = kcal_labels)
     #return render_template('mypage.html', data = df_dict)
     
 @app.route('/hello',methods=['GET','POST'])
 def example():
-    return render_template('mypage1.html')
+    return render_template('mypage.html')
 
 
 if __name__ == '__main__'  :
