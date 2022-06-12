@@ -428,12 +428,15 @@ def hello_world():
         }, index=np.arange(1))
         
     result, data = model_data.model(survey_data)
-    ag = pd.read_csv(r'C:\Main\data2\data_ag.csv', index_col=0)
-
-    #current_user = session.get('name')
-    #result_db = meals.meals()
+    ag = pd.read_csv('../data2/data_ag.csv', index_col=0)
+    current_user = session.get('name')
+    result_db = meals.meals()
     #result_db.dis_results_input(dis_results_dic = result.to_dict(), id = str(current_user))
     #result_db.db_close()
+    table_name = 'dis_results'
+    result['user_id'] = str(current_user)
+    result_db.insert_df(df = result, table = table_name)
+    result_db.db_close()
 
     return render_template('detect_result.html', data=data, ag = ag, survey_data = survey_data)
 
