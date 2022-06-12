@@ -10,7 +10,7 @@ app = Flask(__name__)
 # url 라우터
 @app.route('/')
 def survey():
-    return render_template('질병예측3.html')
+    return render_template('질병예측.html')
 
 @app.route('/survey', methods= ['POST', 'GET']) 
 def result():
