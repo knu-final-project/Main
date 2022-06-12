@@ -249,6 +249,19 @@ class meals():
         return dict_result
 
     def insert_df(self, df, table, id = ""):
+        cur = self.conn.cursor(pymysql.cursors.DictCursor)
+        try:
+            cur.execute(f'SELECT cnt FROM dis_results WHERE user_id = {id} ORDER BY cnt DESC;')
+            dic_result = cur.fetchall()
+            result = pd.DataFrame(dic_result)
+        except:
+            print('select_query Error!')
+
+        try:
+            cnt = result['cnt'][0]
+        except:
+            cnt = 0
+
         df_values = ""
         col_names = ""
         for i in df.columns:
@@ -257,24 +270,45 @@ class meals():
             else:
                 df_values += df[i][0] + ", "
             col_names += i + ", "
-        if id == "":
-            df_values = df_values.rstrip(', ')
-            col_names = col_names.rstrip(', ')
-        else:
-            try:
-                id = int(id)
-            except:
-                pass
-            
-            if id == str:
-                df_values += "'" + id + "'"
+
+        if table == 'dis_results':
+            df_values += f'{cnt+1}, '
+            col_names += 'cnt, '
+
+            if id == "":
+                df_values = df_values.rstrip(', ')
+                col_names = col_names.rstrip(', ')
             else:
-                df_values += f'{id}'
-            col_names += "user_id"
-        
-        cur = self.conn.cursor()
-        cur.execute(f"INSERT INTO {table} ({col_names}) VALUE ({df_values});")
-        self.conn.commit()
+                try:
+                    id = int(id)
+                except:
+                    pass
+                
+                if id == str:
+                    df_values += "'" + id + "'"
+                else:
+                    df_values += f'{id}'
+                col_names += "user_id"
+
+        else:
+            if id == "":
+                df_values = df_values.rstrip(', ')
+                col_names = col_names.rstrip(', ')
+            else:
+                try:
+                    id = int(id)
+                except:
+                    pass
+                
+                if id == str:
+                    df_values += "'" + id + "'"
+                else:
+                    df_values += f'{id}'
+                col_names += "user_id"
+            
+            cur = self.conn.cursor()
+            cur.execute(f"INSERT INTO {table} ({col_names}) VALUE ({df_values});")
+            self.conn.commit()
 
         
 
