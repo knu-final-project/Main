@@ -710,7 +710,7 @@ def mypage():
 
     
 
-    return render_template('mypage.html', labels = disease_labels, data = disease_data, data3 = bad_food,
+    return render_template('mypage1.html', labels = disease_labels, data = disease_data, data3 = bad_food,
                            data4 = over_90, data5 = meals_date, data6 = current_user, nutrient_data = nutrient_data, nutrient_labels = nutrient_labels,
                            kcal_values = kcal_values, kcal_labels = kcal_labels)
     #return render_template('mypage.html', data = df_dict)

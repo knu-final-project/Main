@@ -717,7 +717,7 @@ def mypage():
     
 @app.route('/hello',methods=['GET','POST'])
 def example():
-    return render_template('mypage.html')
+    return render_template('mypage1.html')
 
 
 if __name__ == '__main__'  :
