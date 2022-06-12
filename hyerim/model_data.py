@@ -1,20 +1,20 @@
 ## 경로 변경 및 출력
-import os
-os.chdir('C:\Main\hyerim\data')
-print(os.getcwd())
+# import os
+# os.chdir('C:\Main\hyerim\data')
+# print(os.getcwd())
 
 ## 데이터 불러오기
 import pandas as pd
-dis = pd.read_csv('data_dis.csv',index_col=0)
+dis = pd.read_csv('hyerim\data\data_dis.csv',index_col=0)
 #print(data)
 
 ### 질병에 따른 각 변수에 대한 사전
 import pickle
-with open('dis_var.pkl', 'rb') as f:
+with open('hyerim\data\dis_var.pkl', 'rb') as f:
     dis_var = pickle.load(f)
 
 ### 질병이름 사전
-with open('dis_name.pkl', 'rb') as f:
+with open('hyerim\data\dis_name.pkl', 'rb') as f:
     dis_name = pickle.load(f)
 
 

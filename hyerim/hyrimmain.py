@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import model_data # 데이터가 있는 곳
+from hyerim import model_data # 데이터가 있는 곳
 import pandas as pd
 import numpy as np
 import test
