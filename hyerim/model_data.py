@@ -48,7 +48,7 @@ def model(test):
 
     for i in range(0,len(dis.columns)-1):
         ## 질병 머신러닝 모델
-        with open(f'data2\{dis.columns[i]}.pkl', 'rb') as f:
+        with open(f'hyerim\data\{dis.columns[i]}.pkl', 'rb') as f:
             model = pickle.load(f)
             percent = round(model.predict_proba(data.iloc[[0]][dis_var[dis.columns[i]]])[0][1]*100,2)
         print(f'{dis_name[dis.columns[i]]} : {percent}%')

@@ -255,7 +255,7 @@
                   <p class="u-text u-text-palette-5-dark-2 u-text-3">
                     <span style="font-size: 1.5rem;">하루 평균 수면시간 (주말)</span>
                     <br>평균 &nbsp; : &nbsp; {{ag.TOTAL_SLP_WD[0]}} &nbsp;시간&nbsp; &nbsp; &nbsp;/&nbsp; &nbsp; &nbsp;본인 &nbsp; :&nbsp; {{survey_data.TOTAL_SLP_WD[0]/60}} &nbsp;시간
-                    <br> 귀하의 하루 평균 수면시간은 평균과 {{survey_data.TOTAL_SLP_WD[0]/60 - ag.TOTAL_SLP_WD[0]}} 시간 차이 남
+                    <br> 귀하의 하루 평균 수면시간은 평균과 {{(survey_data.TOTAL_SLP_WD[0]/60 - ag.TOTAL_SLP_WD[0])|round(2)}} 시간 차이 남
                     
                     <br>
                     <span style="font-size: 1.5rem;">체지량 지수</span>
