@@ -2,6 +2,7 @@ import glob
 import pandas as pd
 import time
 import pymysql
+import numpy as np
 
 """
 __init__(self) : google cloud platform에 있는 mysql DB에 접속 할 수 있습니다.
@@ -247,8 +248,32 @@ class meals():
         dict_result = {'calorie':calorie, 'carbo':carbo, 'protein':protein, 'fat':fat}
         return dict_result
 
-
-
+    def insert_df(self, df, table, id = ""):
+        df_values = ""
+        col_names = ""
+        for i in df.columns:
+            if type(df[i][0]) != str:
+                df_values += f'{df[i][0]}' + ', '
+            else:
+                df_values += df[i][0] + ", "
+            col_names += i + ", "
+        if id == "":
+            df_values = df_values.rstrip(', ')
+            col_names = col_names.rstrip(', ')
+        else:
+            try:
+                id = int(id)
+            except:
+                pass
+            
+            if id == str:
+                df_values += "'" + id + "'"
+            else:
+                df_values += f'{id}'
+            col_names += "user_id"
+        
+        cur = self.conn.cursor()
+        cur.execute(f"INSERT INTO {table} ({col_names}) VALUE ({df_values});")
         
 
         
