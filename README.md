@@ -8,12 +8,14 @@
 ## <div align="center">Command</div>
 <details open>
 <summary>설치 방법</summary>
+
 ```bash
 git clone https://github.com/knu-final-project/Main.git
 cd Main 
 pip install -r requirements.txt
 python main.py
 ```  
+
 </details>
 
 ## <div align="center">Pages</div>
