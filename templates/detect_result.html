@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Specific goals for therapy will be determined by you and your therapist">
+    <meta name="description" content="">
+    <title>detect_result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='nicepage.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='detect_result.css')}}" media="screen">
+    <script class="u-script" type="text/javascript" src="{{url_for('static', filename = 'jquery.js')}}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{url_for('static', filename = 'nicepage.js')}}" defer=""></script>
+    <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <meta name="generator" content="Nicepage 4.12.14, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Maven+Pro:400,500,600,700,800,900">
+    
+    
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "생생건강통",
+		"logo": "static/images/20220607_225725.png",
+		"sameAs": [
+				"https://knufinal.slack.com",
+				"https://silver-dragon-340.notion.site/Final-Project-Machine129-58e041584ae44baa852d7d0378c736d8",
+				"https://github.com/knu-final-project"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="detect_result">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-b10a"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
+          <img src="{{url_for('static', filename = 'images/20220607_225725.png')}}" class="u-logo-image u-logo-image-1">
+        </a>
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" data-responsive-from="MD">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
+            <a class="u-button-style u-custom-active-border-color u-custom-active-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="소개말.html" style="padding: 10px 0px;">소개말</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_22f3" data-page-id="883203286" style="padding: 10px 0px;">질병예측</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_f3e4" data-page-id="883203286" style="padding: 10px 0px;">식단평가</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_a2e3" data-page-id="883203286" style="padding: 10px 0px;">Developer</a>
+</li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="소개말.html">소개말</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_22f3" data-page-id="883203286">질병예측</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_f3e4" data-page-id="883203286">식단평가</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_a2e3" data-page-id="883203286">Developer</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+        <a class="u-login u-login-1" href="Login.html" data-page-id="27095522" title="login">Login</a>
+      </div></header>
+    <section class="u-align-center u-clearfix u-custom-color-7 u-section-1" id="carousel_93f9">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-custom-font u-font-playfair-display u-text u-text-palette-5-dark-2 u-text-1">생활패턴 분석 결과</h2>
+        <p class="u-align-center u-text u-text-palette-5-dark-2 u-text-2">
+          <span style="font-weight: 700;">해당 예측 결과는 실제 해당 질병을 가진 유병자의 행동 및 생활 패턴에 대한 데이터에 의거하는 결과이니&nbsp;<br>정확한 질병 유무 여부는 해당 질병에 대한 전문가와의 상담을 권합니다.
+          </span>
+          <br>&nbsp;<br>
+          <span style="font-style: italic;">본 데이터는 참고용으로만 사용하시길 바랍니다.&nbsp;감사합니다.</span>
+        </p>
+      </div>
+    </section>
+
+
+    <section class="u-clearfix u-custom-color-7 u-section-2" id="carousel_fd9e">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-1">
+                  <h5 class="u-custom-font u-text u-text-font u-text-palette-2-base u-text-1">생활패턴 분석에 따른 질병 Top5</h5>
+                  <canvas id="myChart" width="800" height="750"></canvas>
+                  <script>
+                    // 그래프 꾸미기
+                    var ctx = document.getElementById('myChart').getContext('2d');
+            
+                    var chart = new Chart(ctx, {
+                        type: 'bar',
+                        plugins:[ChartDataLabels],
+                        data:{
+                          datasets: [{
+                            label : '색상',
+                            axis: 'y', // ***가로형 막대로 바꾸는 옵션***
+                            backgroundColor: [{% for c in data[:5]['color'] %}"{{c}}",{% endfor %}],
+                            borderColor: 'rgb(237, 2, 61)',
+                            data:  [{% for p in data[:5]['percent'] %}{{p}},{% endfor %}],
+                            datalabels:{
+                              color:'black',         // 너무 흐리다 싶어서 잘 보이도록 완전히 검게..
+                                                      // 배경색을 어떻게 세팅했냐에 따라 적절히..
+                              font:{size:40}        // pixel 단위이고, 수치로 입력
+                            }
+                          }],
+                          labels:[{% for p in data[:5]['percent'] %} "{{p}}%",{% endfor %}],
+                          data_label:[{% for n in data[:5]['name'] %}"{{n}}",{% endfor %}], 
+                        },
+                        options:{
+                            responsive: true, // false : 그래프 크기 정적으로 변경
+                            scales: {
+                                yAxes: [{
+                                  scaleLabel: {
+                                    display: true,
+                                    labelString: 'probability'
+                                  },
+                                  ticks: {
+                                    fontSize : 20,
+                                }
+                                }]
+                              },
+                            indexAxis: 'y', //***가로형 막대로 바꾸는 옵션***
+                          plugins:{
+                            legend: {
+                                position: 'bottom',
+                                display: false,
+                             },
+                              title: {
+                                display: true,
+                                //text: '빨강 : 90% 이상 / 주황 : 50% 이상 90 미만 / 초록 : '
+                             },
+                              // 라벨
+                            datalabels:{
+                              formatter:function(value,context){
+                                // data 에 넣은 데이타 순번. 물론 0 부터 시작
+                                var idx = context.dataIndex;
+                                return context.chart.data.data_label[idx];
+                              },
+                              
+                            }
+                          }
+                        }
+                      });
+                      
+            
+                </script>
+            
+                  <div class="u-border-6 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2">
+                  <h5 class="u-custom-font u-text u-text-palette-2-base u-text-3"> 생활패턴분석 결과<br>
+                  </h5>
+                  <p class="u-text u-text-palette-5-dark-2 u-text-4">
+    <hr>
+    <h4 style="color: #ed023d;"> 빨강 (생활패턴 90% ~ 유사) </h4>
+    {% for p90 in data[data['percent'] >= 90]['name'] %}
+        <font size="5em"> {{p90}} </font>
+    {% endfor %}
+
+    <hr>
+    <h4 style="color: #ed9f02;"> 주황 (생활패턴 50% ~ 89% 유사)  </h4>
+    {% for i in range(0,20) %}
+    {% if ((data.percent[i] >= 50) and (data.percent[i] < 90)): %}
+        <font size="5em"> {{data['name'][i]}} </font>
+        
+    {% endif %}
+    {% endfor %}
+
+    <hr>
+    <h4 style="color: #9ade08;"> 초록 (생활패턴 ~ 49% 유사) </h4>
+    {% for p50 in data[data['percent'] < 50]['name'] %}
+        <font size="5em"> {{p50}} </font>
+     
+    {% endfor %}
+    <hr>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-clearfix u-custom-color-7 u-section-3" id="sec-3a83">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-1">
+                  <h5 class="u-custom-font u-text u-text-font u-text-palette-2-base u-text-1">고령자와의 생활패턴 비교</h5>
+                    <canvas id="chart" width="500vw"; height="300vw"></canvas>
+                
+                  <script> 
+
+                    var barChartData = {
+                        labels: ["하루 평균 수면시간 (주말)", "체질량지수", "이완기 혈압"],
+                        datasets: [{
+                            label: '평균 고령자',
+                            backgroundColor: "#1E90FF",
+                            data: {{[ag['TOTAL_SLP_WD'][0], ag['HE_BMI'][0], ag['HE_DBP'][0]]}}
+                        }, 
+                        {
+                            label: '본인',
+                            backgroundColor: "#F7464A",
+                            data: {{[survey_data['TOTAL_SLP_WD'][0]/60, survey_data['HE_BMI'][0], survey_data['HE_DBP'][0]]}} // 구글폼 데이터에서 하나뽑은 것임으로 인덱스 3임
+                        }]
+                    };
+                    
+                    window.onload = function() {
+                        var ctx2 = document.getElementById('chart').getContext('2d');
+                        window.theChart = new Chart(ctx2, {
+                            type: 'bar',
+                            data: barChartData,
+                            options: {
+                        responsive: true,
+                        plugins:{
+                            legend: {
+                                position: 'bottom',
+                                display: true,
+                             },
+                             title: {
+                               display: true,
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    stepSize : 5,
+                                    fontSize : 20,
+                                }
+                            }]
+                        },
+                        }
+                    });
+                    }
+                    </script>
+                  <div class="u-border-6 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2">
+                  <p class="u-text u-text-palette-5-dark-2 u-text-3">
+                    <span style="font-size: 1.5rem;">하루 평균 수면시간 (주말)</span>
+                    <br>평균 &nbsp; : &nbsp; {{ag.TOTAL_SLP_WD[0]}} &nbsp;시간&nbsp; &nbsp; &nbsp;/&nbsp; &nbsp; &nbsp;본인 &nbsp; :&nbsp; {{survey_data.TOTAL_SLP_WD[0]/60}} &nbsp;시간
+                    <br> 귀하의 하루 평균 수면시간은 평균과 {{survey_data.TOTAL_SLP_WD[0]/60 - ag.TOTAL_SLP_WD[0]}} 시간 차이 남
+                    
+                    <br>
+                    <span style="font-size: 1.5rem;">체지량 지수</span>
+                    <br>평균 &nbsp; : &nbsp; &nbsp;{{ag.HE_BMI[0]}} &nbsp; kg/㎡ &nbsp; &nbsp; &nbsp;/&nbsp; &nbsp; &nbsp;본인 &nbsp; :&nbsp; &nbsp; {{survey_data.HE_BMI[0]}} &nbsp; kg/㎡
+                    <br> 귀하의 체지량 지수는 평균과 {{(survey_data.HE_BMI[0] - ag.HE_BMI[0])|round(2)}} kg/㎡ 만큼 차이 남
+                  
+                    <br>
+                    <span style="font-size: 1.5rem;">이완기 혈압</span>
+                    <br>평균 &nbsp; : &nbsp; {{ag.HE_DBP[0]}} &nbsp; mmHg&nbsp; &nbsp; &nbsp;/&nbsp; &nbsp; &nbsp;본인 &nbsp; :&nbsp; {{survey_data.HE_DBP[0]}} &nbsp;mmHg
+                    <br>귀하의 이완기 혈압 수치는 평균과 {{(survey_data.HE_DBP[0] - ag.HE_DBP[0])|round(2)}} mmHg 만큼 차이 남
+
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    
+    <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-white" id="sec-58d4"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="280" data-image-height="280">
+          <img src="{{url_for('static',filename='images/TEAM-LOGO.png')}}" class="u-logo-image u-logo-image-1">
+        </a>
+        <p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">
+          <span style="font-size: 0.9375rem;">
+            <span style="font-size: 1.0625rem;">경북대학교 산학협력단 K-Digital Training 1기</span>
+          </span>
+          <br>
+          <span style="font-size: 30px; font-weight: normal;">Team '머선일이조'</span>
+        </p>
+        <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">
+          <a class="u-social-url" title="facebook" target="_blank" href="https://knufinal.slack.com"><span class="u-file-icon u-icon u-social-facebook u-social-icon u-icon-1"><img src="{{url_for('static', filename='images/5968974.png')}}" alt=""></span>
+          </a>
+          <a class="u-social-url" title="twitter" target="_blank" href="https://silver-dragon-340.notion.site/Final-Project-Machine129-58e041584ae44baa852d7d0378c736d8"><span class="u-file-icon u-icon u-social-icon u-social-twitter u-icon-2"><img src="{{url_for('static',filename='images/notion.png')}}" alt=""></span>
+          </a>
+          <a class="u-social-url" title="instagram" target="_blank" href="https://github.com/knu-final-project"><span class="u-file-icon u-icon u-social-icon u-social-instagram u-icon-3"><img src="{{url_for('static', filename='images/733609.png')}}" alt=""></span>
+          </a>
+        </div>
+      </div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+        <span>Website Templates</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="" target="_blank">
+        <span>Website Builder Software</span>
+      </a>. 
+    </section>
+  </body>
+</html>

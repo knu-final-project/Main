@@ -37,7 +37,7 @@
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-b10a"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
+        <a href="/home" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
           <img src="{{ url_for('static', filename='images/20220607_225725.png') }}" class="u-logo-image u-logo-image-1">
         </a>
         <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" data-responsive-from="MD">
@@ -52,7 +52,8 @@
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="/" style="padding: 10px 0px;">소개말</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_22f3" data-page-id="883203286" style="padding: 10px 0px;">질병예측</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_f3e4" data-page-id="883203286" style="padding: 10px 0px;">식단평가</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_a2e3" data-page-id="883203286" style="padding: 10px 0px;">Developer</a></li></ul>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="home.html#carousel_a2e3" data-page-id="883203286" style="padding: 10px 0px;">Developer</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="/mypage" style="padding: 10px 0px;">내 정보</a></li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -62,13 +63,20 @@
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_22f3" data-page-id="883203286">질병예측</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_f3e4" data-page-id="883203286">식단평가</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html#carousel_a2e3" data-page-id="883203286">Developer</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/mypage">내 정보</a>
 </li></ul>
               </div>
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-        <a class="u-login u-login-1" href="Login.html" data-page-id="27095522" title="login">Login</a>
+
+        {% if session['logged_in'] %}
+        <a class="u-login u-login-1" href="/logout" data-page-id="27095522" title="logout">로그아웃</a>
+        {% else %}
+        <a class="u-login u-login-1" href="/login" data-page-id="27095522" title="login">로그인</a>
+        {% endif %}
+
       </div></header>
     <section class="u-clearfix u-image u-section-1" id="carousel_22f3" data-image-width="1980" data-image-height="1114">
       <div class="u-clearfix u-expanded-width-sm u-expanded-width-xs u-layout-wrap u-layout-wrap-1">
@@ -134,9 +142,9 @@
                 <div alt="" class="u-image u-image-circle u-image-1" data-image-width="828" data-image-height="758"></div>
                 <div class="u-container-style u-group u-shape-rectangle u-group-1">
                   <div class="u-container-layout u-container-layout-2">
-                    <h4 class="u-custom-font u-font-montserrat u-text u-text-palette-4-base u-text-1">LEE JI HYEON</h4>
+                    <h4 class="u-custom-font u-font-montserrat u-text u-text-palette-4-base u-text-11">LEE JI HYEON</h4>
                     <h6 class="u-custom-font u-font-montserrat u-text u-text-2">프로젝트 관리자(PM)</h6>
-                    <p class="u-text u-text-4">공대의 꽃! 섬세함 그 자체! 칼퇴를 사랑하는 팀장님 하루의 시작과 끝을 담당하는 팀내 비타민 같은 존재 팀장님의 노력은 배신하지 않을거예요😌 </p>
+                    <p class="u-text u-text-19">공대의 꽃! 섬세함 그 자체! 칼퇴를 사랑하는 팀장님 하루의 시작과 끝을 담당하는 팀내 비타민 같은 존재 팀장님의 노력은 배신하지 않을거예요😌 </p>
                   </div>
                 </div>
               </div>
@@ -146,9 +154,9 @@
                 <div alt="" class="u-image u-image-circle u-image-2" data-image-width="828" data-image-height="712"></div>
                 <div class="u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-shape-rectangle u-group-2">
                   <div class="u-container-layout u-container-layout-4">
-                    <h4 class="u-custom-font u-font-montserrat u-text u-text-palette-4-base u-text-5">HAN HYE RIM</h4>
-                    <h6 class="u-custom-font u-font-montserrat u-text u-text-6">의료 부문 개발 총괄(PL)</h6>
-                    <p class="u-text u-text-7">우리 팀의 홍일점이자 혼자 다 할 수 있음에도 팀원 전체가 다같이 참여할 수 있게 귀 기울여주고 배려하는 우리 팀의 밝음을 도맡는 총괄😊</p>
+                    <h4 class="u-custom-font u-font-montserrat u-text u-text-palette-4-base u-text-11">HAN HYE RIM</h4>
+                    <h6 class="u-custom-font u-font-montserrat u-text u-text-2">의료 부문 개발 총괄(PL)</h6>
+                    <p class="u-text u-text-19">우리 팀의 홍일점이자 혼자 다 할 수 있음에도 팀원 전체가 다같이 참여할 수 있게 귀 기울여주고 배려하는 우리 팀의 밝음을 도맡는 총괄😊</p>
                   </div>
                 </div>
               </div>
@@ -158,9 +166,9 @@
                 <div alt="" class="u-image u-image-circle u-image-3" data-image-width="828" data-image-height="704"></div>
                 <div class="u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-shape-rectangle u-group-3">
                   <div class="u-container-layout u-container-layout-6">
-                    <h4 class="u-custom-font u-font-montserrat u-text u-text-palette-4-base u-text-8">LEE DONG EON</h4>
-                    <h6 class="u-custom-font u-font-montserrat u-text u-text-9">영양부문 개발총괄(PL)</h6>
-                    <p class="u-text u-text-10">DB구축과 서버관리를 도맡으면서 개발쪽에서 힘써주시는 동언선생님😉 아픈날에도 코드를 완성해 올리는 열정 만땅 성실한 당신이 진정한 선생님입니다 !</p>
+                    <h4 class="u-custom-font u-font-montserrat u-text u-text-palette-4-base u-text-11">LEE DONG EON</h4>
+                    <h6 class="u-custom-font u-font-montserrat u-text u-text-2">영양부문 개발총괄(PL)</h6>
+                    <p class="u-text u-text-19">DB구축과 서버관리를 도맡으면서 개발쪽에서 힘써주시는 동언선생님😉 아픈날에도 코드를 완성해 올리는 열정 만땅 성실한 당신이 진정한 선생님입니다 !</p>
                   </div>
                 </div>
               </div>
@@ -171,8 +179,8 @@
                 <div class="u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-shape-rectangle u-group-4">
                   <div class="u-container-layout u-container-layout-8">
                     <h4 class="u-custom-font u-font-montserrat u-text u-text-palette-4-base u-text-11">SONG JOON YEONG</h4>
-                    <h6 class="u-custom-font u-font-montserrat u-text u-text-12">의료부문 개발자(Developer)</h6>
-                    <p class="u-text u-text-13">의견 충돌(?)이 있을때 중간에서 중심을 잡아주는 팀 내 맏형🤨 언제나 열린 귀로 의견 수립해주고 상담해주면서 중심을 잡아주는 팀원 :) </p>
+                    <h6 class="u-custom-font u-font-montserrat u-text u-text-2">의료부문 개발자(Developer)</h6>
+                    <p class="u-text u-text-19">의견 충돌(?)이 있을때 중간에서 중심을 잡아주는 팀 내 맏형🤨 언제나 열린 귀로 의견 수립해주고 상담해주면서 중심을 잡아주는 팀원 :) </p>
                   </div>
                 </div>
               </div>
@@ -182,9 +190,9 @@
                 <div alt="" class="u-image u-image-circle u-image-5" data-image-width="828" data-image-height="746"></div>
                 <div class="u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-shape-rectangle u-group-5">
                   <div class="u-container-layout u-container-layout-10">
-                    <h4 class="u-custom-font u-font-montserrat u-text u-text-palette-4-base u-text-14">CHO JOON YEONG</h4>
-                    <h6 class="u-custom-font u-font-montserrat u-text u-text-15">의료부문 개발자(Developer)</h6>
-                    <p class="u-text u-text-16">‘마선 있네 !’ 바쁘고 힘들어도 항상 긍정적이고 열심히 해서 좋은 결과를 내는 팀원😊좋은 방향으로 가게 만드는 분위기 메이커 :) </p>
+                    <h4 class="u-custom-font u-font-montserrat u-text u-text-palette-4-base u-text-11">CHO JOON YEONG</h4>
+                    <h6 class="u-custom-font u-font-montserrat u-text u-text-2">의료부문 개발자(Developer)</h6>
+                    <p class="u-text u-text-19">‘마선 있네 !’ 바쁘고 힘들어도 항상 긍정적이고 열심히 해서 좋은 결과를 내는 팀원😊좋은 방향으로 가게 만드는 분위기 메이커 :) </p>
                   </div>
                 </div>
               </div>
@@ -194,8 +202,8 @@
                 <div alt="" class="u-image u-image-circle u-image-6" data-image-width="828" data-image-height="794"></div>
                 <div class="u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-shape-rectangle u-group-6">
                   <div class="u-container-layout u-container-layout-12">
-                    <h4 class="u-custom-font u-font-montserrat u-text u-text-palette-4-base u-text-17">JOO HYEON WOO</h4>
-                    <h6 class="u-custom-font u-font-montserrat u-text u-text-18">의료부문 개발자(Developer)<br>
+                    <h4 class="u-custom-font u-font-montserrat u-text u-text-palette-4-base u-text-11">JOO HYEON WOO</h4>
+                    <h6 class="u-custom-font u-font-montserrat u-text u-text-2">의료부문 개발자(Developer)<br>
                     </h6>
                     <p class="u-text u-text-19">다른 팀원들이 부탁하는 건 세상 열심히 해주는 조용한 듯 보이지만 팀원들을 뒤에서 챙겨주는 다정다감계의 츤데레 팀원😁
                     </p>
@@ -213,7 +221,7 @@
     
     
     <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-white" id="sec-58d4"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="280" data-image-height="280">
+        <a href="/" class="u-image u-logo u-image-1" data-image-width="280" data-image-height="280">
           <img src="{{ url_for('static', filename='images/TEAM-LOGO.png') }}" class="u-logo-image u-logo-image-1">
         </a>
         <p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">
@@ -233,15 +241,12 @@
         </div>
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
       <p class="u-text">
-        <span>created with</span>
+        <span></span>
       </p>
       <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
+        <span></span>
+      </a>
     </section>
   </body>
 </html>
