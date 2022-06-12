@@ -480,7 +480,8 @@ def predict():
         visualize=False  # visualize features
         update=False  # update all models
         project='static/detect'  # save results to project/name
-        name='exp'  # save results to project/name
+        # name='exp'  # save results to project/name
+        name = session.get('name')
         exist_ok=True  # existing project/name ok, do not increment
         line_thickness=8  # bounding box thickness (pixels)
         hide_labels=False  # hide labels
@@ -698,12 +699,12 @@ def predict():
         #     json.dump(data, outfile)
 
         db_meals = meals.meals()
-        txt_label_path = "static/detect/exp/labels/image1.txt"
+        txt_label_path = f"static/detect/{name}/labels/image1.txt"
         current_user = session.get('name')
         db_meals.label_to_meals(path = txt_label_path, id=str(current_user))
         db_meals.db_close()
 
-        return redirect("static/detect/exp/image1.jpg")
+        return redirect(f"static/detect/{name}/image1.jpg")
 
     return render_template("detect.html")
 
