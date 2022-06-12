@@ -427,7 +427,7 @@ def hello_world():
         'LQ4_00' : float(mydict['LQ4_00'])
         }, index=np.arange(1))
         
-    result, data = model_data.model(survey_data)
+    result, data = model_data.model(survey_data, err9=True, err9value = 21) # 천식 에러 이슈면 err9 True, 강제로 값 21퍼센트
     ag = pd.read_csv('hyerim/data/data_ag.csv', index_col=0)
     current_user = session.get('name')
     result_db = meals.meals()
@@ -435,7 +435,7 @@ def hello_world():
     #result_db.db_close()
     table_name = 'dis_results'
     result['user_id'] = str(current_user)
-    result_db.insert_df(df = result, table = table_name)
+    result_db.insert_df(df = result, table = table_name, id = str(current_user))
     result_db.db_close()
 
     return render_template('detect_result.html', data=data, ag = ag, survey_data = survey_data, result = result)
