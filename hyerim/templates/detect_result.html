@@ -214,7 +214,7 @@
                         {
                             label: '본인',
                             backgroundColor: "#F7464A",
-                            data: {{[survey_data['TOTAL_SLP_WD'][0], survey_data['HE_BMI'][0], survey_data['HE_DBP'][0]]}} // 구글폼 데이터에서 하나뽑은 것임으로 인덱스 3임
+                            data: {{[survey_data['TOTAL_SLP_WD'][0]/60, survey_data['HE_BMI'][0], survey_data['HE_DBP'][0]]}} // 구글폼 데이터에서 하나뽑은 것임으로 인덱스 3임
                         }]
                     };
                     
@@ -254,18 +254,18 @@
                 <div class="u-container-layout u-container-layout-2">
                   <p class="u-text u-text-palette-5-dark-2 u-text-3">
                     <span style="font-size: 1.5rem;">하루 평균 수면시간 (주말)</span>
-                    <br>평균 &nbsp; : &nbsp; {{ag.TOTAL_SLP_WD[0]}} &nbsp;시간&nbsp; &nbsp; &nbsp;/&nbsp; &nbsp; &nbsp;본인 &nbsp; :&nbsp; {{survey_data.TOTAL_SLP_WD[0]}} &nbsp;시간
-                    <br> 귀하의 하루 평균 수면시간은 평균과 {{ag.TOTAL_SLP_WD[0] - survey_data.TOTAL_SLP_WD[0]}} 시간 차이 남
+                    <br>평균 &nbsp; : &nbsp; {{ag.TOTAL_SLP_WD[0]}} &nbsp;시간&nbsp; &nbsp; &nbsp;/&nbsp; &nbsp; &nbsp;본인 &nbsp; :&nbsp; {{survey_data.TOTAL_SLP_WD[0]/60}} &nbsp;시간
+                    <br> 귀하의 하루 평균 수면시간은 평균과 {{survey_data.TOTAL_SLP_WD[0]/60 - ag.TOTAL_SLP_WD[0]}} 시간 차이 남
                     
                     <br>
                     <span style="font-size: 1.5rem;">체지량 지수</span>
                     <br>평균 &nbsp; : &nbsp; &nbsp;{{ag.HE_BMI[0]}} &nbsp; kg/㎡ &nbsp; &nbsp; &nbsp;/&nbsp; &nbsp; &nbsp;본인 &nbsp; :&nbsp; &nbsp; {{survey_data.HE_BMI[0]}} &nbsp; kg/㎡
-                    <br> 귀하의 체지량 지수는 평균과 {{ag.HE_BMI[0] - survey_data.HE_BMI[0]}} kg/㎡ 만큼 차이 남
+                    <br> 귀하의 체지량 지수는 평균과 {{(survey_data.HE_BMI[0] - ag.HE_BMI[0])|round(2)}} kg/㎡ 만큼 차이 남
                   
                     <br>
                     <span style="font-size: 1.5rem;">이완기 혈압</span>
                     <br>평균 &nbsp; : &nbsp; {{ag.HE_DBP[0]}} &nbsp; mmHg&nbsp; &nbsp; &nbsp;/&nbsp; &nbsp; &nbsp;본인 &nbsp; :&nbsp; {{survey_data.HE_DBP[0]}} &nbsp;mmHg
-                    <br>귀하의 이완기 혈압 수치는 평균과 {{ag.HE_DBP[0] - survey_data.HE_DBP[0]}} mmHg 만큼 차이 남
+                    <br>귀하의 이완기 혈압 수치는 평균과 {{(survey_data.HE_DBP[0] - ag.HE_DBP[0])|round(2)}} mmHg 만큼 차이 남
 
                   </p>
                 </div>
