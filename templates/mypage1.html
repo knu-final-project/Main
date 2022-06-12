@@ -177,7 +177,7 @@
           datasets: [
             {
               base: 0,
-              label: "유병 주의 (%)",
+              label: "유병 확률 지수",
               fontColor : 'black',
               backgroundColor: {{backgroundcolor_level | tojson |safe}} ,
               data: {{data | tojson | safe}}
@@ -186,7 +186,7 @@
         },
         options: {
           legend: { 
-            display: true,
+            display: false,
             labels :{
               fontSize : 12,
               fontStyle : 'bold'
@@ -206,6 +206,10 @@
                 fontColor : 'black',
                 fontSize : 15
 
+              },
+              gridLines:{
+                display:false,
+                drawBorder:false
               }
             }],
             yAxes:[{
@@ -213,6 +217,9 @@
                 fontStyle: "bold",
                 fontSize : 16,
                 fontColor : 'black'
+              },
+              gridLines:{
+                display : false
               }
             }]
           }
