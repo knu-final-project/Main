@@ -26,7 +26,7 @@ with open('hyerim\data\dis_name.pkl', 'rb') as f:
 
 
 ## 결과 프레임
-result = pd.DataFrame(columns=['ID','DI2_DG', 'DI3_DG', 'DI4_DG', 'DI5_DG', 'DM2_DG', 'DM3_DG', 'DM4_DG',
+result = pd.DataFrame(columns=['user_id','DI2_DG', 'DI3_DG', 'DI4_DG', 'DI5_DG', 'DM2_DG', 'DM3_DG', 'DM4_DG',
     'DJ2_DG', 'DJ4_DG', 'DJ6_DG', 'DJ8_DG', 'DI6_DG', 'DF2_DG', 'DL1_DG',
     'DE1_DG', 'DE2_DG', 'DH4_DG', 'DC1_DG', 'DC3_DG', 'DK8_DG'])
 result
@@ -38,10 +38,10 @@ def model(test):
     test['HE_BMI'] = round((test['HE_WT'] / (test['HE_HT'] * 2))*100,1)
     test['TOTAL_SLP_WD'] = test['TOTAL_SLP_WD']*60
 
-    if 'ID' in test.columns:
-        result.loc[0,'ID'] = test.values[0][0]
+    if 'user_id' in test.columns:
+        result.loc[0,'user_id'] = test.values[0][0]
         print(f"{test.values[0][0]}님과 각 질병 유병자들과의 생활패턴 유사도 결과입니다.\n")
-        data = test.drop('ID',axis=1)
+        data = test.drop('user_id',axis=1)
     else:
         print("각 질병 유병자들과의 생활패턴 유사도 결과입니다.",'\n')
         data = test
@@ -74,5 +74,6 @@ def model(test):
             data['color'][i] = '#9ade08'
 
     data = data.sort_values(by='percent',ascending=False)
+    print(result)
 
     return result, data
