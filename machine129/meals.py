@@ -274,7 +274,7 @@ class meals():
         
         cur = self.conn.cursor()
         cur.execute(f"INSERT INTO {table} ({col_names}) VALUE ({df_values});")
-        
+        self.conn.commit()
 
         
 
