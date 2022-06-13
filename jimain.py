@@ -707,19 +707,17 @@ def predict():
         db_meals.label_to_meals(path = txt_label_path, id=str(current_user))
         db_meals.db_close()
 
-        return redirect(f"static/detect/{name}/image1.jpg")
+        img = f"detect/{name}/image1.jpg"
+
+        return img
 
     return render_template("detect.html")
 
+## 객체탐지 결과
 @app.route('/predict/result', methods=["GET","POST"] )
 def food_result():
-    db_meals = meals.meals()
-    current_user = session.get('name')
-    #img = f"static/detect/{current_user}/image1.jpg"
-    current_user = "01012345678"
-    img = f"detect/{current_user}/image1.jpg"
-
-    return render_template('객체-탐지-결과-페이지-2.html', img =img)
+    img = predict()
+    return render_template('객체-탐지-결과-페이지-2.html', img = img)
 
 
 @app.route('/mypage',methods=['GET','POST'])
