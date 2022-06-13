@@ -250,16 +250,17 @@ class meals():
 
     def insert_df(self, df, table, id = ""):
         cur = self.conn.cursor(pymysql.cursors.DictCursor)
+        id = str(int(id))
         try:
             cur.execute(f'SELECT cnt FROM dis_results WHERE user_id = {id} ORDER BY cnt DESC;')
             dic_result = cur.fetchall()
-            result = pd.DataFrame(dic_result)
+            result_cnt = pd.DataFrame(dic_result)
         except:
             print('select_query Error!')
 
         try:
-            cnt = result['cnt'][0]
-        except:
+            cnt = result_cnt['cnt'][0]
+        except KeyError:
             cnt = 0
 
         df_values = ""
@@ -275,7 +276,8 @@ class meals():
             df_values += f'{cnt+1}, '
             col_names += 'cnt, '
 
-            if id == "":
+            # if id == "":
+            if True:
                 df_values = df_values.rstrip(', ')
                 col_names = col_names.rstrip(', ')
             else:
@@ -291,7 +293,8 @@ class meals():
                 col_names += "user_id"
 
         else:
-            if id == "":
+            # if id == "":
+            if True:
                 df_values = df_values.rstrip(', ')
                 col_names = col_names.rstrip(', ')
             else:
@@ -306,9 +309,9 @@ class meals():
                     df_values += f'{id}'
                 col_names += "user_id"
             
-            cur = self.conn.cursor()
-            cur.execute(f"INSERT INTO {table} ({col_names}) VALUE ({df_values});")
-            self.conn.commit()
+        cur = self.conn.cursor()
+        cur.execute(f"INSERT INTO {table} ({col_names}) VALUES ({df_values});")
+        self.conn.commit()
 
         
 

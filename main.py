@@ -686,10 +686,18 @@ def mypage():
     
     disease_labels = []
     disease_data = []
+    backgroundcolor_level = []
     for disease_name, disease_percent in over_50 :
-      disease_labels.append(disease_name)
-      disease_data.append(disease_percent)
-    
+        if disease_percent >= 50 and disease_percent < 90 :
+            backgroundcolor_level.append('#3CB371') 
+        elif disease_percent >=90 and disease_percent < 100 :
+            backgroundcolor_level.append('#8B0000')
+        else :
+            pass
+        disease_labels.append(disease_name)
+        disease_data.append(disease_percent)
+
+  
     #질병 확률 labels, value END #
     
     # 3대 영양소 in Donut chart, 총 칼로리 kcal 따로 빼기. #
@@ -712,7 +720,7 @@ def mypage():
 
     return render_template('mypage1.html', labels = disease_labels, data = disease_data, data3 = bad_food,
                            data4 = over_90, data5 = meals_date, data6 = current_user, nutrient_data = nutrient_data, nutrient_labels = nutrient_labels,
-                           kcal_values = kcal_values, kcal_labels = kcal_labels)
+                           kcal_values = kcal_values, kcal_labels = kcal_labels, backgroundcolor_level = backgroundcolor_level)
     #return render_template('mypage.html', data = df_dict)
     
 

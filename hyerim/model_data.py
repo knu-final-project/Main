@@ -32,7 +32,7 @@ result = pd.DataFrame(columns=['user_id','DI2_DG', 'DI3_DG', 'DI4_DG', 'DI5_DG',
 result
 
 ## 생활패턴 유사도
-def model(test):
+def model(test, err9 = False, err9value = 21):
     print(test)
     test['HE_BMI'] = 0
     test['HE_BMI'] = round((test['HE_WT'] / (test['HE_HT'] * 2))*100,1)
@@ -47,11 +47,14 @@ def model(test):
         data = test
 
     for i in range(0,len(dis.columns)-1):
+        if not (err9 and dis.columns[i] == 'DJ4_DG'):
         ## 질병 머신러닝 모델
-        with open(f'hyerim\data\{dis.columns[i]}.pkl', 'rb') as f:
-            model = pickle.load(f)
-            percent = round(model.predict_proba(data.iloc[[0]][dis_var[dis.columns[i]]])[0][1]*100,2)
-        print(f'{dis_name[dis.columns[i]]} : {percent}%')
+            with open(f'hyerim\data\{dis.columns[i]}.pkl', 'rb') as f:
+                model = pickle.load(f)
+                percent = round(model.predict_proba(data.iloc[[0]][dis_var[dis.columns[i]]])[0][1]*100,2)
+            print(f'{dis_name[dis.columns[i]]} : {percent}%')
+        else:
+            percent = err9value
         
         result.loc[0,dis.columns[i]] = percent
 
