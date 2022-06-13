@@ -111,7 +111,7 @@
                       <center><h3 class="u-align-center u-text u-text-black u-text-default u-text-3"><B>피해야 할 음식</B></h3></center>
                       <div class="u-border-3 u-border-custom-color-13 u-line u-line-horizontal u-line-3"></div>
                       <br>
-                      <center><p class="u-align-center u-text u-text-palette-5-dark-2 u-text-8">위험 질병 기반 기피해야 할 음식은</p></center>
+                      <center><p class="u-align-center u-text u-text-palette-5-dark-2 u-text-8" >위험 질병 기반 기피해야 할 음식은</p></center>
                       <center><p class="u-text u-text-palette-5-dark-2 u-text-6"><B>{{data3}}</B><br>
                         <br>입니다.
                       </p></center>
@@ -180,7 +180,8 @@
               label: "유병 확률 지수",
               fontColor : 'black',
               backgroundColor: {{backgroundcolor_level | tojson |safe}} ,
-              data: {{data | tojson | safe}}
+              data: {{data | tojson | safe}},
+              datalabels :{ color : 'black', fontSize : 20}
             }
           ]
         },
@@ -205,6 +206,7 @@
                 beginAtZero : true,
                 fontColor : 'black',
                 fontSize : 15
+                
 
               },
               gridLines:{
@@ -217,11 +219,20 @@
                 fontStyle: "bold",
                 fontSize : 16,
                 fontColor : 'black'
+                
               },
               gridLines:{
                 display : false
               }
-            }]
+            }],
+            plugins:{
+              datalabels:{
+                formatter:function(value, context){
+                  var idx = context.dataIndex;
+                  return context.chart.data.labels[idx]+ ' ' +addComma(value)
+                }
+              }
+            }
           }
         }
     });

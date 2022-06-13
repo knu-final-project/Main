@@ -11,6 +11,8 @@ from instagram import getfollowedby, getname
 from datetime import timedelta
 import torch
 from machine129 import translabel, meals, mypagefunction
+from operator import itemgetter
+
 
 import numpy as np
 import matplotlib
@@ -132,7 +134,7 @@ cors = CORS(app)
 
 class User(db.Model):
     """ Create user table"""
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(80), primary_key=True)
     username = db.Column(db.String(80), unique=True)
     date = db.Column(db.String(80))
     sex = db.Column(db.String(80))
@@ -147,6 +149,8 @@ class User(db.Model):
         self.password2 = password2
         self.date = date
         self.sex = sex
+
+    
 
 
 
@@ -229,7 +233,10 @@ def logout():
 
 ##HOME, LOGIN, LOGOUT END POINT ##
 
-
+@app.route("/fix")
+def fix_message():
+    return '공사중입니다.'
+# template 추가 구현 예정
 
  
  
@@ -683,6 +690,9 @@ def mypage():
     
     
     #질병 확률 labels, value START #
+    
+    over_50.sort(key=itemgetter(1), reverse=True)  # or newlist = sorted(category, key=itemgetter(3))
+    # 내림차순 정렬
     
     disease_labels = []
     disease_data = []
