@@ -711,6 +711,16 @@ def predict():
 
     return render_template("detect.html")
 
+@app.route('/predict/result', methods=["GET","POST"] )
+def food_result():
+    db_meals = meals.meals()
+    current_user = session.get('name')
+    #img = f"static/detect/{current_user}/image1.jpg"
+    current_user = "01012345678"
+    img = f"detect/{current_user}/image1.jpg"
+
+    return render_template('객체-탐지-결과-페이지-2.html', img =img)
+
 
 @app.route('/mypage',methods=['GET','POST'])
 def mypage():
