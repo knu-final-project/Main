@@ -11,6 +11,8 @@ from instagram import getfollowedby, getname
 from datetime import timedelta
 import torch
 from machine129 import translabel, meals, mypagefunction
+from operator import itemgetter
+
 
 import numpy as np
 import matplotlib
@@ -132,7 +134,7 @@ cors = CORS(app)
 
 class User(db.Model):
     """ Create user table"""
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(80), primary_key=True)
     username = db.Column(db.String(80), unique=True)
     date = db.Column(db.String(80))
     sex = db.Column(db.String(80))
@@ -147,6 +149,8 @@ class User(db.Model):
         self.password2 = password2
         self.date = date
         self.sex = sex
+
+    
 
 
 
@@ -229,7 +233,10 @@ def logout():
 
 ##HOME, LOGIN, LOGOUT END POINT ##
 
-
+@app.route("/fix")
+def fix_message():
+    return '공사중입니다.'
+# template 추가 구현 예정
 
  
  
@@ -684,12 +691,23 @@ def mypage():
     
     #질병 확률 labels, value START #
     
+    over_50.sort(key=itemgetter(1), reverse=True)  # or newlist = sorted(category, key=itemgetter(3))
+    # 내림차순 정렬
+    
     disease_labels = []
     disease_data = []
+    backgroundcolor_level = []
     for disease_name, disease_percent in over_50 :
-      disease_labels.append(disease_name)
-      disease_data.append(disease_percent)
-    
+        if disease_percent >= 50 and disease_percent < 90 :
+            backgroundcolor_level.append('#3CB371') 
+        elif disease_percent >=90 and disease_percent < 100 :
+            backgroundcolor_level.append('#8B0000')
+        else :
+            pass
+        disease_labels.append(disease_name)
+        disease_data.append(disease_percent)
+
+  
     #질병 확률 labels, value END #
     
     # 3대 영양소 in Donut chart, 총 칼로리 kcal 따로 빼기. #
@@ -712,7 +730,7 @@ def mypage():
 
     return render_template('mypage1.html', labels = disease_labels, data = disease_data, data3 = bad_food,
                            data4 = over_90, data5 = meals_date, data6 = current_user, nutrient_data = nutrient_data, nutrient_labels = nutrient_labels,
-                           kcal_values = kcal_values, kcal_labels = kcal_labels)
+                           kcal_values = kcal_values, kcal_labels = kcal_labels, backgroundcolor_level = backgroundcolor_level)
     #return render_template('mypage.html', data = df_dict)
     
 

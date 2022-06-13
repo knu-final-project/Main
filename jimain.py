@@ -12,7 +12,7 @@ from instagram import getfollowedby, getname
 from datetime import timedelta
 import torch
 from machine129 import translabel, meals, mypagefunction
-import model_data
+from hyerim import model_data
 
 import pandas as pd
 import numpy as np
@@ -427,18 +427,18 @@ def hello_world():
         'LQ4_00' : float(mydict['LQ4_00'])
         }, index=np.arange(1))
         
-    result, data = model_data.model(survey_data)
-    ag = pd.read_csv('../data2/data_ag.csv', index_col=0)
+    result, data = model_data.model(survey_data, err9=True, err9value = 21) # 천식 에러 이슈면 err9 True, 강제로 값 21퍼센트
+    ag = pd.read_csv('hyerim/data/data_ag.csv', index_col=0)
     current_user = session.get('name')
     result_db = meals.meals()
     #result_db.dis_results_input(dis_results_dic = result.to_dict(), id = str(current_user))
     #result_db.db_close()
     table_name = 'dis_results'
     result['user_id'] = str(current_user)
-    result_db.insert_df(df = result, table = table_name)
+    result_db.insert_df(df = result, table = table_name, id = str(current_user))
     result_db.db_close()
 
-    return render_template('detect_result.html', data=data, ag = ag, survey_data = survey_data)
+    return render_template('detect_result.html', data=data, ag = ag, survey_data = survey_data, result = result)
 
 @app.route(DETECTION_URL, methods=["GET","POST"])
 def predict():
@@ -707,9 +707,17 @@ def predict():
         db_meals.label_to_meals(path = txt_label_path, id=str(current_user))
         db_meals.db_close()
 
-        return redirect(f"static/detect/{name}/image1.jpg")
+        img = f"detect/{name}/image1.jpg"
+
+        return img
 
     return render_template("detect.html")
+
+## 객체탐지 결과
+@app.route('/predict/result', methods=["GET","POST"] )
+def food_result():
+    img = predict()
+    return render_template('객체-탐지-결과-페이지-2.html', img = img)
 
 
 @app.route('/mypage',methods=['GET','POST'])
@@ -724,16 +732,12 @@ def mypage():
     
     # 1. 최근식단의 [탄, 단, 지] 값
     youngyangso = db.meals_to_3nutrient(id=current_user, recent = 1)
-
     # 2. 50이 넘는 [질병명, 질병확률]
     over_50 = db2.over_disease(id=current_user, conf=50, percent=True)
-
     # 3. 피해야 할 [음식명]
     bad_food = db.dis_food(id=current_user, conf=0.5, recent = 1, str=True)
-
     # 4. 90 이 넘는 [질병명]
     over_90 = db2.over_disease(id=current_user, conf=90, percent=False)
-
     # 5. meals table의 [date_time
     df = db.select_query(f"SELECT * FROM meals WHERE user_id = '{current_user}' ORDER BY date_time DESC;")
     meals_date = df.head(1)['date_time'][0]
@@ -748,12 +752,22 @@ def mypage():
     
     #질병 확률 labels, value START #
     
+    over_50.sort(key=itemgetter(1), reverse=True)  # or newlist = sorted(category, key=itemgetter(3))
+    # 내림차순 정렬
+    
     disease_labels = []
     disease_data = []
+    backgroundcolor_level = []
     for disease_name, disease_percent in over_50 :
-      disease_labels.append(disease_name)
-      disease_data.append(disease_percent)
-    
+        if disease_percent >= 50 and disease_percent < 90 :
+            backgroundcolor_level.append('#3CB371') 
+        elif disease_percent >=90 and disease_percent < 100 :
+            backgroundcolor_level.append('#8B0000')
+        else :
+            pass
+        disease_labels.append(disease_name)
+        disease_data.append(disease_percent)
+  
     #질병 확률 labels, value END #
     
     # 3대 영양소 in Donut chart, 총 칼로리 kcal 따로 빼기. #
@@ -771,12 +785,10 @@ def mypage():
     
     kcal_values.append(list(youngyangso.values())[0])
     kcal_labels.append(list(youngyangso.keys())[0])
-
     
-
     return render_template('mypage1.html', labels = disease_labels, data = disease_data, data3 = bad_food,
                            data4 = over_90, data5 = meals_date, data6 = current_user, nutrient_data = nutrient_data, nutrient_labels = nutrient_labels,
-                           kcal_values = kcal_values, kcal_labels = kcal_labels)
+                           kcal_values = kcal_values, kcal_labels = kcal_labels, backgroundcolor_level = backgroundcolor_level)
     #return render_template('mypage.html', data = df_dict)
     
 @app.route('/hello',methods=['GET','POST'])
