@@ -712,19 +712,20 @@ def predict():
         db_meals.label_to_meals(path = txt_label_path, id=str(current_user))
         db_meals.db_close()
 
-        return redirect(f"static/detect/{name}/image1.jpg")
+        img = f"detect/{name}/image1.jpg"
+        return img, detected_bad_foods_set
 
     return render_template("detect.html")
 
 @app.route('/predict/result', methods=["GET","POST"] )
 def food_result():
-    db_meals = meals.meals()
-    current_user = session.get('name')
-    #img = f"static/detect/{current_user}/image1.jpg"
-    current_user = "01012345678"
-    img = f"detect/{current_user}/image1.jpg"
 
-    return render_template('객체-탐지-결과-페이지-2.html', img =img)
+    img, food_list= predict()
+    current_user = session.get('name') # ID
+    db = meals.meals() # DB
+    youngyangso = db.meals_to_3nutrient(id=current_user, recent = 1) # 식단의 탄단지 / 칼로리 (dic형태)
+
+    return render_template('객체-탐지-결과-페이지-2.html', img =img, food = food_list, youngyangso = youngyangso)
 
 
 @app.route('/mypage',methods=['GET','POST'])
