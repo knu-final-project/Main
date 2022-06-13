@@ -1,3 +1,4 @@
+from calendar import day_abbr
 from flask import Flask,render_template,request,redirect,session,url_for,Blueprint,send_file,escape,jsonify
 import pickle
 from flask_sqlalchemy import SQLAlchemy
@@ -9,7 +10,9 @@ import json
 from instagram import getfollowedby, getname
 from datetime import timedelta
 import torch
-from machine129 import translabel, meals
+from machine129 import translabel, meals, mypagefunction
+from operator import itemgetter
+
 
 import numpy as np
 import matplotlib
@@ -30,10 +33,10 @@ import io
 
 
 
-HOME_URL = "/"
+HOME_URL = "/home"
 SURVEY_URL = "/survey"
 DETECTION_URL = "/predict"
-SESSION_LIFETIME = 10
+SESSION_LIFETIME = 20
 
 # from keras import models
 file = open('data/models/DI2_DG.pkl','rb')
@@ -120,6 +123,7 @@ app = Flask(__name__, static_url_path='/static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=SESSION_LIFETIME) # 로그인 지속시간을 정합니다. 현재 1분
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True #사용자에게 정보 전달완료하면 teadown. 그 때마다 커밋=DB반영
 
 
 db = SQLAlchemy(app)
@@ -130,18 +134,24 @@ cors = CORS(app)
 
 class User(db.Model):
     """ Create user table"""
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(80), primary_key=True)
     username = db.Column(db.String(80), unique=True)
-    #date = db.Column(db.Date)
-    #sex = db.Column(db.Boolean)
+    date = db.Column(db.String(80))
+    sex = db.Column(db.String(80))
     name = db.Column(db.String(80))
-    password = db.Column(db.String(80))
-    def __init__(self, username, name, password, sex, date):
+    password1 = db.Column(db.String(80))
+    password2 = db.Column(db.String(80))
+    
+    def __init__(self, name, date, sex, username, password1,password2):
         self.username = username
         self.name = name
-        self.password = password
-#        self.date = date
-#        self.sex = sex
+        self.password1 = password1
+        self.password2 = password2
+        self.date = date
+        self.sex = sex
+
+    
+
 
 
 
@@ -156,47 +166,62 @@ def after_request(response):
 ##HOME, LOGIN, LOGOUT START POINT ##
 @app.route('/',methods=['GET','POST'])
 def home():
+    if session.get('logged_in') :
+        home_login = True
+    else : 
+        home_login = False
+    
+    return render_template('door.html', switch = home_login)
+
+
+
+@app.route(HOME_URL,methods=['GET','POST'])
+def main():
     """ Session control"""
     if not session.get('logged_in'):
-        return render_template('home.html')
+        return render_template('door.html')
     else:
-        if request.method == 'POST':
-            username = getname(request.form['username'])
-            session['name'] = username
-            return render_template('home.html', data=getfollowedby(username))
+        if request.method == 'POST' :
+            session['logged_in'] = True
+            return render_template('home.html')
         return render_template('home.html')
     
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login/', methods=['GET', 'POST'])
 def login():
     """Login Form"""
     if request.method == 'GET':
-        return render_template('login_css.html')
+        return render_template('Login.html')
     else:
         name = request.form['username']
         passw = request.form['password']
         try:
-            data = User.query.filter_by(username=name, password=passw).first()
+            data = User.query.filter_by(username=name, password1=passw).first()
             if data is not None:
                 session['logged_in'] = True
                 session['name'] = name
-                return redirect(url_for('home'))
+                return redirect('/home')
             else:
                 return '로그인 실패'
         except:
-            return "회원정보 없움"
- 
+            return '로그인 실패'
+
  
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
     """Register Form"""
     if request.method == 'POST':
-        new_user = User(name=request.form['register_text'], username=request.form['register_number'], password=request.form['register_password'])
+        new_user = User(name=request.form['name'], 
+                        username=request.form['username'], 
+                        date = request.form['date'],
+                        sex = request.form.get('sex',False),
+                        password1=request.form['password1'],
+                        password2=request.form['password2'])
         db.session.add(new_user)
         db.session.commit()
-        return render_template('login_css.html')
-    return render_template('login_css.html')
+        return render_template('home.html')
+    return render_template('register.html')
 # render_tem
-     
+
  
 @app.route("/logout")
 def logout():
@@ -208,36 +233,10 @@ def logout():
 
 ##HOME, LOGIN, LOGOUT END POINT ##
 
-
-## VISUALIZING PART START POINT ##
-
-@app.route('/fig/<int:mean>_<int:var>')
-def fig(mean, var):
-  plt.figure(figsize=(4, 3))
-  ## url에서 입력받은 mean, var를 그대로 사용하여 random sampling
-  xs = np.random.normal(mean, var, 100)
-  ys = np.random.normal(mean, var, 100)
-  plt.scatter(xs, ys, s=100, marker='h', color='red', alpha=0.3)
-  ## file로 저장하는 것이 아니라 binary object에 저장해서 그대로 file을 넘겨준다고 생각하면 됨
-  ## binary object에 값을 저장한다. 
-  ## svg로 저장할 수도 있으나, 이 경우 html에서 다른 방식으로 저장해줘야 하기 때문에 일단은 png로 저장해줌
-  img = BytesIO()
-  plt.savefig(img, format='png', dpi=200)
-  ## object를 읽었기 때문에 처음으로 돌아가줌
-  img.seek(0)
-  return send_file(img, mimetype='image/png')
-  
-  # plt.savefig(img, format='svg')
-  # return send_file(img, mimetype='image/svg')
-  
-@app.route('/normal/<m_v>')
-def normal(m_v):
-  m, v = m_v.split("_")
-  m, v = int(m), int(v)
-  return render_template("plot.html", mean=m, var=v, width=800, height=600)
-
-
-## VISUALIZING PART END POINT ##
+@app.route("/fix")
+def fix_message():
+    return '공사중입니다.'
+# template 추가 구현 예정
 
  
  
@@ -321,7 +320,8 @@ def hello_world():
         infprob6 = clf6.predict_proba([DM3_DG_LIST])[0][1] 
         infprob7 = clf7.predict_proba([DM4_DG_LIST])[0][1]
         infprob8 = clf8.predict_proba([DJ2_DG_LIST])[0][1]
-        infprob9 = clf9.predict_proba([DJ4_DG_LIST])[0][1] 
+        # infprob9 = clf9.predict_proba([DJ4_DG_LIST])[0][1] 
+        infprob9 = 0.21
         infprob10 = clf10.predict_proba([DJ6_DG_LIST])[0][1]
         infprob11 = clf11.predict_proba([DJ8_DG_LIST])[0][1]
         infprob12 = clf12.predict_proba([DI6_DG_LIST])[0][1] 
@@ -383,6 +383,7 @@ inf20 = (round(infprob20*100,2))
    
     return render_template('index.html')
 
+
 @app.route(DETECTION_URL, methods=["GET","POST"])
 def predict():
     if request.method == "POST":
@@ -428,7 +429,7 @@ def predict():
         project='static/detect'  # save results to project/name
         name='exp'  # save results to project/name
         exist_ok=True  # existing project/name ok, do not increment
-        line_thickness=3  # bounding box thickness (pixels)
+        line_thickness=8  # bounding box thickness (pixels)
         hide_labels=False  # hide labels
         hide_conf=False  # hide confidences
         half=False  # use FP16 half-precision inference
@@ -529,6 +530,7 @@ def predict():
                             f.write('')
 
                     # Write results
+                    detected_foods = []
                     for *xyxy, conf, cls in reversed(det):
                         if save_txt:  # Write to file
                             xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
@@ -546,17 +548,39 @@ def predict():
                             'gimbab':'김밥', 'bulgogi':'불고기', 'aehobagbokk-eum':'애호박볶음',
                             'musaengchae':'무생채', 'jabchae':'잡채', 'mugug':'무국', 
                             'godeung-eogu-i':'고등어구이', 'ssalbab':'쌀밥', 'gyelanhulai':'계란후라이',
-                            'gyelanmal-i':'계란말이'}
+                            'gyelanmal-i':'계란말이', 'jeyukbokk-eum':'제육볶음', 'siraegiguk':'시래기국', 
+                            'ddangkongjorim':'땅콩조림'}
 
                             label_acc = label.split(' ')
 
                             if len(machine129) == 0:
                                 annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(c, True))
+                                detected_foods.append(label_acc[0])
                             else:
                                 if c in machine129:
-                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(0, True))
+                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]], color=colors(0, True), safe129 = 'warn')
+                                    detected_foods.append(machine129_dic[label_acc[0]])
                                 else:
-                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]] + ' ' + label_acc[1], color=colors(8, True))
+                                    annotator.box_label(xyxy, machine129_dic[label_acc[0]], color=colors(8, True), safe129 = 'safe')
+                                    detected_foods.append(machine129_dic[label_acc[0]])
+                
+                detected_foods_set = list(set(detected_foods))
+                detected_foods_str = ""
+                detected_foods_nut = ""
+                db = meals.meals()
+                for detected_food_name in detected_foods_set:
+                    detected_foods_str += detected_food_name + ', '
+                    df = db.select_query(f"SELECT * FROM Food WHERE food_name = '{detected_food_name}';")
+                    calorie = df.head(1)['calorie_kcal'][0]
+                    carbo = df.head(1)['carbohydrate_g'][0]
+                    protein = df.head(1)['protein_g'][0]
+                    fat = df.head(1)['fat_g'][0]
+                    detected_foods_nut += detected_food_name + f' 칼로리:{calorie} 탄수화물:{carbo} 단백질:{protein} 지방:{fat}, '
+
+                detected_foods_str = detected_foods_str.rstrip(', ')
+                detected_foods_nut = detected_foods_nut.rstrip(', ')
+                session['detected_foods'] = detected_foods_str
+                session['detected_foods_nut'] = detected_foods_nut
 
                 # Stream results
                 im0 = annotator.result()
@@ -631,6 +655,84 @@ def predict():
     return render_template("detect.html")
 
 
+@app.route('/mypage',methods=['GET','POST'])
+def mypage():
+    # 로그인 유무 여부는 html에서 처리
+    
+    current_user = session.get('name')
+    #현재 사용자 ID, 넘겨줘야 할 변수 1
+    
+    db = meals.meals()
+    db2 = mypagefunction.db_class()
+    
+    # 1. 최근식단의 [탄, 단, 지] 값
+    youngyangso = db.meals_to_3nutrient(id=current_user, recent = 1)
+
+    # 2. 50이 넘는 [질병명, 질병확률]
+    over_50 = db2.over_disease(id=current_user, conf=50, percent=True)
+
+    # 3. 피해야 할 [음식명]
+    bad_food = db.dis_food(id=current_user, conf=0.5, recent = 1, str=True)
+
+    # 4. 90 이 넘는 [질병명]
+    over_90 = db2.over_disease(id=current_user, conf=90, percent=False)
+
+    # 5. meals table의 [date_time
+    df = db.select_query(f"SELECT * FROM meals WHERE user_id = '{current_user}' ORDER BY date_time DESC;")
+    meals_date = df.head(1)['date_time'][0]
+    db.db_close()
+    db2.db_close()
+    # 1. 최근식단의 [탄, 단, 지] 값 // youngyangso
+    # 2. 50이 넘는 [질병명, 질병확률] // over_50
+    # 3. 피해야 할 [음식명] // bad_food
+    # 4. 90이 넘는 [질병명] // over_90
+    # 5. meals table의 [date_time] // meals_date
+    
+    
+    #질병 확률 labels, value START #
+    
+    over_50.sort(key=itemgetter(1), reverse=True)  # or newlist = sorted(category, key=itemgetter(3))
+    # 내림차순 정렬
+    
+    disease_labels = []
+    disease_data = []
+    backgroundcolor_level = []
+    for disease_name, disease_percent in over_50 :
+        if disease_percent >= 50 and disease_percent < 90 :
+            backgroundcolor_level.append('#3CB371') 
+        elif disease_percent >=90 and disease_percent < 100 :
+            backgroundcolor_level.append('#8B0000')
+        else :
+            pass
+        disease_labels.append(disease_name)
+        disease_data.append(disease_percent)
+
+  
+    #질병 확률 labels, value END #
+    
+    # 3대 영양소 in Donut chart, 총 칼로리 kcal 따로 빼기. #
+    nutrient_labels = []
+    nutrient_data = []
+    kcal_labels = []
+    kcal_values = []
+    
+    for index, (key, elem) in enumerate(youngyangso.items()) :
+        if index == 0 :
+            nutirent_kcal = {key, elem}
+        else :
+            nutrient_labels.append(key)
+            nutrient_data.append(elem)
+    
+    kcal_values.append(list(youngyangso.values())[0])
+    kcal_labels.append(list(youngyangso.keys())[0])
+
+    
+
+    return render_template('mypage1.html', labels = disease_labels, data = disease_data, data3 = bad_food,
+                           data4 = over_90, data5 = meals_date, data6 = current_user, nutrient_data = nutrient_data, nutrient_labels = nutrient_labels,
+                           kcal_values = kcal_values, kcal_labels = kcal_labels, backgroundcolor_level = backgroundcolor_level)
+    #return render_template('mypage.html', data = df_dict)
+    
 
 if __name__ == '__main__'  :
     parser = argparse.ArgumentParser(description="Flask app exposing yolov5 models")
@@ -648,4 +750,4 @@ if __name__ == '__main__'  :
     app.secret_key = "123"
     # secret_key는 서버상에 동작하는 어플리케이션 구분하기 위해 사용하고 복잡하게 만들어야 합니다.
     
-    app.run(host='0.0.0.0', debug=True) 
+    app.run(debug=True) 

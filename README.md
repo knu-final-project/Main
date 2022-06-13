@@ -1,26 +1,43 @@
-# 객체탐지, 질병예측 모델을 포함한 Web-app 형태 플랫폼
+# <div align="center">질병예측 및 음식탐지를 활용한 '고령화 케어 플랫폼'</div>
 
+<div align="center">
+<p>
+   <img width="850" src="https://github.com/knu-final-project/.github/blob/main/home.png"></a>
+</p>
 
+## <div align="center">Command</div>
+<details open>
+<summary>설치 방법</summary>
 
-<h1 center> 하잇 </h1>
-  
-  <h2>실행법 : 
-  명령 프롬프트(관리자 권한)</h2>
-- cd repository
-  
-  - pip install -r requirements.txt
-  - python main.py
+```bash
+git clone https://github.com/knu-final-project/Main.git
+cd Main 
+pip install -r requirements.txt
+python main.py
+```  
 
-  <h2>Pages </h2>
-  
-  localhost:8000/ (mainpage 아직 미구현)<br>
-  localhost:8000/survey<br>
-  localhost:8000/predict<br>
+</details>
 
-<h2> 우리가 할 것 </h2>
- - ~~로그인 페이지~~ <br>
- - ~~DB 연동(SQLAlchemy)~~ <br>
- - ~~모델 여러개 render_template 이용하여 변수 전달~~ <br>
- - **html template > 각 page마다** ➡ DESIGN적 요소 ! <br>
- - 동언의 id 맞춘 입력값 <br>
- __ 구동 확인을 위해 코드 모듈화 및 정리는 차후에 할게요 ^^__
+## <div align="center">Pages</div>
+
+<center>root page</center><br>
+<center>login page</center><br>
+<center>register page</center><br>
+<center>home page</center><br>
+<center>survey page</center><br>
+<center>predict page</center><br>
+<center>'mypage' page</center><br>
+
+## <div align="center">Enviroments</div>
+
+...
+
+## <div align="center">Developer</div>
+
+<div align="center">
+<p>
+   <img width="850" src="https://github.com/knu-final-project/.github/blob/main/developer.png"></a>
+</p>
+
+## <div align="center">git 충돌 해결법 </div>
+- 다시 clone 한다.

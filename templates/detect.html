@@ -1,39 +1,139 @@
 {% if session['logged_in'] %}
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html style="font-size: 16px;">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-    <link rel="stylesheet" href="/static/style.css">
-
-    <title>yolov5 object detection</title>
+    <meta name="keywords" content="​View our work, discover more about us, read more of our stories, explore our archive or get in touch.">
+    <meta name="description" content="">
+    <title>식단분석</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='nicepage.css') }}" media="screen">
+<link rel="stylesheet" href="{{ url_for('static', filename='detect_open.css') }}" media="screen">
+    <script class="u-script" type="text/javascript" src = "{{ url_for('static', filename='jquery.js') }}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='nicepage.js') }}" defer=""></script>
+    <meta name="generator" content="Nicepage 4.12.5, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "생생건강통",
+		"logo": "images/20220607_225725.png",
+		"sameAs": [
+				"https://knufinal.slack.com",
+				"https://silver-dragon-340.notion.site/Final-Project-Machine129-58e041584ae44baa852d7d0378c736d8",
+				"https://github.com/knu-final-project"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="detect_open">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
   </head>
-  <body class="text-center">
-    <form class="form-signin" method=post enctype=multipart/form-data>
-        <img class="mb-4" src="/static/pytorch.png" alt="" width="72">
-        <h1 class="h3 mb-3 font-weight-normal">Upload any image</h1>
-        <input type="file" name="file" class="form-control-file" id="inputfile">
-        <br/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
-        <p class="mt-5 mb-3 text-muted">Built using Pytorch & Flask</p>
-    </form>
-    <script src="//code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-b10a"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
+          <img src="{{ url_for('static', filename='images/20220607_225725.png') }}" class="u-logo-image u-logo-image-1">
+        </a>
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" data-responsive-from="MD">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
+            <a class="u-button-style u-custom-active-border-color u-custom-active-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href='/' style="padding: 10px 0px;">소개말</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href='/survey' data-page-id="883203286" style="padding: 10px 0px;">질병예측</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href='/predict' data-page-id="883203286" style="padding: 10px 0px;">식단평가</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="/home" data-page-id="883203286" style="padding: 10px 0px;">Developer</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="/mypage" style="padding: 10px 0px;">내 정보</a>
+</li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">소개말</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/survey" data-page-id="883203286">질병예측</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/predict" data-page-id="883203286">식단평가</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/home" data-page-id="883203286">Developer</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/mypage">내 정보</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+        <a class="u-login u-login-1" href="/login/" data-page-id="27095522" title="login">Login</a>
+      </div></header>
+    <section class="u-clearfix u-image u-section-1" id="carousel_5708" data-image-width="1131" data-image-height="1600">
+      <div class="u-clearfix u-sheet u-sheet-1"></div>
+    </section>
+	<form class = "form-signin" method = post enctype=multipart/form-data action="/predict/result">
+		<section class="u-clearfix u-custom-color-8 u-section-2" id="sec-d185">
+		  <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+			<div class="u-expanded-width u-list u-list-1">
+			  <div class="u-repeater u-repeater-1">
+				<div class="u-align-left u-container-style u-custom-item u-list-item u-repeater-item u-shape-rectangle">
+				  <div class="u-container-layout u-similar-container u-valign-bottom-lg u-valign-bottom-md u-valign-bottom-sm u-valign-bottom-xl u-container-layout-1">
+					<input type = "file" name = "file" id = "inputfile" class="u-active-palette-2-light-3 u-border-2 u-border-active-palette-2-base u-border-hover-palette-2-base u-border-palette-2-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-2-light-3 u-radius-50 u-text-active-palette-2-base u-text-hover-palette-2-base u-text-palette-2-base u-white u-btn-1"></a>
+				  </div>
+				</div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+				<div class="u-align-left u-container-style u-custom-item u-list-item u-repeater-item u-shape-rectangle">
+				  <div class="u-container-layout u-similar-container u-valign-bottom-lg u-valign-bottom-md u-valign-bottom-sm u-valign-bottom-xl u-container-layout-2">
+					<button type="submit" class="u-active-palette-2-light-3 u-border-2 u-border-active-palette-2-base u-border-hover-palette-2-base u-border-palette-2-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-2-light-3 u-radius-50 u-text-active-palette-2-base u-text-hover-palette-2-base u-text-palette-2-base u-white u-btn-2">식단사진 평가하기</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</section>
+	</form>
+    
+    
+    
+    
+    <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-white" id="sec-58d4"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="/" class="u-image u-logo u-image-1" data-image-width="280" data-image-height="280">
+          <img src="{{ url_for('static', filename='images/TEAM-LOGO.png') }}" class="u-logo-image u-logo-image-1">
+        </a>
+        <p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">
+          <span style="font-size: 0.9375rem;">
+            <span style="font-size: 1.0625rem;">경북대학교 산학협력단 K-Digital Training 1기</span>
+          </span>
+          <br>
+          <span style="font-size: 30px; font-weight: normal;">Team '머선일이조'</span>
+        </p>
+        <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">
+          <a class="u-social-url" title="facebook" target="_blank" href="https://knufinal.slack.com"><span class="u-file-icon u-icon u-social-facebook u-social-icon u-icon-1"><img src="{{ url_for('static', filename='images/5968974.png') }}" alt=""></span>
+          </a>
+          <a class="u-social-url" title="twitter" target="_blank" href="https://silver-dragon-340.notion.site/Final-Project-Machine129-58e041584ae44baa852d7d0378c736d8"><span class="u-file-icon u-icon u-social-icon u-social-twitter u-icon-2"><img src="{{ url_for('static', filename='images/notion.png') }}" alt=""></span>
+          </a>
+          <a class="u-social-url" title="instagram" target="_blank" href="https://github.com/knu-final-project"><span class="u-file-icon u-icon u-social-icon u-social-instagram u-icon-3"><img src="{{ url_for('static', filename='images/733609.png') }}" alt=""></span>
+          </a>
+        </div>
+      </div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="/" target="_blank"></a>
+    </section>
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    <script type="text/javascript">
+	<script type="text/javascript">
       $('#inputfile').bind('change', function() {
           let fileSize = this.files[0].size/1024/1024; // this gives in MB
           if (fileSize > 1) {
@@ -51,8 +151,9 @@
     </script>
   </body>
 </html>
+
 {% else %}
-<p>Not login!</p>
+<p>로그인 후 이용가능합니다!!</p>
 
 <a href="/login">Login</a> 
 <a href="/register">Register</a>
