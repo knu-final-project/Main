@@ -42,3 +42,6 @@ python main.py
 ## <div align="center">git 충돌 해결법 </div>
 - 다시 clone 한다.
 - 큰일난다.
+
+
+Hello
