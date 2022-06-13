@@ -732,16 +732,12 @@ def mypage():
     
     # 1. 최근식단의 [탄, 단, 지] 값
     youngyangso = db.meals_to_3nutrient(id=current_user, recent = 1)
-
     # 2. 50이 넘는 [질병명, 질병확률]
     over_50 = db2.over_disease(id=current_user, conf=50, percent=True)
-
     # 3. 피해야 할 [음식명]
     bad_food = db.dis_food(id=current_user, conf=0.5, recent = 1, str=True)
-
     # 4. 90 이 넘는 [질병명]
     over_90 = db2.over_disease(id=current_user, conf=90, percent=False)
-
     # 5. meals table의 [date_time
     df = db.select_query(f"SELECT * FROM meals WHERE user_id = '{current_user}' ORDER BY date_time DESC;")
     meals_date = df.head(1)['date_time'][0]
@@ -756,12 +752,22 @@ def mypage():
     
     #질병 확률 labels, value START #
     
+    over_50.sort(key=itemgetter(1), reverse=True)  # or newlist = sorted(category, key=itemgetter(3))
+    # 내림차순 정렬
+    
     disease_labels = []
     disease_data = []
+    backgroundcolor_level = []
     for disease_name, disease_percent in over_50 :
-      disease_labels.append(disease_name)
-      disease_data.append(disease_percent)
-    
+        if disease_percent >= 50 and disease_percent < 90 :
+            backgroundcolor_level.append('#3CB371') 
+        elif disease_percent >=90 and disease_percent < 100 :
+            backgroundcolor_level.append('#8B0000')
+        else :
+            pass
+        disease_labels.append(disease_name)
+        disease_data.append(disease_percent)
+  
     #질병 확률 labels, value END #
     
     # 3대 영양소 in Donut chart, 총 칼로리 kcal 따로 빼기. #
@@ -779,12 +785,10 @@ def mypage():
     
     kcal_values.append(list(youngyangso.values())[0])
     kcal_labels.append(list(youngyangso.keys())[0])
-
     
-
     return render_template('mypage1.html', labels = disease_labels, data = disease_data, data3 = bad_food,
                            data4 = over_90, data5 = meals_date, data6 = current_user, nutrient_data = nutrient_data, nutrient_labels = nutrient_labels,
-                           kcal_values = kcal_values, kcal_labels = kcal_labels)
+                           kcal_values = kcal_values, kcal_labels = kcal_labels, backgroundcolor_level = backgroundcolor_level)
     #return render_template('mypage.html', data = df_dict)
     
 @app.route('/hello',methods=['GET','POST'])
