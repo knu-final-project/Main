@@ -32,7 +32,7 @@
 </head>
 <body>
     <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-b10a"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
+        <a href="/home" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
           <img src="{{url_for('static',filename='images/20220607_225725.png')}}" class="u-logo-image u-logo-image-1">
         </a>
         <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" data-responsive-from="MD">
@@ -64,7 +64,11 @@
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-        <a class="u-login u-login-1" href="Login.html" data-page-id="27095522" title="login">Login</a>
+        {% if session['logged_in'] %}
+        <a class="u-login u-login-1" href="/logout" data-page-id="27095522" title="logout">로그아웃</a>
+        {% else %}
+        <a class="u-login u-login-1" href="/login" data-page-id="27095522" title="login">로그인</a>
+        {% endif %}
       </div></header>
     <section class="u-clearfix u-image u-section-1" id="sec-14a1" data-image-width="1980" data-image-height="1114">
       <div class="u-clearfix u-sheet u-sheet-1">
@@ -95,7 +99,7 @@
           <div class="u-container-layout">
             
             <form action="/survey/result" method="POST">
-            <p class="u-text u-text-1"> 1. 귀하의 성별에 응​답해 주세요
+            <p class="u-text u-text-1"> <B>1. 귀하의 성별에 응​답해 주세요</B>
                 <br>
                 <form action="/survey/result" method="POST" class="u-clearfix u-form-spacing-24 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
                     <div class="u-form-group u-form-radiobutton u-form-group-1">
@@ -109,28 +113,28 @@
 
             <p> 
                 <div class="u-form-group">
-                <label for="name-501f" class="u-label u-label-3">2. 귀하의 연령에 응답해 주세요</label>
+                <label for="name-501f" class="u-label u-label-3"><B>2. 귀하의 연령에 응답해 주세요</B></label>
                 <input type="text" placeholder="연령을 입력해주세요" id="name-501f" name="AGE" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
                 </div>
             </p>
 
             <p> 
                 <div class="u-form-group u-form-group-3">
-                    <label for="text-9c5c" class="u-label u-label-4">3. 귀하의 신장은 몇 cm 입니까?</label>
+                    <label for="text-9c5c" class="u-label u-label-4"><B>3. 귀하의 신장은 몇 cm 입니까?</B></label>
                     <input type="text" id="text-9c5c" name="HE_HT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" placeholder="신장을 입력해주세요" required="required">
-                </div>
+                  </div>
             </p>
 
             <p> 
                 <div class="u-form-group u-form-group-4">
-                    <label for="text-56ae" class="u-label u-label-5">4. 귀하의 체중은 몇 kg 입니까?</label>
+                    <label for="text-56ae" class="u-label u-label-5"><B>4. 귀하의 체중은 몇 kg 입니까?</B></label>
                     <input type="text" placeholder="체중을 입력해주세요" id="text-56ae" name="HE_WT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                </div>    
+                  </div>    
             </p> 
 
-            <h4> 귀하가 해당하는 곳에 응답해 주세요 </h4>
+            <h4>귀하가 해당하는 곳에 응답해 주세요</> </h4>
             
-            <p class="u-text u-text-default u-text-3">5. EuroQoL : 운동능력
+            <p class="u-text u-text-default u-text-3"><B> 5. 운동능력 </B>
               <div class="u-form-group u-form-radiobutton u-form-group-6">
                 <div class="u-form-radio-button-wrapper">
                   <input type="radio" name="LQ_1EQL" value="1">
@@ -148,7 +152,7 @@
 
             </p>
 
-             <p class="u-text u-text-4">6. ​EuroQoL : 자기관리
+             <p class="u-text u-text-4"><B>6. ​자기관리</B>
                 <div class="u-expanded-width u-form u-form-3">
               
                     <div class="u-form-group u-form-radiobutton u-form-group-8">
@@ -167,7 +171,7 @@
                 </div>
             </p>
             
-            <p class="u-text u-text-5">7. EuroQoL : 일상활동
+            <p class="u-text u-text-5"><B>7. 일상활동</B>
                 <div class="u-form-group u-form-radiobutton u-form-group-10">
                     <div class="u-form-radio-button-wrapper">
                       <input type="radio" name="LQ_3EQL" value="1">
@@ -183,7 +187,7 @@
                   </div>
             </p>
             
-            <p class="u-text u-text-6">8. EuroQoL : 통증/불편
+            <p class="u-text u-text-6"><B>8. 통증/불편</B>
                 <div class="u-form-group u-form-radiobutton u-form-group-12">
                     <div class="u-form-radio-button-wrapper">
                       <input type="radio" name="LQ_4EQL" value="1">
@@ -199,7 +203,7 @@
                   </div>
             </p>
             
-            <p class="u-text u-text-7">9. EuroQoL : 불안/우울
+            <p class="u-text u-text-7"><B>9. 불안/우울</B>
                 <div class="u-expanded-width u-form u-form-6">
               
                     <div class="u-form-group u-form-radiobutton u-form-group-14">
@@ -219,66 +223,67 @@
             </p>
             
             <p> 
-                <label for="name-796f" class="u-label u-label-21"> 10. 귀하의 주말 하루 평균 수면시간은 몇 시간입니까?</label>
+                <label for="name-796f" class="u-label u-label-21"><B> 10. 귀하의 주말 하루 평균 수면시간은 몇 시간입니까?</B></label>
                 <br> 
                 <input type="text" placeholder="주말 하루 평균 수면시간을 입력해주세요" id="name-796f" name="TOTAL_SLP_WD" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
             </p>
             
-            <h5>* 최소 10분 이상 계속 숨이 약간 차거나 심장이 약간 빠르게 뛰는 중강도 신체 활동을 포함하고 있습니까?</h5>
-            <p class="u-align-center u-text u-text-9">11. ​본인의 일
+            <h5><B>* 최소 10분 이상 계속 숨이 약간 차거나 심장이 약간 빠르게 뛰는 중강도 신체 활동을 포함하고 있습니까?</B></h5>
+            <p class="u-align-center u-text u-text-9"><B>11. ​본인의 일</B>
                 <div class="u-form u-form-8">
 
-                  <div class="u-form-group u-form-radiobutton u-form-group-18">
-                    <div class="u-form-radio-button-wrapper">
-                      <input type="radio" name="BE3_81" value="1">
-                      <label class="u-label u-label-22" for="radiobutton">예</label>
-                      <br>
-                      <input type="radio" name="BE3_81" value="2">
-                      <label class="u-label u-label-23" for="radiobutton">아니오</label>
-                      <br>
+                    <div class="u-form-group u-form-radiobutton u-form-group-18">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="BE3_81" value="1">
+                        <label class="u-label u-label-22" for="radiobutton">예</label>
+                        <br>
+                        <input type="radio" name="BE3_81" value="2">
+                        <label class="u-label u-label-23" for="radiobutton">아니오</label>
+                        <br>
+                      </div>
                     </div>
                   </div>
-                </div>
             </p>
 
-            <p class="u-align-center u-text u-text-10"> 12. 본인의 여가
+            <p class="u-align-center u-text u-text-10"> <B>12. 본인의 여가</B>
                 <div class="u-form u-form-9">
 
-                  <div class="u-form-group u-form-radiobutton u-form-group-20">
-                    <div class="u-form-radio-button-wrapper">
-                      <input type="radio" name="BE3_85" value="1">
-                      <label class="u-label u-label-24" for="radiobutton">예</label>
-                      <br>
-                      <input type="radio" name="BE3_85" value="2">
-                      <label class="u-label u-label-25" for="radiobutton">아니오</label>
-                      <br>
+                    <div class="u-form-group u-form-radiobutton u-form-group-20">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="BE3_85" value="1">
+                        <label class="u-label u-label-24" for="radiobutton">예</label>
+                        <br>
+                        <input type="radio" name="BE3_85" value="2">
+                        <label class="u-label u-label-25" for="radiobutton">아니오</label>
+                        <br>
+                      </div>
                     </div>
                   </div>
-                </div>
             </p>
             
-            <p class="u-align-left u-text u-text-11"> 13. 평소 일상생활 중에 스트레스를 어느 정도 느끼고 있습니까?
+            <p class="u-align-left u-text u-text-11"><B> 13. 평소 일상생활 중에 스트레스를 어느 정도 느끼고 있습니까?</B>
                 <div class="u-form u-form-10">
-                  <div class="u-form-group u-form-radiobutton u-form-group-22">
-                    <div class="u-form-radio-button-wrapper">
-                      <input type="radio" name="BP1" value="1">
-                      <label class="u-label u-label-26" for="radiobutton">대단히 많이 느낀다</label>
-                      <br>
-                      <input type="radio" name="BP1" value="2">
-                      <label class="u-label u-label-27" for="radiobutton">많이 느끼는 편이다</label>
-                      <br>
-                      <input type="radio" name="BP1" value="3">
-                      <label class="u-label u-label-28" for="radiobutton">조금 느끼는 편이다</label>
-                      <br>
-                      <input type="radio" name="BP1" value="4">
-                      <label class="u-label u-label-29" for="radiobutton">거의 느끼지 않는다</label>
-                      <br>
+
+                    <div class="u-form-group u-form-radiobutton u-form-group-22">
+                      <div class="u-form-radio-button-wrapper">
+                        <input type="radio" name="BP1" value="1">
+                        <label class="u-label u-label-26" for="radiobutton">대단히 많이 느낀다</label>
+                        <br>
+                        <input type="radio" name="BP1" value="2">
+                        <label class="u-label u-label-27" for="radiobutton">많이 느끼는 편이다</label>
+                        <br>
+                        <input type="radio" name="BP1" value="3">
+                        <label class="u-label u-label-28" for="radiobutton">조금 느끼는 편이다</label>
+                        <br>
+                        <input type="radio" name="BP1" value="4">
+                        <label class="u-label u-label-29" for="radiobutton">거의 느끼지 않는다</label>
+                        <br>
+                      </div>
                     </div>
                   </div>
-                </div>
             </p>
             
-            <p class="u-align-center u-text u-text-12"> 14. 귀하의 흡연 여부에 해당하는 곳에 응답해 주세요
+            <p class="u-align-center u-text u-text-12"> <B>14. 귀하의 흡연 여부에 해당하는 곳에 응답해 주세요</B>
                 <div class="u-form u-form-11">
                     <div class="u-form-group u-form-radiobutton u-form-group-24">
                       <div class="u-form-radio-button-wrapper">
@@ -293,7 +298,7 @@
                   </div>
             </p>
             
-            <p class="u-align-center u-text u-text-13"> 15. 최근 1년 동안 아침식사를 1주일에 몇 회 하셨습니까?
+            <p class="u-align-center u-text u-text-13"> <B>15. 최근 1년 동안 아침식사를 1주일에 몇 회 하셨습니까?</B>
                 <div class="u-form u-form-12">
                     <div class="u-form-group u-form-radiobutton u-form-group-26">
                       <div class="u-form-radio-button-wrapper">
@@ -314,7 +319,7 @@
                   </div>
             </p>
             
-            <p class="u-align-center u-text u-text-14"> 16. 최근 2년 동안 건강을 위해 건강검진을 받은 적이 있습니까?
+            <p class="u-align-center u-text u-text-14"> <B>16. 최근 2년 동안 건강을 위해 건강검진을 받은 적이 있습니까?</B>
                 <div class="u-form u-form-13">
                     <div class="u-form-group u-form-radiobutton u-form-group-28">
                       <div class="u-form-radio-button-wrapper">
@@ -329,7 +334,7 @@
                   </div>
             </p>
             
-            <p class="u-align-center u-text u-text-15"> 17. ​​귀 가족 중에서 의사로부터 다음의 질병을 진단받으신 적이 있으십니까?
+            <p class="u-align-center u-text u-text-15"> <B>17. ​​귀 가족 중에서 의사로부터 다음의 질병을 진단받으신 적이 있으십니까?</B>
                 <div class="u-form u-form-14">
                     <div class="u-form-group u-form-radiobutton u-form-group-30">
                       <div class="u-form-radio-button-wrapper">
@@ -338,18 +343,15 @@
                         <br>
                         <input type="radio" name="HE_FH" value="1">
                         <label class="u-label u-label-39" for="radiobutton">예</label>
-                      </div>
-                    </div>
-                </div>
             </p>
 
             <p>
-                <label for="name-796f" class="u-label u-label-40"> 18.  최종 이완기 혈압(2,3차 평균)
+                <label for="name-796f" class="u-label u-label-40"> <B>18.  최종 이완기 혈압(2,3차 평균)</B>
                 <br>
                 <input type="text" placeholder="이완기 혈압을 입력해주세요" id="name-796f" name="HE_DBP" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-5" required="required">
             </p>
             
-            <p class="u-align-center u-text u-text-16">19. 현재 건강상의 문제나 신체 혹은 정신적 장애로 일상생활 및 사회활동에 제한을 받고 계십니까?
+            <p class="u-align-center u-text u-text-16"><B>19. 현재 건강상의 문제나 신체 혹은 정신적 장애로 일상생활 및 사회활동에 제한을 받고 계십니까?</B>
                 <div class="u-form u-form-16">
               
                     <div class="u-form-group u-form-radiobutton u-form-group-34">
@@ -365,7 +367,7 @@
                 </div>
             </p>
             
-            <p class="u-align-center u-text u-text-17">20. ​최근 1년 동안 정신적인 문제 때문에 방문, 전화, 인터넷 등을 통해 상담을 받아 본 적이 있습니까?
+            <p class="u-align-center u-text u-text-17"><B>20. ​최근 1년 동안 정신적인 문제 때문에 방문, 전화, 인터넷 등을 통해 상담을 받아 본 적이 있습니까?</B>
                 <div class="u-form u-form-17">
                     <div class="u-form-group u-form-radiobutton u-form-group-36">
                       <div class="u-form-radio-button-wrapper">
@@ -380,7 +382,7 @@
                   </div>
             </p>
             
-            <p class="u-text u-text-18">21. ​최근 스트레스를 얼마나 느끼고 있습니까?
+            <p class="u-text u-text-18"><B>21. ​최근 스트레스를 얼마나 느끼고 있습니까?</B>
                 <div class="u-form u-form-18">
                     <div class="u-form-group u-form-radiobutton u-form-group-38">
                       <div class="u-form-radio-button-wrapper">
@@ -396,7 +398,7 @@
 
             </p>
             
-            <p class="u-text u-text-19">22. 맥박의 규칙성이 어떻게 됩니까?
+            <p class="u-text u-text-19"><B>22. 맥박의 규칙성이 어떻게 됩니까?</B>
                 <div class="u-form u-form-19">
                     <div class="u-form-group u-form-radiobutton u-form-group-40">
                       <div class="u-form-radio-button-wrapper">
@@ -411,7 +413,7 @@
                 </div>
             </p>
             
-            <p class="u-align-center u-text u-text-20">23. 공공장소의 실내<span style="font-size: 0.9375rem;">(흡연지정구역 제외)</span>에서 다른 사람이 피우는 담배연기를 맡은 적이 있습니까? <span style="font-size: 0.9375rem;">(최근 7일 동안)</span>
+            <p class="u-align-center u-text u-text-20"><B>23. 공공장소의 실내</B><span style="font-size: 0.9375rem;">(흡연지정구역 제외)</span><B>에서 다른 사람이 피우는 담배연기를 맡은 적이 있습니까?</B> <span style="font-size: 0.9375rem;">(최근 7일 동안)</span>
               <div class="u-form u-form-20">
                 <div class="u-form-group u-form-radiobutton u-form-group-42">
                   <div class="u-form-radio-button-wrapper">
@@ -426,7 +428,7 @@
               </div>
             </p>
             
-            <p class="u-text u-text-default u-text-22"> 24. 술을 얼마나 자주 마십니까?
+            <p class="u-text u-text-default u-text-22"><B> 24. 술을 얼마나 자주 마십니까?</B>
               <div class="u-expanded-width u-form u-form-21">
                 <div class="u-form-group u-form-radiobutton u-form-group-44">
                   <div class="u-form-radio-button-wrapper">
@@ -454,88 +456,88 @@
             </p>
 
             <br>
-            <h4>식품섭취조사</h4>
+            <h4><BIG><B>식품섭취조사</B></BIG></h4>
             
             <p> 
               <div class="u-form-group">
-                <label for="name-796f" class="u-label u-label-57">25. 1일 식품섭취량(g)을 입력해주세요</label>
+                <label for="name-796f" class="u-label u-label-57"><B>25. 1일 식품섭취량(g)을 입력해주세요</B></label>
                 <input type="text" placeholder="1일 식품섭취량(g)" id="name-796f" name="N_INTK" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-6" required="required">
               </div>
             </p>
 
             <p>
               <div class="u-form-group u-form-group-47">
-                <label for="text-413b" class="u-label u-label-58">26. 1일 에너지 섭취량(kcal)을 입력해주세요</label>
+                <label for="text-413b" class="u-label u-label-58"><B>26. 1일 에너지 섭취량(kcal)을 입력해주세요</B></label>
                 <input type="text" placeholder="1일 에너지 섭취량(kcal)" id="text-413b" name="N_EN" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-7">
               </div>
             </p>
 
             <p>
               <div class="u-form-group u-form-group-48">
-                <label for="text-3f9d" class="u-label u-label-59">27. 1일 수분 섭취량(g)을 입력해주세요</label>
+                <label for="text-3f9d" class="u-label u-label-59"><B>27. 1일 수분 섭취량(g)을 입력해주세요</B></label>
                 <input type="text" placeholder="1일 수분 섭취량(g)" id="text-3f9d" name="N_WATER" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-8">
               </div>
             </p>
 
             <p>
               <div class="u-form-group u-form-group-49">
-                <label for="text-09a4" class="u-label u-label-60">28. 1일 단백질 섭취량(g)을 입력해주세요</label>
+                <label for="text-09a4" class="u-label u-label-60"><B>28. 1일 단백질 섭취량(g)을 입력해주세요</B></label>
                 <input type="text" placeholder="1일 단백질 섭취량(g)" id="text-09a4" name="N_PROT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-9">
               </div>
             </p>
 
             <p>
               <div class="u-form-group u-form-group-50">
-                <label for="text-ee6b" class="u-label u-label-61">29. 1일 지방 섭취량(g)을 입력해주세요</label>
+                <label for="text-ee6b" class="u-label u-label-61"><B>29. 1일 지방 섭취량(g)을 입력해주세요</B></label>
                 <input type="text" id="text-ee6b" name="N_FAT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-10" placeholder="1일 지방 섭취량(g)">
               </div>
             </p>
 
             <p>
               <div class="u-form-group u-form-group-51">
-                <label for="text-c936" class="u-label u-label-62">30. 1일 포화지방산 섭취량(g)을 입력해주세요</label>
+                <label for="text-c936" class="u-label u-label-62"><B>30. 1일 포화지방산 섭취량(g)을 입력해주세요</B></label>
                 <input type="text" id="text-c936" name="N_SFA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-11" placeholder="1일 포화지방산 섭취량(g)">
               </div>
             </p>
             
             <p>
               <div class="u-form-group u-form-group-52">
-                <label for="text-31ae" class="u-label u-label-63">31. 1일 단일불포화지방산 섭취량(g)을 입력해주세요</label>
+                <label for="text-31ae" class="u-label u-label-63"><B>31. 1일 단일불포화지방산 섭취량(g)을 입력해주세요</B></label>
                 <input type="text" placeholder="1일 단일불포화지방산 섭취량(g)" id="text-31ae" name="N_MUFA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-12">
               </div>
             </p>
             
             <p>
               <div class="u-form-group u-form-group-53">
-                <label for="text-1359" class="u-label u-label-64">32. 1일 콜레스테롤 섭취량(mg)을 입력해주세요</label>
+                <label for="text-1359" class="u-label u-label-64"><B>32. 1일 콜레스테롤 섭취량(mg)을 입력해주세요</B></label>
                 <input type="text" placeholder="1일 콜레스테롤 섭취량(mg)" id="text-1359" name="N_CHOL" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-13">
               </div>
             </p>
             
             <p>
               <div class="u-form-group u-form-group-54">
-                <label for="text-364c" class="u-label u-label-65">33. 1일 당 섭취량(g)을 입력해주세요</label>
+                <label for="text-364c" class="u-label u-label-65"><B>33. 1일 당 섭취량(g)을 입력해주세요</B></label>
                 <input type="text" placeholder="1일 당 섭취량(g)" id="text-364c" name="N_SUGAR" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-14">
               </div>
             </p>
             
             <p>
                 <div class="u-form-group u-form-group-55">
-                    <label for="text-5fe0" class="u-label u-label-66">34. 1일 인 섭취량(mg)을 입력해주세요</label>
+                    <label for="text-5fe0" class="u-label u-label-66"><B>34. 1일 인 섭취량(mg)을 입력해주세요</B></label>
                     <input type="text" placeholder="1일 인 섭취량(mg)" id="text-5fe0" name="N_PHOS" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-15">
                 </div>
             </p>
             
             <p>
                 <div class="u-form-group u-form-group-56">
-                    <label for="text-3eb1" class="u-label u-label-67">35. 1일 나트륨 섭취량(mg)을 입력해주세요</label>
+                    <label for="text-3eb1" class="u-label u-label-67"><B>35. 1일 나트륨 섭취량(mg)을 입력해주세요</B></label>
                     <input type="text" placeholder="1일 나트륨 섭취량(mg)" id="text-3eb1" name="N_NA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-16">
                 </div>
             </p>
             
             <p>
                 <div class="u-form-group u-form-group-57">
-                    <label for="text-1a7e" class="u-label u-label-68">36. 1일 베타카로틴 섭취량(μg)을 입력해주세요</label>
+                    <label for="text-1a7e" class="u-label u-label-68"><B>36. 1일 베타카로틴 섭취량(μg)을 입력해주세요</B></label>
                     <input type="text" placeholder="1일 베타카로틴 섭취량(μg)" id="text-1a7e" name="N_CAROT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-17">
                 </div>
             </p>
@@ -548,7 +550,7 @@
       </section>
       
         <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-white" id="sec-58d4"><div class="u-clearfix u-sheet u-sheet-1">
-          <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="280" data-image-height="280">
+          <a href="/" class="u-image u-logo u-image-1" data-image-width="280" data-image-height="280">
             <img src="{{url_for('static',filename='images/TEAM-LOGO.png')}}" class="u-logo-image u-logo-image-1">
           </a>
           <p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">
@@ -569,15 +571,6 @@
         </div></footer>
 
       <section class="u-backlink u-clearfix u-grey-80">
-          <a class="u-link" href="https://nicepage.com/web-design" target="_blank">
-            <span>Responsive Web Design</span>
-          </a>
-          <p class="u-text">
-            <span>created with</span>
-          </p>
-          <a class="u-link" href="https://nicepage.com/website-builder" target="_blank">
-            <span>Best Website Builder</span>
-          </a>. 
         </section>
     
 </body>

@@ -38,3 +38,11 @@ python main.py
 <p>
    <img width="850" src="https://github.com/knu-final-project/.github/blob/main/developer.png"></a>
 </p>
+
+## <div align="center">git 충돌 해결법 </div>
+- 다시 clone 한다.
+- 큰일난다.
+
+
+Hello
+Hi
