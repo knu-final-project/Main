@@ -829,3 +829,4 @@ if __name__ == '__main__'  :
     # secret_key는 서버상에 동작하는 어플리케이션 구분하기 위해 사용하고 복잡하게 만들어야 합니다.
     
     app.run(debug=True) 
+    
