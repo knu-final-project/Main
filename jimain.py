@@ -726,8 +726,8 @@ def food_result():
     db = meals.meals() # DB
     youngyangso = db.meals_to_3nutrient(id=current_user, recent = 1) # 식단의 탄단지 / 칼로리 (dic형태)
 
-    return render_template('객체-탐지-결과-페이지-2.html', img =img, bad_food = bad_food, food = food, youngyangso = youngyangso)
-    #return render_template('객체탐지결과.html', img =img, bad_food = bad_food, food = food, youngyangso = youngyangso)
+    #return render_template('객체-탐지-결과-페이지-2.html', img =img, bad_food = bad_food, food = food, youngyangso = youngyangso)
+    return render_template('객체탐지결과페이지.html', img =img, bad_food = bad_food, food = food, youngyangso = youngyangso)
 
 
 @app.route('/mypage',methods=['GET','POST'])
