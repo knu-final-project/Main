@@ -723,6 +723,7 @@ def food_result():
 
     img, bad_food, food = predict()
     current_user = session.get('name') # ID
+    img = f"detect/{current_user}/image1.jpg"
     db = meals.meals() # DB
     youngyangso = db.meals_to_3nutrient(id=current_user, recent = 1) # 식단의 탄단지 / 칼로리 (dic형태)
 
