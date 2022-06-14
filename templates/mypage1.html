@@ -73,7 +73,11 @@
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-        <a class="u-login u-login-1" href="Login.html" data-page-id="27095522" title="login">Login</a>
+        {% if session['logged_in'] %}
+        <a class="u-login u-login-1" href="/logout" data-page-id="27095522" title="logout">로그아웃</a>
+        {% else %}
+        <a class="u-login u-login-1" href="/login" data-page-id="27095522" title="login">로그인</a>
+        {% endif %}
       </div></header>
     <section class="u-align-center u-clearfix u-custom-color-21 u-section-1" id="carousel_5153">
       <div class="u-clearfix u-sheet u-sheet-1">
@@ -81,7 +85,7 @@
         <div class="u-border-3 u-border-grey-70 u-line u-line-horizontal u-line-1"></div>
         <h2 class="u-custom-font u-text u-text-default u-text-palette-5-dark-2 u-text-2"><BIG><B>생생<span class="u-text-custom-color-13">건강</span>보건소​🩺</B></BIG>
         </h2>
-        <center><h4 class="u-text u-text-default u-text-4"> 💙<B><I>A Healthier, Happier You</I></B>💙</h4></center>
+        <center><h4 class="u-text u-text-default u-text-3"> 💙<B><I>A Healthier, Happier You</I></B>💙</h4></center>
         <br>
         <p class="u-text u-text-default u-text-1">[최근 <span style="font-size: 1.5rem;">한끼</span>의 총 칼로리💙] <span style="font-size: 1.5rem;">{{kcal_values}} </span>kcal
         </p>
@@ -246,7 +250,7 @@
           {
             label: "Population (millions)",
             //backgroundColor : ['#A63A50', '#F0E7D8', '#AB9B96'],
-            backgroundColor : ['#839788' ,'#EEE0CB' ,'#BAA898'],
+            backgroundColor : ['#839788' ,'#BAA898' ,'#EEE0CB' ],
             fontColor : 'black',
             //backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
             data: {{nutrient_data | tojson | safe }}
