@@ -97,11 +97,11 @@
               <div class="u-container-style u-layout-cell u-palette-5-light-2 u-size-30 u-layout-cell-1">
                 <div class="u-container-layout u-valign-top u-container-layout-1">
                   <h4 class="u-text u-text-default u-text-1">총 칼로리</h4>
-                  <h6 class="u-text u-text-default u-text-2">2500</h6>
+                  <h6 class="u-text u-text-default u-text-2">{{youngyangso['calorie']}} kcal</h6>
                   <h4 class="u-text u-text-default u-text-3">전체 음식</h4>
-                  <h6 class="u-text u-text-default u-text-4">음식 종류</h6>
+                  <h6 class="u-text u-text-default u-text-4">{%for i in food%} {{i}} {% endfor %}</h6>
                   <h4 class="u-text u-text-default u-text-5">피해야 할 음식</h4>
-                  <h6 class="u-text u-text-default u-text-6">음식 종류<br>
+                  <h6 class="u-text u-text-default u-text-6">{%for i in bad_food%} {{i}} {% endfor %}<br>
                   </h6>
                 </div>
               </div>
