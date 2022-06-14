@@ -52,9 +52,6 @@ python jimain.py
 ## <div align="center">Enviroments</div>
 <div align="center">
     <a>
-      <img src="https://github.com/knu-final-project/.github/blob/main/flask.png?raw=true" alt="flask" width="80"/>
-   </a>
-    <a>
       <img src="https://github.com/knu-final-project/.github/blob/main/MySQL_logo.png?raw=true" alt="mysql" width="200"/>
    </a>
     <a>
@@ -63,7 +60,11 @@ python jimain.py
     <a>
       <img src="https://github.com/knu-final-project/.github/blob/main/Python.png?raw=true" alt="python" width="200"/>
    </a>
-    <a>
+   <br>
+   <a>
+      <img src="https://github.com/knu-final-project/.github/blob/main/flask.png?raw=true" alt="flask" width="90"/>
+   </a>
+   <a>
       <img src="https://github.com/knu-final-project/.github/blob/main/pytorch.png?raw=true" alt="pytorch" width="200"/>
    </a>
 </div>
