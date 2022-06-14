@@ -1,6 +1,7 @@
 # <div align="center">질병예측 및 음식탐지를 활용한 '고령화 케어 플랫폼'</div>
 
-<div align="center">
+##<div align="center">🚩Home </div>
+
 <p>
    <img width="850" src="https://github.com/knu-final-project/.github/blob/main/home.png"></a>
 </p>
@@ -18,11 +19,21 @@
 <a href="https://github.com/lee-jee-hyeon"><img src="https://img.shields.io/badge/이지현-D0A98F?style=flat-square&logo=Github&logoColor=black"/>
 <a href="https://github.com/jun0cho"><img src="https://img.shields.io/badge/조준영-FFCA28?style=flat-square&logo=Github&logoColor=black"/></a>
 <br>
-<a href="https://colab.research.google.com/github/ultralytics/yolov5/blob/master/tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
 <a href="https://silver-dragon-340.notion.site/Final-Project-Machine129-58e041584ae44baa852d7d0378c736d8"><img src="https://img.shields.io/badge/Notion-484D6D?style=flat-square&logo=Notion&logoColor=white"/></a>
 <a href="https://knufinal.slack.com"><img src="https://img.shields.io/badge/Slack-Join_Forum-blue.svg?logo=slack" alt='Team Slack'></a>
 
+## <div align="center">Project GOAL😀</div>
+   - 고령자의 건강 상태 적신호를 조기 확인할 수 있는 시스템 구축
+   - 고령자 맞춤형 건강관리를 위한 데이터 (수집, 분석-솔루션) 연계 플랫폼 구축
+   - 고령자의 질병 및 질환을 조기 판별하여 증세 완화 
+   - 맞춤형 솔루션을 제공하는 플랫폼을 개발하여 고령자 의료 복지 서비스 품질을 향상 
+   - AI를 접목시킨 플랫폼 기술로 확장
 
+
+## <div align="center">App Technique😀</div>
+   - 생활패턴 및 식품섭취조사 데이터 기반 유병 확률 예측 서비스
+   - YOLOv5를 활용한 음식 탐지 및 유병 확률 기반 식단 평가 서비스
+   - AI를 이용한 서비스의 시각화 및 텍스트화로 사용자에게 정보 전달 등 
 
 ## <div align="center">Command</div>
 <details open><left>
@@ -35,11 +46,11 @@ cd Main
 pip install -r requirements.txt
 python jimain.py
 ```
-  
+
 </p>
 
 </details>
-</div>
+
 
 ## <div align="center">Pages</div>
 
@@ -50,7 +61,7 @@ python jimain.py
 <center>'/survey' Page</center><br>
 <center>'/predict' Page</center><br>
 <center>'/mypage' Page</center><br>
-</div>
+
 
 
 ## <div align="center">Enviroments</div>
