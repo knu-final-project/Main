@@ -64,6 +64,7 @@ python jimain.py
    <a>
       <img src="https://github.com/knu-final-project/.github/blob/main/flask.png?raw=true" alt="flask" width="90"/>
    </a>
+   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
    <a>
       <img src="https://github.com/knu-final-project/.github/blob/main/pytorch.png?raw=true" alt="pytorch" width="200"/>
    </a>
