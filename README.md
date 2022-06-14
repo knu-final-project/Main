@@ -1,7 +1,4 @@
-# <div align="center">질병예측 및 음식탐지를 활용한 '고령화 케어 플랫폼'</div>
-
-##<div align="center">🚩Home </div>
-
+# <div align="center">질병예측 및 음식탐지를 활용한 고령화 케어 플랫폼 - '생생정보통'</div>
 <p>
    <img width="850" src="https://github.com/knu-final-project/.github/blob/main/home.png"></a>
 </p>
@@ -22,6 +19,9 @@
 <a href="https://silver-dragon-340.notion.site/Final-Project-Machine129-58e041584ae44baa852d7d0378c736d8"><img src="https://img.shields.io/badge/Notion-484D6D?style=flat-square&logo=Notion&logoColor=white"/></a>
 <a href="https://knufinal.slack.com"><img src="https://img.shields.io/badge/Slack-Join_Forum-blue.svg?logo=slack" alt='Team Slack'></a>
 
+## <div align="center">생생건강통😀</div>
+
+__개인별 건강정보 데이터를 활용한 질병의 발생 확률 예측 서비스 및 객체탐지를 활용한 식단 평가 서비스를 사용자에게 제공하는 고령자 헬스 케어 플랫폼 입니다.__
 ## <div align="center">Project GOAL😀</div>
    - 고령자의 건강 상태 적신호를 조기 확인할 수 있는 시스템 구축
    - 고령자 맞춤형 건강관리를 위한 데이터 (수집, 분석-솔루션) 연계 플랫폼 구축
@@ -76,6 +76,7 @@ python jimain.py
       <img src="https://github.com/knu-final-project/.github/blob/main/Python.png?raw=true" alt="python" width="200"/>
    </a>
    <br>
+   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
    <a>
       <img src="https://github.com/knu-final-project/.github/blob/main/flask.png?raw=true" alt="flask" width="90"/>
    </a>
@@ -93,3 +94,4 @@ python jimain.py
       <img width="850" src="https://github.com/knu-final-project/.github/blob/main/developer.png"></a>
    </p>
 </div>
+
