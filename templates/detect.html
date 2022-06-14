@@ -69,7 +69,11 @@
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-        <a class="u-login u-login-1" href="/login/" data-page-id="27095522" title="login">Login</a>
+        {% if session['logged_in'] %}
+        <a class="u-login u-login-1" href="/logout" data-page-id="27095522" title="logout">로그아웃</a>
+        {% else %}
+        <a class="u-login u-login-1" href="/login" data-page-id="27095522" title="login">로그인</a>
+        {% endif %}
       </div></header>
     <section class="u-clearfix u-image u-section-1" id="carousel_5708" data-image-width="1131" data-image-height="1600">
       <div class="u-clearfix u-sheet u-sheet-1"></div>
