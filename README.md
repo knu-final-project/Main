@@ -16,7 +16,11 @@
 <a href="https://github.com/jysong575"><img src="https://img.shields.io/badge/송준영-C7EAE4?style=flat-square&logo=Github&logoColor=black"/>
 <a href="https://github.com/dongeon110"><img src="https://img.shields.io/badge/이동언-A7E8BD?style=flat-square&logo=Github&logoColor=black"/>
 <a href="https://github.com/lee-jee-hyeon"><img src="https://img.shields.io/badge/이지현-D0A98F?style=flat-square&logo=Github&logoColor=black"/>
-<a href="https://github.com/jun0cho"><img src="https://img.shields.io/badge/조준영-FFCA28?style=flat-square&logo=Github&logoColor=black"/>
+<a href="https://github.com/jun0cho"><img src="https://img.shields.io/badge/조준영-FFCA28?style=flat-square&logo=Github&logoColor=black"/></a>
+<br>
+<a href="https://colab.research.google.com/github/ultralytics/yolov5/blob/master/tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+<a href="https://silver-dragon-340.notion.site/Final-Project-Machine129-58e041584ae44baa852d7d0378c736d8"><img src="https://img.shields.io/badge/Notion-484D6D?style=flat-square&logo=Notion&logoColor=white"/></a>
+<a href="https://knufinal.slack.com"><img src="https://img.shields.io/badge/Slack-Join_Forum-blue.svg?logo=slack" alt='Team Slack'></a>
 
 
 
