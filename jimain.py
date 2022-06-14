@@ -38,7 +38,7 @@ import io
 HOME_URL = "/home"
 SURVEY_URL = "/survey"
 DETECTION_URL = "/predict"
-SESSION_LIFETIME = 20
+SESSION_LIFETIME = 2000
 
 # from keras import models
 # file = open('data/models/DI2_DG.pkl','rb')
