@@ -41,6 +41,16 @@ __개인별 건강정보 데이터를 활용한 질병의 발생 확률 예측 �
 |:-:|:-:|
 |20가지 질병 예측 모델의 예측 결과를 토대로 질병을 조기에 예방 할 수 있습니다.| 회원별 질병 예측 결과를 토대로 객체탐지 모델을 이용하여 식단평가 서비스 제공합니다. |
 
+## <div align="center">Related Repositories</div>
+
+<ins>GO TO LINK !</ins><br><br>
+
+<a href="https://github.com/knu-final-project/sas_view"> <B>[질병관리청] 국민건강영양조사 제7기 ,8기 Preprocessing Repository</B></a><br>
+
+<a href="https://github.com/knu-final-project/IMG"> <B>Image crawling for object detection</B></a><br>
+
+
+
 ## <div align="center">Command</div>
 <details open><left>
 <summary>설치 방법</summary>
@@ -100,4 +110,5 @@ python jimain.py
       <img width="850" src="https://github.com/knu-final-project/.github/blob/main/developer.png"></a>
    </p>
 </div>
+
 
