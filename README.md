@@ -33,18 +33,20 @@ python jimain.py
 ```
   
 </p>
+
 </details>
+</div>
+
 ## <div align="center">Pages</div>
 
-<center><h3>'/root' Page</h3></center><br>
-<center><h3>'/login' Page</h3></center><br>
-<center><h3>'/register' Page</h3></center><br>
-<center><h3>'/home' Page</h3></center><br>
-<center><h3>'/survey' Page</h3></center>
-<center><h4>'/survey/result' Page</h4></center>
-<center><h3>'/predict' Page</h3></center><br>
-<center><h4>'/predict/result Page</h4></center>
-<center><h3>'/mypage' Page</h3></center><br>
+<center>'/root' Page</center><br>
+<center>'/login' Page</center><br>
+<center>'/register' Page</center><br>
+<center>'/home' Page</center><br>
+<center>'/survey' Page</center><br>
+<center>'/predict' Page</center><br>
+<center>'/mypage' Page</center><br>
+</div>
 
 
 ## <div align="center">Enviroments</div>
