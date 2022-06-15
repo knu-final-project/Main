@@ -169,13 +169,13 @@
                   </h5>
                   <p class="u-text u-text-palette-5-dark-2 u-text-4">
     <hr>
-    <h4 style="color: #ed023d;"> 빨강 (생활패턴 90% ~ 유사) </h4>
+    <h4 style="color: #bd0404;"> <b>빨강 (생활패턴 90% ~ 유사)</b> </h4>
     {% for p90 in data[data['percent'] >= 90]['name'] %}
         <font size="5em"> {{p90}} </font>
     {% endfor %}
 
     <hr>
-    <h4 style="color: #ed9f02;"> 주황 (생활패턴 50% ~ 89% 유사)  </h4>
+    <h4 style="color: #ed9f02;"> <b>주황 (생활패턴 50% ~ 89% 유사)</b>  </h4>
     {% for i in range(0,20) %}
     {% if ((data.percent[i] >= 50) and (data.percent[i] < 90)): %}
         <font size="5em"> {{data['name'][i]}} </font>
@@ -184,7 +184,7 @@
     {% endfor %}
 
     <hr>
-    <h4 style="color: #9ade08;"> 초록 (생활패턴 ~ 49% 유사) </h4>
+    <h4 style="color: #3CB371;"> <b>초록 (생활패턴 ~ 49% 유사)</b> </h4>
     {% for p50 in data[data['percent'] < 50]['name'] %}
         <font size="5em"> {{p50}} </font>
      

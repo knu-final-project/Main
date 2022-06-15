@@ -70,11 +70,11 @@ def model(test, err9 = False, err9value = 21):
 
     for i in range(0,len(data)):
         if data['percent'][i] >90:
-            data['color'][i] = '#ed023d'
+            data['color'][i] = '#bd0404' #ed023d
         elif data['percent'][i] > 50:
             data['color'][i] = '#ed9f02'
         else:
-            data['color'][i] = '#9ade08'
+            data['color'][i] = '#3CB371' #9ade08
 
     data = data.sort_values(by='percent',ascending=False)
     print(result)

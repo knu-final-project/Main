@@ -190,7 +190,7 @@
                   <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
                   
                   <!-- 차트 그릴 캔버스 -->
-                  <canvas id="pieChart1" style="width:70%;height:50%;"></canvas>
+                  <canvas id="pieChart1" style="width:50%;height:50%;"></canvas>
 
                   <script>
                     var dataset = {
@@ -223,8 +223,7 @@
                             labels: {
                                 render: 'label',
                                 fontColor: 'black',
-                                fontSize: 24,
-                                precision: 50
+                                fontSize: 24
                             }
                         },
                         title: {
@@ -250,16 +249,14 @@
                       <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
                   
                       <!-- 차트 그릴 캔버스 본인 -->
-                      <canvas id="pieChart2" style="width:70%;height:50%;"></canvas>
+                      <canvas id="pieChart2" style="width:50%;height:50%;"></canvas>
 
                       <script>
                         var dataset = {
                           label: "탄단지 비율",
                           backgroundColor: ['#839788' ,'#BAA898' ,'#EEE0CB' ],//라벨별 컬러설정
                           //borderColor: '#22252B',
-                          data:  [{{((youngyangso['carbo']/(youngyangso['carbo']+youngyangso['protein']+youngyangso['fat']))*100)|round(2)}}, 
-                          {{((youngyangso['protein']/(youngyangso['carbo']+youngyangso['protein']+youngyangso['fat']))*100)|round(2)}}, 
-                          {{((youngyangso['fat']/(youngyangso['carbo']+youngyangso['protein']+youngyangso['fat']))*100)|round(2)}}]
+                          data:  [{{youngyangso['carbo']}}, {{youngyangso['protein']}}, {{youngyangso['fat']}}]
                       }
                       
                       var labels = ['탄수화물', '단백질', '지방']
@@ -277,16 +274,16 @@
                                 align: 'center',
                                 display: true,
                                 fullWidth: true,
+                                fontSize: 20,
                                 labels: {
                                     fontColor: 'rgb(0, 0, 0)'
                                 }
                             },
                             plugins: {
                                 labels: {
-                                    render: 'value',
+                                    render: 'value' + '%',
                                     fontColor: 'black',
-                                    fontSize: 35,
-                                    precision: 2
+                                    fontSize: 35
                                 }
                             },
                             title: {
