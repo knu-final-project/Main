@@ -11,7 +11,8 @@
     <script class="u-script" type="text/javascript" src = "{{ url_for('static', filename='jquery.js') }}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='nicepage.js') }}" defer=""></script>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
 	  <meta name="generator" content="Nicepage 4.12.5, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
@@ -128,11 +129,68 @@
                   <div class="u-container-style u-custom-color-22 u-layout-cell u-left-cell u-radius-10 u-shape-round u-size-30 u-layout-cell-4">
                     <div class="u-container-layout u-valign-middle u-container-layout-4">
                       
+                      <h5><b>{{data6}}님이 경계해야 할 질병 (50% 이상 측정치)</b></h5>
                       <canvas id="bar-chart-horizontal" width="400" height="400"></canvas>
+                    <script>
+                    // 그래프 꾸미기
+                    var ctx = document.getElementById('bar-chart-horizontal').getContext('2d');
+            
+                    var chart = new Chart(ctx, {
+                        type: 'bar',
+                        plugins:[ChartDataLabels],
+                        data:{
+                          datasets: [{
+                            label : '유병 확률 지수',
+                            axis: 'y', // ***가로형 막대로 바꾸는 옵션***
+                            backgroundColor: {{backgroundcolor_level | tojson |safe}} ,
+                            borderColor: 'rgb(237, 2, 61)',
+                            data: {{data | tojson | safe}},
+                            datalabels:{
+                              color:'black',        
+                                                     
+                              font:{size:20}       
+                            }
+                          }],
+                          labels: {{labels | tojson | safe}},
+                          data_label:{{data | tojson | safe}},
+                        },
+                        options:{
+                            responsive: true, // false : 그래프 크기 정적으로 변경
+                            indexAxis: 'y', //***가로형 막대로 바꾸는 옵션***
+          
+                            
+                          plugins:{
+                            legend: {
+                                position: 'bottom',
+                                display: false,
+                             },
+                              title: {
+                                //display: true,
+                                //text: '0'+{{data6}}+'님이 경계해야 할 질병 (50% 이상 측정치)',
+                                //fontSize: 25,
+                                //fontColor: 'black'
+                             },
+                              // 라벨
+                            datalabels:{
+                              formatter:function(value,context){
+                                // data 에 넣은 데이타 순번. 물론 0 부터 시작
+                                var idx = context.dataIndex;
+                                return context.chart.data.data_label[idx] + '%';
+                              },
+                              
+                            }
+                          }
+                        }
+                      });
+                      
+            
+                </script>
                     </div>
                   </div>
                   <div class="u-container-style u-custom-color-22 u-layout-cell u-radius-10 u-right-cell u-shape-round u-size-30 u-layout-cell-5">
                     <div class="u-container-layout u-valign-middle u-container-layout-5">
+                      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+                      <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
                       <canvas id="doughnut-chart" width="400" height="400"></canvas>
                     </div>
                   </div>
@@ -175,72 +233,71 @@
     </section>
 
     <script type="text/javascript">
-      new Chart(document.getElementById("bar-chart-horizontal"), {
-        type: 'horizontalBar',
-        data: {
-          labels: {{labels | tojson | safe}},
-          datasets: [
-            {
-              base: 0,
-              label: "유병 확률 지수",
-              fontColor : 'black',
-              backgroundColor: {{backgroundcolor_level | tojson |safe}} ,
-              data: {{data | tojson | safe}},
-              datalabels :{ color : 'black', fontSize : 20}
-            }
-          ]
-        },
-        options: {
-          legend: { 
-            display: false,
-            labels :{
-              fontSize : 12,
-              fontStyle : 'bold'
+      //new Chart(document.getElementById("bar-chart-horizontal"), {
+        //type: 'horizontalBar',
+        //data: {
+          //labels: {{labels | tojson | safe}},
+          //datasets: [
+            //{
+              //base: 0,
+              //label: "유병 확률 지수",
+              //fontColor : 'black',
+              //backgroundColor: {{backgroundcolor_level | tojson |safe}} ,
+              //data: {{data | tojson | safe}},
+              //datalabels :{ color : 'black', fontSize : 20}
+            //}
+          //]
+        //},
+        //options: {
+          //legend: { 
+            //display: false,
+            //labels :{
+              //fontSize : 12,
+              //fontStyle : 'bold'
 
-            } },
-          title: {
+            //} },
+          //title: {
 
-            display: true,
-            text: '0'+{{data6}}+'님이 경계해야 할 질병 (50% 이상 측정치)',
-            fontSize : 20,
-            fontColor : 'black'
-          },
-          scales:{
-            xAxes:[{
-              ticks:{
-                beginAtZero : true,
-                fontColor : 'black',
-                fontSize : 15
+            //display: true,
+            //text: '0'+{{data6}}+'님이 경계해야 할 질병 (50% 이상 측정치)',
+            //fontSize : 20,
+            //fontColor : 'black'
+          //},
+          //scales:{
+            //xAxes:[{
+              //ticks:{
+                //beginAtZero : true,
+                //fontColor : 'black',
+                //fontSize : 15
                 
 
-              },
-              gridLines:{
-                display:false,
-                drawBorder:false
-              }
-            }],
-            yAxes:[{
-              ticks:{
-                fontStyle: "bold",
-                fontSize : 16,
-                fontColor : 'black'
+              //},
+              //gridLines:{
+                //display:false,
+                //drawBorder:false
+              //}
+            //}],
+            //yAxes:[{
+              //ticks:{
+                //fontStyle: "bold",
+                //fontSize : 16,
+                //fontColor : 'black'
                 
-              },
-              gridLines:{
-                display : false
-              }
-            }],
-            plugins:{
-              datalabels:{
-                formatter:function(value, context){
-                  var idx = context.dataIndex;
-                  return context.chart.data.labels[idx]+ ' ' +addComma(value)
-                }
-              }
-            }
-          }
-        }
-    });
+              //},
+              //gridLines:{
+                //display : false
+              //}
+            //}],
+              //datalabels:{
+                //formatter:function(value, context){
+                  //var idx = context.dataIndex;
+                  //return context.chart.data.labels[idx]+ ' ' +addComma(value)
+                //}
+              //}
+            //}
+          //}
+        //}
+    //});
 
     new Chart(document.getElementById("doughnut-chart"), {
       type: 'doughnut',
@@ -263,8 +320,15 @@
           display : true,
           labels : {
             fontStyle : 'bold',
-            fontSize : 18
+            fontSize : 20
           }
+        },
+        plugins: {
+            labels: {
+                render: 'value'+'%',
+                fontColor: 'black',
+                fontSize: 25
+            }
         },
         title: {
           display: true,

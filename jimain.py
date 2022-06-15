@@ -777,7 +777,7 @@ def mypage():
         if disease_percent >= 50 and disease_percent < 90 :
             backgroundcolor_level.append('#3CB371') 
         elif disease_percent >=90 and disease_percent <= 100 :
-            backgroundcolor_level.append('#8B0000')
+            backgroundcolor_level.append('#bd0404') #8B0000
         else :
             pass
         disease_labels.append(disease_name)
