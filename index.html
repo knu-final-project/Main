@@ -1,0 +1,431 @@
+{% if session['logged_in'] %}
+<!doctype html>
+
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>질병 예측 설문조사 </title>
+
+
+  </head>
+
+  <body><div>
+
+  <br>
+  
+    <nav class="nav nav-pills nav-justified navbar-dark bg-dark">
+        <a class="nav-item nav-link active" href="#">질병예측모델</a>
+        <a class="nav-item nav-link" href="#">어바웃</a>
+        <a class="nav-item nav-link" href="#">Contact</a>
+        <a class="nav-item nav-link disabled" href="#">Disabled</a>
+      </nav>
+      </div>
+      
+      <div class="container">
+          <h2 style="color: rgb(24, 163, 255);" class=" text-center mt-3"> Prediction model of disease occurrence probability using health information data</h2>
+          <section>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+                  <div class="row">
+                    <div class="col text-center">
+                      
+                      </div>
+                  </div>
+                  <form action="/survey" method="POST">
+                  <div class="row align-items-center">
+                    <div class="col mt-4">
+                        <div class="row align-items-center mt-4">
+                            <div class="col form-group">
+                                <label>😪성별 :</label>
+                                <select name="SEX" id="" class="form-control custom select">
+                                <option value="1">남자</option>
+                                <option value="0">여자</option>
+                               
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="row align-items-center mt-4">
+                    <div class="col form-group">
+                        <label> 만성질환 의사진단 가족력 여부</label>
+                        <select name="HE_FH" id="" class="form-control custom select">
+                        <option value="1">있음</option>
+                        
+                        <option value="0">없음</option>
+                    </select>
+                    </div>
+                  </div>
+                  
+                  <div class="row align-items-center mt-4">
+                    <div class="col form-group">
+                        <label> 만성질환 의사진단 가족력 여부</label>
+                        <select name="HE_FH" id="" class="form-control custom select">
+                        <option value="1">있음</option>
+                        
+                        <option value="0">없음</option>
+                    </select>
+                    </div>
+                  </div>
+                  <div class="row align-items-center mt-4">
+                    <div class="col">
+                        <label> 나이: </label>
+                      <input name='AGE' type="text" class="form-control" placeholder="나이 입력(세)">
+                    </div>
+                  </div>
+
+                  <div class="row align-items-center mt-4">
+                    <div class="col">
+                        <label> 체질량지수: </label>
+                      <input name='HE_BMI' type="text" class="form-control" placeholder="숫자 입력">
+                    </div>
+                  </div>
+                  
+                  <div class="row align-items-center mt-4">
+                    <div class="col">
+                        <label> 신장: </label>
+                      <input name='HE_HT' type="text" class="form-control" placeholder="숫자 입력(cm)">
+                    </div>
+                  </div>
+
+                  <div class="row align-items-center mt-4">
+                    <div class="col form-group">
+                        <label>(성인) 건강검진 수진여부</label>
+                        <select name="BH1" id="" class="form-control custom select">
+                        <option value="1">예</option>
+                        <option value="2">아니오</option>
+                    </select>
+                    </div>
+                </div>
+
+
+
+                <div class="row align-items-center mt-4">
+                  <div class="col form-group">
+                      <label>EuroQoL : 통증/불편</label>
+                      <select name="LQ_4EQL" id="" class="form-control custom select">
+                      <option value="1">나는 통증/불편감이 없음</option>
+                      <option value="2">나는 다소 통증/불편감이 있음</option>
+                      <option value="3">나는 심한 통증/불편감이 있음</option>
+                  </select>
+                  </div>
+              </div>
+    
+                <div class="row align-items-center mt-4">
+                  <div class="col">
+                    <div class="row align-items-center mt-4">
+                       <div class="col form-group">
+                          <label>(만12세이상) 1년간 음주빈도</label>
+                           <select name="BD1_11" id="" class="form-control custom select">
+                           <option value="1">최근 1년간 전혀 마시지 않음</option>
+                           <option value="2">월 1회 미만</option>
+                           <option value="3">월 1회 정도</option>
+                           <option value="4">월 2-4회</option>
+                           <option value="5">주 2-3회</option>
+                           <option value="6">주 4회 이상</option>
+
+                               
+                          </select>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="row align-items-center mt-4">
+                        <div class="col form-group">
+                          <label>평소 스트레스 인지 정도</label>
+                            <select name="BP1" id="" class="form-control custom select">
+                            <option value="1">대단히 많이 느낀다</option>
+                            <option value="2">많이 느끼는 편이다</option>
+                            <option value="3">조금 느끼는 편이다</option>
+                            <option value="4">거의 느끼지 않는다</option>
+                          </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>스트레스 인지율 (스트레스 대단히or많이 응답한 사람수 / 만12세 이상 대상자 수)</label>
+                          <select name="MH_STRESS" id="" class="form-control custom select">
+                          <option value="0">스트레스 적게 느낌</option>
+                          <option value="1">스트레스 많이 느낌</option>
+                          </select>
+                        </div>
+                    </div>                      
+
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>일상활동</label>
+                          <select name="LQ_3EQL" id="" class="form-control custom select">
+                          <option value="1">나는 일상 활동을 하는데 지장이 없다.</option>
+                          <option value="2">나는 일상 활동을 하는데 다소 지장이 있다.</option>
+                          <option value="3">나는 일상 활동을 할 수가 없다.</option>
+                          </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 단일불포화지방산 섭취량(g)</label>
+                          <input name="N_MUFA" type="text" class="form-control" placeholder="숫자 입력(g)">
+                        </div>
+                    </div>
+
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>주말 하루 평균 수면시간</label>
+                        <input name='TOTAL_SLP_WD' type="text" class="form-control" placeholder="숫자 입력(분)">
+                      </div>
+                    </div>
+
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 인 섭취량(mg)</label>
+                        <input name='N_PHOS' type="text" class="form-control" placeholder="숫자 입력(mg)">
+                      </div>
+                    </div>
+
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>체중</label>
+                        <input name='HE_WT' type="text" class="form-control" placeholder="숫자 입력(kg)">
+                      </div>
+                    </div>
+
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 지방 섭취량</label>
+                        <input name='N_FAT' type="text" class="form-control" placeholder="숫자 입력(g)">
+                      </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>활동제한 여부</label>
+                          <select name="LQ4_00" id="" class="form-control custom select">
+                          <option value="1">예</option>
+                          <option value="2">아니오</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>최근 1년간 아침식사를 1주일에 몇 회 하셨습니까?</label>
+                          <select name="L_BR_FQ" id="" class="form-control custom select">
+                          <option value="1">주 5~7회</option>
+                          <option value="2">주 3~4회</option>
+                          <option value="3">주 1~2회</option>
+                          <option value="4">거의 안한다(주0회)</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>현재흡연율 (평생 담배 5갑이상 피웠고 현재 담배를 피우는 사람 수 / 대상자 수)</label>
+                          <select name="SM_PRESNT" id="" class="form-control custom select">
+                          <option value="0">과거 흡연, 비흡연</option>
+                          <option value="1">현재 흡연</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 당 섭취량(g)</label>
+                          <input name="N_SUGAR" type="text" class="form-control" placeholder="숫자 입력(g)">
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>맥박 규칙성 여부</label>
+                          <select name="HE_RPLS" id="" class="form-control custom select">
+                          <option value="1">규칙적</option>
+                          <option value="2">불규칙적</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 포화지방산 섭취량(g)</label>
+                          <input name="N_SFA" type="text" class="form-control" placeholder="숫자 입력(g)">
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>중강도 신체활동 여부</label>
+                          <select name="BE3_81" id="" class="form-control custom select">
+                          <option value="1">예</option>
+                          <option value="2">아니오</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>운동능력</label>
+                          <select name="LQ_1EQL" id="" class="form-control custom select">
+                          <option value="1">나는 걷는데 지장이 없음</option>
+                          <option value="2">나는 걷는데 다소 지장이 있음</option>
+                          <option value="3">나는 종일 누워 있어야 함</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>최종 이완기 혈압(2,3차 평균)(mmHg)</label>
+                          <input name="HE_DBP" type="text" class="form-control" placeholder="숫자 입력(mmHg)">
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>자기관리</label>
+                          <select name="LQ_2EQL" id="" class="form-control custom select">
+                          <option value="1">나는 목욕을 하거나 옷을 입는데 지장이 없다</option>
+                          <option value="2">나는 혼자 목욕을 하거나 옷을 입는데 다소 지장이 있다</option>
+                          <option value="3">나는 혼자 목욕을 하거나 옷을 입을 수가 없다</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>1년간 정신문제 상담 여부</label>
+                          <select name="BP7" id="" class="form-control custom select">
+                          <option value="1">예. 있다</option>
+                          <option value="2">아니오. 없다</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 단백질 섭취량(g)</label>
+                          <input name="N_PROT" type="text" class="form-control" placeholder="숫자 입력(g)">
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 나트륨 섭취량(g)</label>
+                          <input name="N_NA" type="text" class="form-control" placeholder="숫자 입력(g)">
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 콜레스테롤 섭취량(mg)</label>
+                          <input name="N_CHOL" type="text" class="form-control" placeholder="숫자 입력(mg)">
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 수분 섭취량(mg)</label>
+                          <input name="N_WATER" type="text" class="form-control" placeholder="숫자 입력(g)">
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>여가 중강도 신체활동 여부</label>
+                          <select name="BE3_85" id="" class="form-control custom select">
+                          <option value="1">예</option>
+                          <option value="2">아니오</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>불안/우울</label>
+                          <select name="LQ_5EQL" id="" class="form-control custom select">
+                          <option value="1">나는 불안하거나 우울하지 않다</option>
+                          <option value="2">나는 다소 불안하거나 우울하다</option>
+                          <option value="3">나는 매우 심하게 불안하거나 우울하다</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 에너지 섭취량(kcal)</label>
+                          <input name="N_EN" type="text" class="form-control" placeholder="숫자 입력(kcal)">
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 식품섭취량(g)</label>
+                          <input name="N_INTK" type="text" class="form-control" placeholder="숫자 입력(g)">
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col form-group">
+                          <label>최근 7일 동안, 공공장소의 실내에서 다른사람이 피우는 담배연기를 맡은 적이 있습니까?</label>
+                          <select name="BS13" id="" class="form-control custom select">
+                          <option value="1">예</option>
+                          <option value="2">아니오</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+                      <div class="col">
+                          <label>1일 베타카로틴 섭취량(μg)</label>
+                          <input name="N_CAROT" type="text" class="form-control" placeholder="숫자 입력(μg)">
+                        </div>
+                    </div>
+
+                  <div class="row justify-content-start mt-4">
+                    <div class="col">
+                       <button class="btn btn-success mt-4" type="submit">제출하기</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+      </div>
+    </form>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+{% else %}
+<p>로그인 해주세요!</p>
+
+<a href="/login">Login</a> 
+<a href="/register">Register</a>
+<a href="/predict">predict</a> 
+<a href="/survey">Survey</a>
+
+{% endif %}
