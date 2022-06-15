@@ -13,7 +13,7 @@
     
     <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
-
+    
 	  <meta name="generator" content="Nicepage 4.12.5, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700">
@@ -128,8 +128,7 @@
                 <div class="u-layout-row">
                   <div class="u-container-style u-custom-color-22 u-layout-cell u-left-cell u-radius-10 u-shape-round u-size-30 u-layout-cell-4">
                     <div class="u-container-layout u-valign-middle u-container-layout-4">
-                      
-                      <h5><b>{{data6}}님이 경계해야 할 질병 (50% 이상 측정치)</b></h5>
+                    <h5><b>{{data6}}님이 경계해야 할 질병 (50% 이상 측정치)</b></h5>
                       <canvas id="bar-chart-horizontal" width="400" height="400"></canvas>
                     <script>
                     // 그래프 꾸미기
@@ -185,13 +184,17 @@
                       
             
                 </script>
+                      
                     </div>
                   </div>
                   <div class="u-container-style u-custom-color-22 u-layout-cell u-radius-10 u-right-cell u-shape-round u-size-30 u-layout-cell-5">
                     <div class="u-container-layout u-valign-middle u-container-layout-5">
+                     
                       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
                       <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
-                      <canvas id="doughnut-chart" width="400" height="400"></canvas>
+                  
+                  <canvas id="doughnut-chart" width="400" height="400"></canvas>
+                  
                     </div>
                   </div>
                 </div>
@@ -233,71 +236,6 @@
     </section>
 
     <script type="text/javascript">
-      //new Chart(document.getElementById("bar-chart-horizontal"), {
-        //type: 'horizontalBar',
-        //data: {
-          //labels: {{labels | tojson | safe}},
-          //datasets: [
-            //{
-              //base: 0,
-              //label: "유병 확률 지수",
-              //fontColor : 'black',
-              //backgroundColor: {{backgroundcolor_level | tojson |safe}} ,
-              //data: {{data | tojson | safe}},
-              //datalabels :{ color : 'black', fontSize : 20}
-            //}
-          //]
-        //},
-        //options: {
-          //legend: { 
-            //display: false,
-            //labels :{
-              //fontSize : 12,
-              //fontStyle : 'bold'
-
-            //} },
-          //title: {
-
-            //display: true,
-            //text: '0'+{{data6}}+'님이 경계해야 할 질병 (50% 이상 측정치)',
-            //fontSize : 20,
-            //fontColor : 'black'
-          //},
-          //scales:{
-            //xAxes:[{
-              //ticks:{
-                //beginAtZero : true,
-                //fontColor : 'black',
-                //fontSize : 15
-                
-
-              //},
-              //gridLines:{
-                //display:false,
-                //drawBorder:false
-              //}
-            //}],
-            //yAxes:[{
-              //ticks:{
-                //fontStyle: "bold",
-                //fontSize : 16,
-                //fontColor : 'black'
-                
-              //},
-              //gridLines:{
-                //display : false
-              //}
-            //}],
-              //datalabels:{
-                //formatter:function(value, context){
-                  //var idx = context.dataIndex;
-                  //return context.chart.data.labels[idx]+ ' ' +addComma(value)
-                //}
-              //}
-            //}
-          //}
-        //}
-    //});
 
     new Chart(document.getElementById("doughnut-chart"), {
       type: 'doughnut',
@@ -312,6 +250,9 @@
             fontColor : 'black',
             //backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
             data: {{nutrient_data | tojson | safe }}
+            //data: [{{((nutrient_data[0]/(nutrient_data[0]+nutrient_data[1]+nutrient_data[2]))*100)|round(1)}},
+            //{{((nutrient_data[1]/(nutrient_data[0]+nutrient_data[1]+nutrient_data[2]))*100)|round(1)}},
+            //{{((nutrient_data[2]/(nutrient_data[0]+nutrient_data[1]+nutrient_data[2]))*100)|round(1)}}]
           }
         ]
       },
@@ -325,9 +266,10 @@
         },
         plugins: {
             labels: {
-                render: 'value'+'%',
+                render: 'value' + '%',
                 fontColor: 'black',
                 fontSize: 25
+                //precision: 50
             }
         },
         title: {

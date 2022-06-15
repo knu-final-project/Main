@@ -36,7 +36,7 @@
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-b10a"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
+        <a href="/home" class="u-image u-logo u-image-1" data-image-width="283" data-image-height="115">
           <img src="{{url_for('static', filename = 'images/20220607_225725.png')}}" class="u-logo-image u-logo-image-1">
         </a>
         <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" data-responsive-from="MD">
@@ -169,13 +169,13 @@
                   </h5>
                   <p class="u-text u-text-palette-5-dark-2 u-text-4">
     <hr>
-    <h4 style="color: #ed023d;"> 빨강 (생활패턴 90% ~ 유사) </h4>
+    <h4 style="color: #bd0404;"> <b>빨강 (생활패턴 90% ~ 유사)</b> </h4>
     {% for p90 in data[data['percent'] >= 90]['name'] %}
         <font size="5em"> {{p90}} </font>
     {% endfor %}
 
     <hr>
-    <h4 style="color: #ed9f02;"> 주황 (생활패턴 50% ~ 89% 유사)  </h4>
+    <h4 style="color: #ed9f02;"> <b>주황 (생활패턴 50% ~ 89% 유사)</b>  </h4>
     {% for i in range(0,20) %}
     {% if ((data.percent[i] >= 50) and (data.percent[i] < 90)): %}
         <font size="5em"> {{data['name'][i]}} </font>
@@ -184,7 +184,7 @@
     {% endfor %}
 
     <hr>
-    <h4 style="color: #9ade08;"> 초록 (생활패턴 ~ 49% 유사) </h4>
+    <h4 style="color: #3CB371;"> <b>초록 (생활패턴 ~ 49% 유사)</b> </h4>
     {% for p50 in data[data['percent'] < 50]['name'] %}
         <font size="5em"> {{p50}} </font>
      
@@ -286,7 +286,7 @@
     
     
     <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-white" id="sec-58d4"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="280" data-image-height="280">
+        <a href="/home" class="u-image u-logo u-image-1" data-image-width="280" data-image-height="280">
           <img src="{{url_for('static',filename='images/TEAM-LOGO.png')}}" class="u-logo-image u-logo-image-1">
         </a>
         <p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">
