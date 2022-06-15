@@ -44,21 +44,24 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
+
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href='/' style="padding: 10px 0px;">소개말</a>
             </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href='/survey' data-page-id="883203286" style="padding: 10px 0px;">질병예측</a>
             </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href='/predict' data-page-id="883203286" style="padding: 10px 0px;">식단평가</a>
-            </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="/home" data-page-id="883203286" style="padding: 10px 0px;">Developer</a>
+            </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="/home" data-page-id="883203286" style="padding: 10px 0px;">개발자</a>
             </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-grey-90 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-palette-1-base" href="/mypage" style="padding: 10px 0px;">내 정보</a>
             </li></ul>
+
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">소개말</a>
+
                 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/survey" data-page-id="883203286">질병예측</a>
                 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/predict" data-page-id="883203286">식단평가</a>
-                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/home" data-page-id="883203286">Developer</a>
+                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/home" data-page-id="883203286">개발자</a>
                 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/mypage">내 정보</a>
               </li></ul>
               </div>
@@ -67,9 +70,9 @@
           </div>
         </nav>
         {% if session['logged_in'] %}
-        <a class="u-login u-login-1" href="/logout" data-page-id="27095522" title="logout">로그아웃</a>
+        <a class="u-login u-login-1" href="/logout" data-page-id="27095522" title="logout">나가기</a>
         {% else %}
-        <a class="u-login u-login-1" href="/login" data-page-id="27095522" title="login">로그인</a>
+        <a class="u-login u-login-1" href="/login" data-page-id="27095522" title="login">들어가기</a>
         {% endif %}
       </div></header>
     <section class="u-clearfix u-image u-section-1" id="sec-14a1" data-image-width="1980" data-image-height="1114">
@@ -134,7 +137,7 @@
                   </div>    
             </p> 
 
-            <h4>귀하가 해당하는 곳에 응답해 주세요</> </h4>
+            <h4>*귀하가 해당하는 곳에 응답해 주세요</> </h4>
             
             <p class="u-text u-text-default u-text-3"><B> 5. 운동능력 </B>
               <div class="u-form-group u-form-radiobutton u-form-group-6">
@@ -166,7 +169,7 @@
                         <label class="u-label u-label-10" for="radiobutton">나는 혼자 목욕을 하거나 옷을 입는데 다소 지장이 있다</label>
                         <br>
                         <input type="radio" name="LQ_2EQL" value="3">
-                        <label class="u-label u-label-11" for="radiobutton">나는 혼자 목욜을 하거나 옷을 입을 수가 없다</label>
+                        <label class="u-label u-label-11" for="radiobutton">나는 혼자 목욕을 하거나 옷을 입을 수가 없다</label>
                         <br>
                       </div>
                     </div>
@@ -227,7 +230,7 @@
             <p> 
                 <label for="name-796f" class="u-label u-label-21"><B> 10. 귀하의 주말 하루 평균 수면시간은 몇 시간입니까?</B></label>
                 <br> 
-                <input type="text" placeholder="주말 하루 평균 수면시간을 입력해주세요" id="name-796f" name="TOTAL_SLP_WD" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                <input type="text" placeholder="주말 하루 평균 수면시간을 입력해주세요 (예 : 7시간 -> 7)" id="name-796f" name="TOTAL_SLP_WD" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
             </p>
             
             <h5><B>* 최소 10분 이상 계속 숨이 약간 차거나 심장이 약간 빠르게 뛰는 중강도 신체 활동을 포함하고 있습니까?</B></h5>
@@ -337,6 +340,9 @@
             </p>
             
             <p class="u-align-center u-text u-text-15"> <B>17. ​​귀 가족 중에서 의사로부터 다음의 질병을 진단받으신 적이 있으십니까?</B>
+              
+              <h5><b> <span style = "background : silver;"> [고혈압, 고지혈증, 심근경색증, 협심증, 뇌졸중, 당뇨병, 갑상선질환, B형간염] </span><b><h5>
+              
                 <div class="u-form u-form-14">
                     <div class="u-form-group u-form-radiobutton u-form-group-30">
                       <div class="u-form-radio-button-wrapper">
@@ -350,7 +356,7 @@
             <p>
                 <label for="name-796f" class="u-label u-label-40"> <B>18.  최종 이완기 혈압(2,3차 평균)</B>
                 <br>
-                <input type="text" placeholder="이완기 혈압을 입력해주세요" id="name-796f" name="HE_DBP" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-5" required="required">
+                <input type="text" placeholder="이완기 혈압을 입력해주세요(정상 범위 : 수축기 120 / 이완기 80) " id="name-796f" name="HE_DBP" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-5" required="required">
             </p>
             
             <p class="u-align-center u-text u-text-16"><B>19. 현재 건강상의 문제나 신체 혹은 정신적 장애로 일상생활 및 사회활동에 제한을 받고 계십니까?</B>
@@ -463,84 +469,84 @@
             <p> 
               <div class="u-form-group">
                 <label for="name-796f" class="u-label u-label-57"><B>25. 1일 식품섭취량(g)을 입력해주세요</B></label>
-                <input type="text" placeholder="1일 식품섭취량(g)" id="name-796f" name="N_INTK" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-6" required="required">
+                <input type="text" placeholder="1일 식품섭취량(g) - 모를 경우 0 입력" id="name-796f" name="N_INTK" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-6" required="required">
               </div>
             </p>
 
             <p>
               <div class="u-form-group u-form-group-47">
                 <label for="text-413b" class="u-label u-label-58"><B>26. 1일 에너지 섭취량(kcal)을 입력해주세요</B></label>
-                <input type="text" placeholder="1일 에너지 섭취량(kcal)" id="text-413b" name="N_EN" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-7">
+                <input type="text" placeholder="1일 에너지 섭취량(kcal) - 모를 경우 0 입력" id="text-413b" name="N_EN" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-7">
               </div>
             </p>
 
             <p>
               <div class="u-form-group u-form-group-48">
                 <label for="text-3f9d" class="u-label u-label-59"><B>27. 1일 수분 섭취량(g)을 입력해주세요</B></label>
-                <input type="text" placeholder="1일 수분 섭취량(g)" id="text-3f9d" name="N_WATER" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-8">
+                <input type="text" placeholder="1일 수분 섭취량(g) - 모를 경우 0 입력" id="text-3f9d" name="N_WATER" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-8">
               </div>
             </p>
 
             <p>
               <div class="u-form-group u-form-group-49">
                 <label for="text-09a4" class="u-label u-label-60"><B>28. 1일 단백질 섭취량(g)을 입력해주세요</B></label>
-                <input type="text" placeholder="1일 단백질 섭취량(g)" id="text-09a4" name="N_PROT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-9">
+                <input type="text" placeholder="1일 단백질 섭취량(g) - 모를 경우 0 입력" id="text-09a4" name="N_PROT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-9">
               </div>
             </p>
 
             <p>
               <div class="u-form-group u-form-group-50">
                 <label for="text-ee6b" class="u-label u-label-61"><B>29. 1일 지방 섭취량(g)을 입력해주세요</B></label>
-                <input type="text" id="text-ee6b" name="N_FAT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-10" placeholder="1일 지방 섭취량(g)">
+                <input type="text" id="text-ee6b" name="N_FAT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-10" placeholder="1일 지방 섭취량(g) - 모를 경우 0 입력">
               </div>
             </p>
 
             <p>
               <div class="u-form-group u-form-group-51">
                 <label for="text-c936" class="u-label u-label-62"><B>30. 1일 포화지방산 섭취량(g)을 입력해주세요</B></label>
-                <input type="text" id="text-c936" name="N_SFA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-11" placeholder="1일 포화지방산 섭취량(g)">
+                <input type="text" id="text-c936" name="N_SFA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-11" placeholder="1일 포화지방산 섭취량(g) - 모를 경우 0 입력">
               </div>
             </p>
             
             <p>
               <div class="u-form-group u-form-group-52">
                 <label for="text-31ae" class="u-label u-label-63"><B>31. 1일 단일불포화지방산 섭취량(g)을 입력해주세요</B></label>
-                <input type="text" placeholder="1일 단일불포화지방산 섭취량(g)" id="text-31ae" name="N_MUFA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-12">
+                <input type="text" placeholder="1일 단일불포화지방산 섭취량(g) - 모를 경우 0 입력" id="text-31ae" name="N_MUFA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-12">
               </div>
             </p>
             
             <p>
               <div class="u-form-group u-form-group-53">
                 <label for="text-1359" class="u-label u-label-64"><B>32. 1일 콜레스테롤 섭취량(mg)을 입력해주세요</B></label>
-                <input type="text" placeholder="1일 콜레스테롤 섭취량(mg)" id="text-1359" name="N_CHOL" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-13">
+                <input type="text" placeholder="1일 콜레스테롤 섭취량(mg) - 모를 경우 0 입력" id="text-1359" name="N_CHOL" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-13">
               </div>
             </p>
             
             <p>
               <div class="u-form-group u-form-group-54">
                 <label for="text-364c" class="u-label u-label-65"><B>33. 1일 당 섭취량(g)을 입력해주세요</B></label>
-                <input type="text" placeholder="1일 당 섭취량(g)" id="text-364c" name="N_SUGAR" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-14">
+                <input type="text" placeholder="1일 당 섭취량(g) - 모를 경우 0 입력" id="text-364c" name="N_SUGAR" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-14">
               </div>
             </p>
             
             <p>
                 <div class="u-form-group u-form-group-55">
                     <label for="text-5fe0" class="u-label u-label-66"><B>34. 1일 인 섭취량(mg)을 입력해주세요</B></label>
-                    <input type="text" placeholder="1일 인 섭취량(mg)" id="text-5fe0" name="N_PHOS" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-15">
+                    <input type="text" placeholder="1일 인 섭취량(mg) - 모를 경우 0 입력" id="text-5fe0" name="N_PHOS" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-15">
                 </div>
             </p>
             
             <p>
                 <div class="u-form-group u-form-group-56">
                     <label for="text-3eb1" class="u-label u-label-67"><B>35. 1일 나트륨 섭취량(mg)을 입력해주세요</B></label>
-                    <input type="text" placeholder="1일 나트륨 섭취량(mg)" id="text-3eb1" name="N_NA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-16">
+                    <input type="text" placeholder="1일 나트륨 섭취량(mg) - 모를 경우 0 입력" id="text-3eb1" name="N_NA" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-16">
                 </div>
             </p>
             
             <p>
                 <div class="u-form-group u-form-group-57">
                     <label for="text-1a7e" class="u-label u-label-68"><B>36. 1일 베타카로틴 섭취량(μg)을 입력해주세요</B></label>
-                    <input type="text" placeholder="1일 베타카로틴 섭취량(μg)" id="text-1a7e" name="N_CAROT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-17">
+                    <input type="text" placeholder="1일 베타카로틴 섭취량(μg) - 모를 경우 0 입력" id="text-1a7e" name="N_CAROT" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-17">
                 </div>
             </p>
 
